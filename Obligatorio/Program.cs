@@ -10,6 +10,7 @@ namespace Obligatorio
     {
         static void Main(string[] args)
         {
+            Console.Write("test1");
         }
     }
 }
