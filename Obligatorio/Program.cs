@@ -11,6 +11,7 @@ namespace Obligatorio
         static void Main(string[] args)
         {
             Console.Write("test1");
+            Console.Write("test2");
         }
     }
 }
