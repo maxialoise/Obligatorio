@@ -13,6 +13,7 @@ namespace Obligatorio
             Console.Write("test1");
             Console.Write("test2");
             Console.Write("testmarica");
+            Console.Write("otro test");
         }
     }
 }
