@@ -1,1 +1,2 @@
 C:\Repo\Obligatorio\Obligatorio\bin\Debug\Obligatorio.exe.config
+C:\Users\farriola\Source\Repos\ObligatorioP2\Obligatorio\bin\Debug\Obligatorio.exe.config
