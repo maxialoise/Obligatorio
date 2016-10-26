@@ -4,14 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Negocio
+namespace Dominio
 {
-    class Program
+    class Reparacion
     {
-        static void Main(string[] args)
-        {
-            //consola
-    
-        }
     }
 }
