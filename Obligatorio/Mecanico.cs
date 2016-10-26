@@ -8,13 +8,16 @@ namespace Dominio
 {
     public class Mecanico
     {
+        #region Atributos
         private string nombre;
         private string telefono;
         private string numRegistro;
         private Direccion direccion;
         private double precioJornal;
         private bool tieneCapExtra;
+        #endregion
 
+        #region Propiedades
         public bool TieneCapExtra
         {
             get { return tieneCapExtra; }
@@ -50,7 +53,9 @@ namespace Dominio
             get { return numRegistro; }
             set { numRegistro = value; }
         }
+        #endregion
 
+        #region
         public Mecanico(string Nombre, string Telefono, string NumRegistro, string Calle, string NumPuerta, string Ciudad, double PrecioJornal, bool TieneCapExtra)
         {
             direccion = new Direccion(Calle, NumPuerta, Ciudad);
@@ -60,7 +65,6 @@ namespace Dominio
             precioJornal = PrecioJornal;
             tieneCapExtra = TieneCapExtra;
         }
-
-
+        #endregion
     }
 }

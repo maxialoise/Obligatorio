@@ -16,18 +16,15 @@ namespace Dominio
             get { return material; }
             set { material = value; }
         }
-
         public int Cantidad
         {
             get { return cantidad; }
             set { cantidad = value; }
         }
-
-        public Producto(int cantidad, Material Material)
+        public Producto(int Cantidad, Material Material)
         {
-
+            cantidad = Cantidad;
+            material = Material;
         }
-
-
     }
 }

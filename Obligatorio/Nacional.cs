@@ -8,32 +8,38 @@ namespace Dominio
 {
     public class Nacional : Material
     {
+        #region Atributos
         private int aniosPlaza;
         private double costoFijo;
+        #endregion
 
+        #region Propiedades
         public double CostoFijo
         {
             get { return costoFijo; }
             set { costoFijo = value; }
         }
 
-
         public int AniosPlaza
         {
             get { return aniosPlaza; }
             set { aniosPlaza = value; }
         }
+        #endregion
 
-        public Nacional(string Nombre, double Peso, double CostoCompra, string NombreEmpresa, int AniosPlaza, double CostoFijo): base(Nombre, Peso, CostoCompra, NombreEmpresa)
+        #region Constructor
+        public Nacional(string Nombre, double Peso, double CostoCompra, string NombreEmpresa, int AniosPlaza, double CostoFijo) : base(Nombre, Peso, CostoCompra, NombreEmpresa)
         {
             aniosPlaza = AniosPlaza;
             costoFijo = CostoFijo;
         }
+        #endregion
 
-
+        #region Metodos
         public override double CalcularPrecioVenta()
         {
             return base.CostoCompra + (aniosPlaza * costoFijo);
         }
+        #endregion
     }
 }
