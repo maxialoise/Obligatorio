@@ -2,3 +2,4 @@ C:\Repo\Obligatorio\Obligatorio\bin\Debug\Obligatorio.exe.config
 C:\Users\farriola\Source\Repos\ObligatorioP2\Obligatorio\bin\Debug\Obligatorio.exe.config
 C:\Users\farriola\Source\Repos\ObligatorioP2\Obligatorio\obj\Debug\Obligatorio.exe
 C:\Users\farriola\Source\Repos\ObligatorioP2\Obligatorio\obj\Debug\Obligatorio.pdb
+C:\Users\maxia\Source\Repos\Obligatorio\Obligatorio\bin\Debug\Obligatorio.exe.config
