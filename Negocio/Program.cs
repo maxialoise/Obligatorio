@@ -9,6 +9,7 @@ namespace Negocio
 {
     class Program
     {
+        #region Main
         static void Main(string[] args)
         {
             CargarDatosMateriales();
@@ -16,7 +17,9 @@ namespace Negocio
             CargarDatosEmbarcaciones();
             MostrarPrincipal();
         }
+        #endregion
 
+        #region CargarDatosDummy
         private static void CargarDatosMecanicos()
         {
             Mecanico mec1 = new Mecanico("pedro perez", "555-1234", "0001", "ellauri", "1234", "montevideo", 900, false);
@@ -54,6 +57,9 @@ namespace Negocio
             Embarcacion emb2 = new Embarcacion("emb2", new DateTime(2016, 09, 19), "otros");
             EmpresaNaviera.GetInstance().Embarcaciones.Add(emb2);
         }
+        #endregion
+
+        #region MenuPrincipal
 
         private static string MostrarMenuPrincipal()
         {
@@ -109,7 +115,9 @@ namespace Negocio
             Console.WriteLine("Gracias. Presione una tecla para salir");
             Console.ReadKey();
         }
+        #endregion
 
+        #region Listados
         private static void ListadoMecSinCapExtra()
         {
             Console.WriteLine("Mecanicos sin capacitacion extra: ");
@@ -122,7 +130,10 @@ namespace Negocio
             Console.WriteLine("Presione una telca para volver al menu");
             Console.ReadKey();
         }
+        #endregion
 
+        #region AltaReparacion
+        //Metodo princiupal de alta de reparacion
         private static void AltaReparacion()
         {
             Console.Clear();
@@ -218,7 +229,7 @@ namespace Negocio
                 Console.ReadKey();
             }
         }
-
+        //menu que da las opciones para agregar producto a la reparacion
         private static Reparacion mostrarMenuAgregarProducto(Reparacion rep)
         {
             string opcion = mostrarOpcionProductos();
@@ -238,7 +249,7 @@ namespace Negocio
             }
             return rep;
         }
-
+        //ingresar los materiales a la instancia de Reparacion
         private static Reparacion AgregarMaterial(Reparacion rep)
         {
             Console.WriteLine("Elija el material: ");
@@ -286,7 +297,7 @@ namespace Negocio
             Console.WriteLine("¿Desea ingresar productos?: (s/n)");
             return Console.ReadLine();
         }
-
+        //menu para agregar mecanicos a la reparacion
         private static List<Mecanico> mostrarMenuAgregarMecanico(List<Mecanico> listaMecanicos)
         {
             string opcion = mostrarOpcionMecanicos();
@@ -307,7 +318,7 @@ namespace Negocio
             }
             return listaMecanicos;
         }
-
+        //agregar un mecanico ya creado a la lista de mecanicos en la instancia de reparacion
         private static List<Mecanico> AgregarMecanico(List<Mecanico> listaMecanicos)
         {
             Console.WriteLine("Ingrese el numeo de registro del mecanico");
@@ -341,7 +352,9 @@ namespace Negocio
             Console.WriteLine("Presione una tecla para salir");
             Console.ReadKey();
         }
+        #endregion
 
+        #region AltaEmbarcacion
         private static void AltaEmbarcacion()
         {
             Console.Clear();
@@ -383,7 +396,9 @@ namespace Negocio
                 Console.ReadKey();
             }
         }
+        #endregion
 
+        #region AltaMecanico
         private static void AltaMecanico()
         {
             Console.Clear();
@@ -449,5 +464,7 @@ namespace Negocio
                 Console.ReadKey();
             }
         }
+        #endregion
+
     }
 }
