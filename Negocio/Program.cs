@@ -11,12 +11,13 @@ namespace Negocio
     {
         static void Main(string[] args)
         {
-            cargarDatosMateriales();
-            cargarDatosMecanicos();
+            CargarDatosMateriales();
+            CargarDatosMecanicos();
+            CargarDatosEmbarcaciones();
             MostrarPrincipal();
         }
 
-        private static void cargarDatosMecanicos()
+        private static void CargarDatosMecanicos()
         {
             Mecanico mec1 = new Mecanico("pedro perez", "555-1234", "0001", "ellauri", "1234", "montevideo", 900, false);
             EmpresaNaviera.GetInstance().Mecanicos.Add(mec1);
@@ -28,7 +29,7 @@ namespace Negocio
             EmpresaNaviera.GetInstance().Mecanicos.Add(mec4);
         }
 
-        private static void cargarDatosMateriales()
+        private static void CargarDatosMateriales()
         {
             Material material1 = new Nacional("madera", 600, 200, "La madera feliz", 15, 50);
             EmpresaNaviera.GetInstance().Materiales.Add(material1);
@@ -46,7 +47,7 @@ namespace Negocio
 
         }
 
-        private static void cargarDatosEmbarcacion()
+        private static void CargarDatosEmbarcaciones()
         {
             Embarcacion emb1 = new Embarcacion("emb1", new DateTime(10, 09, 2016), "fuera de borda");
             EmpresaNaviera.GetInstance().Embarcaciones.Add(emb1);
@@ -54,10 +55,10 @@ namespace Negocio
             EmpresaNaviera.GetInstance().Embarcaciones.Add(emb2);
         }
 
-        private static string mostrarMenuPrincipal()
+        private static string MostrarMenuPrincipal()
         {
             Console.Clear();
-            mostrarTituloEmpresa();
+            MostrarTituloEmpresa();
             Console.WriteLine("Menu: ");
             Console.WriteLine("---------------------------------------");
             Console.WriteLine("1-Registrar mecanico");
@@ -70,7 +71,7 @@ namespace Negocio
             return Console.ReadLine();
         }
 
-        private static void mostrarTituloEmpresa()
+        private static void MostrarTituloEmpresa()
         {
             Console.WriteLine("Empresa Naviera: El Crustaceo Cascarudo");
             Console.WriteLine("---------------------------------------");
@@ -79,7 +80,7 @@ namespace Negocio
 
         private static void MostrarPrincipal()
         {
-            string opcion = mostrarMenuPrincipal();
+            string opcion = MostrarMenuPrincipal();
 
             while (opcion.Trim() != "5")
             {
@@ -103,7 +104,7 @@ namespace Negocio
                         break;
                 }
 
-                opcion = mostrarMenuPrincipal();
+                opcion = MostrarMenuPrincipal();
             }
             Console.WriteLine("Gracias. Presione una tecla para salir");
             Console.ReadKey();
