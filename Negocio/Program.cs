@@ -244,6 +244,7 @@ namespace Negocio
                 Console.WriteLine("Presione una tecla para salir");
                 Console.ReadKey();
                 MostrarPrincipal();
+                return;
             }
             Console.WriteLine("¿Tiene capacitacion extra? (S/N): ");
             string capExtra = Console.ReadLine();
