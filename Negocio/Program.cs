@@ -194,19 +194,25 @@ namespace Negocio
             }
             Reparacion rep = null;
             bool ok = EmpresaNaviera.GetInstance().AltaReparacion(fechaAltaIngreso, fechaPrometidaEgreso, fechaPrometidaEgreso, e, listaMecanicos, out rep);
-
-
-
-            Console.WriteLine("Ingrese los materiales a ultilizar: ");
-            List<Producto> listaProductos = new List<Producto>();
-            listaProductos = mostrarMenuAgregarProducto(listaProductos);
-            if (listaProductos == null)
+            if (ok)
             {
-                Console.WriteLine("Error. No se agrego ningun producto");
-                Console.WriteLine("Presione una tecla para salir");
-                Console.ReadKey();
-                return;
+                Console.WriteLine("Seleccione los materiales a ultilizar: ");
+                rep = mostrarMenuAgregarProducto(rep);
+                if (rep.Productos == null)
+                {
+                    Console.WriteLine("Error. No se agrego ningun producto");
+                    Console.WriteLine("Presione una tecla para salir");
+                    Console.ReadKey();
+
+                    return;
+                }
+
+
+
             }
+
+
+
 
             //bool ok = EmpresaNaviera.GetInstance().AltaEmbarcacion(nombre, fechaConstruccion, tipoMotor);
             //if (ok)
@@ -224,7 +230,7 @@ namespace Negocio
             //MostrarPrincipal();
         }
 
-        private static List<Producto> mostrarMenuAgregarProducto(List<Producto> listaProductos)
+        private static Reparacion mostrarMenuAgregarProducto(Reparacion rep)
         {
             string opcion = mostrarOpcionProductos();
             while (opcion.ToLower().Trim() != "n")
@@ -232,7 +238,7 @@ namespace Negocio
                 switch (opcion)
                 {
                     case "s":
-                        listaProductos = AgregarProducto(listaProductos);
+                        rep = AgregarMaterial(rep);
                         break;
                     default:
                         Console.WriteLine("Opción inválida, ingrese otra: ");
@@ -242,28 +248,49 @@ namespace Negocio
 
                 opcion = mostrarOpcionProductos();
             }
-            return listaProductos;
+            return rep;
         }
 
-        private static List<Producto> AgregarProducto(List<Producto> listaProductos)
+        private static Reparacion AgregarMaterial(Reparacion rep)
         {
-            Console.WriteLine("Ingrese el nombre del material: ");
+            Console.WriteLine("Elija el material: ");
+            foreach (Material m in EmpresaNaviera.GetInstance().Materiales)
+            {
+                Console.WriteLine(m.Nombre);
+            }
             string nombreMaterial = Console.ReadLine();
-            Material mat = EmpresaNaviera.GetInstance().BuscarMaterial(nombreMaterial);
-            if (mat != null)
+            foreach (Material ma in EmpresaNaviera.GetInstance().Materiales)
             {
-                listaProductos.Add(mecanico);
-                Console.WriteLine("Se agrego al mecanico: " + mecanico.Nombre);
-                Console.WriteLine("Presione tecla para continuar");
-                Console.ReadKey();
+                if (nombreMaterial == ma.Nombre)
+                {
+                    Console.WriteLine("Ingrese la cantidad del material solicitado: ");
+                    string cantidad = Console.ReadLine();
+                    int cantidadMat;
+                    if (!int.TryParse(cantidad, out cantidadMat))
+                    {
+                        Console.WriteLine("No se pudo agregar el material");
+                        Console.WriteLine("Presione tecla para continuar");
+                        Console.ReadKey();
+                        return rep;
+                    }
+                    if (cantidadMat < 0)
+                    {
+                        Console.WriteLine("No se pudo agregar el material");
+                        Console.WriteLine("Presione tecla para continuar");
+                        Console.ReadKey();
+                        return rep;
+                    }
+                    Console.WriteLine("Se agrego el material: " + ma.Nombre);
+                    Console.WriteLine("Presione tecla para continuar");
+                    Console.ReadKey();
+                    rep.AltaProducto(cantidadMat, ma);
+                    return rep;
+                }
             }
-            else
-            {
-                Console.WriteLine("El mecanico no existe");
-                Console.WriteLine("Presione tecla para continuar");
-                Console.ReadKey();
-            }
-            return listaMecanicos;
+            Console.WriteLine("No se encontro el material");
+            Console.WriteLine("Presione tecla para continuar");
+            Console.ReadKey();
+            return rep;
         }
 
         private static string mostrarOpcionProductos()
