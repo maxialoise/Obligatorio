@@ -107,10 +107,14 @@ namespace Negocio
         private static void ListadoMecSinCapExtra()
         {
             Console.WriteLine("Mecanicos sin capacitacion extra: ");
+            Console.WriteLine();
             foreach (Mecanico m in EmpresaNaviera.GetInstance().BuscarMecanicosSinCapExtra())
             {
                 Console.WriteLine(m.Nombre);
             }
+            Console.WriteLine();
+            Console.WriteLine("Presione una telca para volver al menu");
+            Console.ReadKey();
         }
 
         private static void AltaReparacion()
@@ -120,7 +124,63 @@ namespace Negocio
 
         private static void AltaEmbarcacion()
         {
+            Console.Clear();
             Console.WriteLine("Alta Embarcacion");
+            Console.WriteLine();
+            Console.WriteLine("Ingrese el nombre:");
+            string nombre = Console.ReadLine();
+            Console.WriteLine("Ingrese el telefono:");
+            string telefono = Console.ReadLine();
+            Console.WriteLine("Ingrese la calle:");
+            string calle = Console.ReadLine();
+            Console.WriteLine("Ingrese el numero de puerta:");
+            string numPuerta = Console.ReadLine();
+            Console.WriteLine("Ingrese la ciudad:");
+            string ciudad = Console.ReadLine();
+            Console.WriteLine("Ingrese el numero de registro:");
+            string numRegistro = Console.ReadLine();
+            Console.WriteLine("Ingrese el precio del jornal:");
+            string jornal = Console.ReadLine();
+            double precioJornal = 0;
+            if (!double.TryParse(jornal, out precioJornal))
+            {
+                Console.WriteLine("Error en el ingreso del jornal");
+                Console.WriteLine("Presione una tecla para salir");
+                Console.ReadKey();
+                MostrarPrincipal();
+            }
+            Console.WriteLine("¿Tiene capacitacion extra? (S/N): ");
+            string capExtra = Console.ReadLine();
+            bool tieneCapExtra = false;
+            switch (capExtra.ToLower())
+            {
+                case "s":
+                    tieneCapExtra = true;
+                    break;
+                case "n":
+                    tieneCapExtra = false;
+                    break;
+                default:
+                    Console.WriteLine("Error al ingresar si tiene capacitacion extra");
+                    Console.WriteLine("Presione una tecla para salir");
+                    Console.ReadKey();
+                    MostrarPrincipal();
+                    break;
+            }
+            bool ok = EmpresaNaviera.GetInstance().AltaMecanico(nombre, telefono, calle, numPuerta, ciudad, numRegistro, precioJornal, tieneCapExtra);
+            if (ok)
+            {
+                Console.WriteLine("Alta exitosa");
+                Console.WriteLine("Presione una tecla para salir");
+                Console.ReadKey();
+            }
+            else
+            {
+                Console.WriteLine("Ocurrió un error");
+                Console.WriteLine("Presione una tecla para salir");
+                Console.ReadKey();
+            }
+            MostrarPrincipal();
         }
 
         private static void AltaMecanico()
@@ -153,24 +213,35 @@ namespace Negocio
             Console.WriteLine("¿Tiene capacitacion extra? (S/N): ");
             string capExtra = Console.ReadLine();
             bool tieneCapExtra = false;
-            if (bool.TryParse(capExtra, out tieneCapExtra))
+            switch (capExtra.ToLower())
             {
-
+                case "s":
+                    tieneCapExtra = true;
+                    break;
+                case "n":
+                    tieneCapExtra = false;
+                    break;
+                default:
+                    Console.WriteLine("Error al ingresar si tiene capacitacion extra");
+                    Console.WriteLine("Presione una tecla para salir");
+                    Console.ReadKey();
+                    MostrarPrincipal();
+                    break;
             }
-            
-
-            //bool ok = Veterinaria.Instancia().AltaRaza(nombre, tipo);
-
-            //if (ok)
-            //{
-            //    Console.WriteLine("Alta exitosa");
-            //    Console.ReadLine();
-            //}
-            //else
-            //{
-            //    Console.WriteLine("Ocurrió un error");
-            //    Console.ReadLine();
-            //}
+            bool ok = EmpresaNaviera.GetInstance().AltaMecanico(nombre, telefono, calle, numPuerta, ciudad, numRegistro, precioJornal, tieneCapExtra);
+            if (ok)
+            {
+                Console.WriteLine("Alta exitosa");
+                Console.WriteLine("Presione una tecla para salir");
+                Console.ReadKey();
+            }
+            else
+            {
+                Console.WriteLine("Ocurrió un error");
+                Console.WriteLine("Presione una tecla para salir");
+                Console.ReadKey();
+            }
+            MostrarPrincipal();
         }
     }
 }

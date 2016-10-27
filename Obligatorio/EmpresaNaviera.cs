@@ -42,15 +42,18 @@ namespace Dominio
         private static EmpresaNaviera instancia = null;
         public static EmpresaNaviera GetInstance()
         {
-            if (instancia == null)
+            if (EmpresaNaviera.instancia == null)
             {
-                instancia = new EmpresaNaviera();
+                EmpresaNaviera.instancia = new EmpresaNaviera();
             }
-            return instancia;
+            return EmpresaNaviera.instancia;
         }
         private EmpresaNaviera()
         {
-
+            this.embarcaciones = new List<Embarcacion>();
+            this.mecanicos = new List<Mecanico>();
+            this.reparaciones = new List<Reparacion>();
+            this.materiales = new List<Material>();
         }
         #endregion
 
@@ -132,7 +135,7 @@ namespace Dominio
         }
         public List<Mecanico> BuscarMecanicosSinCapExtra()
         {
-            List<Mecanico> list = null;
+            List<Mecanico> list = new List<Mecanico>();
 
             foreach (Mecanico mec in mecanicos)
             {
