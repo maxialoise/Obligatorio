@@ -249,7 +249,6 @@ namespace Negocio
                 Console.WriteLine("Error en el ingreso del jornal");
                 Console.WriteLine("Presione una tecla para salir");
                 Console.ReadKey();
-                MostrarPrincipal();
                 return;
             }
             Console.WriteLine("¿Tiene capacitacion extra? (S/N): ");
@@ -267,7 +266,6 @@ namespace Negocio
                     Console.WriteLine("Error al ingresar si tiene capacitacion extra");
                     Console.WriteLine("Presione una tecla para salir");
                     Console.ReadKey();
-                    MostrarPrincipal();
                     break;
             }
             bool ok = EmpresaNaviera.GetInstance().AltaMecanico(nombre, telefono, calle, numPuerta, ciudad, numRegistro, precioJornal, tieneCapExtra);
@@ -283,7 +281,7 @@ namespace Negocio
                 Console.WriteLine("Presione una tecla para salir");
                 Console.ReadKey();
             }
-            MostrarPrincipal();
+            return;
         }
     }
 }
