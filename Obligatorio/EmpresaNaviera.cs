@@ -42,11 +42,11 @@ namespace Dominio
         private static EmpresaNaviera instancia = null;
         public static EmpresaNaviera GetInstance()
         {
-            if (EmpresaNaviera.instancia == null)
+            if (instancia == null)
             {
-                EmpresaNaviera.instancia = new EmpresaNaviera();
+                instancia = new EmpresaNaviera();
             }
-            return EmpresaNaviera.instancia;
+            return instancia;
         }
         private EmpresaNaviera()
         {
@@ -106,13 +106,13 @@ namespace Dominio
                     //controlar que la fechaRealEgreso de la ultima rep sea menor a fecha ingreso
                     if (rep.FechaRealEngreso <= fechaIngreso)
                     {
-                        reparaciones.Add(new Reparacion(fechaIngreso, fechaPrometidaEngreso, fechaRealEngreso, embarcacion, mecanicos, cantidad, material));
+                        reparaciones.Add(new Reparacion(fechaIngreso, fechaPrometidaEngreso, fechaRealEngreso, embarcacion, mecanicos));
                         exito = true;
                     }
                 }
                 else
                 {
-                    reparaciones.Add(new Reparacion(fechaIngreso, fechaPrometidaEngreso, fechaRealEngreso, embarcacion, mecanicos, cantidad, material));
+                    reparaciones.Add(new Reparacion(fechaIngreso, fechaPrometidaEngreso, fechaRealEngreso, embarcacion, mecanicos));
                     exito = true;
                 }
             }
@@ -130,13 +130,13 @@ namespace Dominio
             }
             return reps;
         }
-        public List<Mecanico> BuscarMecanicosConCapExtra()
+        public List<Mecanico> BuscarMecanicosSinCapExtra()
         {
             List<Mecanico> list = null;
 
             foreach (Mecanico mec in mecanicos)
             {
-                if (mec.TieneCapExtra)
+                if (!mec.TieneCapExtra)
                 {
                     list.Add(mec);
                 }
