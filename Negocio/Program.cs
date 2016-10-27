@@ -230,7 +230,7 @@ namespace Negocio
                         rep = AgregarMaterial(rep);
                         break;
                     default:
-                        Console.WriteLine("Opción inválida, ingrese otra: ");
+                        Console.WriteLine("Opción inválida/no agrego ningun material todavia, ingrese otra: ");
                         Console.ReadKey();
                         break;
                 }
