@@ -153,20 +153,20 @@ namespace Negocio
             string tipoMotor = Console.ReadLine();
 
 
-            bool ok = EmpresaNaviera.GetInstance().AltaEmbarcacion(nombre, fechaConstruccion, tipoMotor);
-            if (ok)
-            {
-                Console.WriteLine("Alta exitosa");
-                Console.WriteLine("Presione una tecla para salir");
-                Console.ReadKey();
-            }
-            else
-            {
-                Console.WriteLine("Ocurrió un error");
-                Console.WriteLine("Presione una tecla para salir");
-                Console.ReadKey();
-            }
-            MostrarPrincipal();
+            //bool ok = EmpresaNaviera.GetInstance().AltaEmbarcacion(nombre, fechaConstruccion, tipoMotor);
+            //if (ok)
+            //{
+            //    Console.WriteLine("Alta exitosa");
+            //    Console.WriteLine("Presione una tecla para salir");
+            //    Console.ReadKey();
+            //}
+            //else
+            //{
+            //    Console.WriteLine("Ocurrió un error");
+            //    Console.WriteLine("Presione una tecla para salir");
+            //    Console.ReadKey();
+            //}
+            //MostrarPrincipal();
         }
 
         private static void errorEnFecha()
