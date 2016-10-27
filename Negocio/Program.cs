@@ -97,7 +97,8 @@ namespace Negocio
 
                 opcion = mostrarMenuPrincipal();
             }
-
+            Console.WriteLine("Gracias. Presione una tecla para salir");
+            Console.ReadKey();
         }
 
         private static void ListadoMecSinCapExtra()
@@ -119,19 +120,21 @@ namespace Negocio
             Console.WriteLine("Alta Reparacion");
             Console.WriteLine();
             Console.WriteLine("Ingrese la fecha de ingreso (dd/MM/yyyy)");
-            string altaIngreso= Console.ReadLine();
+            string altaIngreso = Console.ReadLine();
             DateTime fechaAltaIngreso = new DateTime();
             try
             {
-                fechaAltaIngreso= Convert.ToDateTime(altaIngreso);
+                fechaAltaIngreso = Convert.ToDateTime(altaIngreso);
             }
             catch (Exception)
             {
                 errorEnFecha();
+                return;
             }
             if (fechaAltaIngreso > DateTime.Now)
             {
                 errorEnFecha();
+                return;
             }
 
             Console.WriteLine("Ingrese la fecha prometida de egreso (dd/MM/yyyy)");
@@ -144,10 +147,12 @@ namespace Negocio
             catch (Exception)
             {
                 errorEnFecha();
+                return;
             }
             if (fechaPrometidaEgreso < DateTime.Now)
             {
                 errorEnFecha();
+                return;
             }
             Console.WriteLine("Ingrese el codigo de la embarcacion a reparar:");
             string tipoMotor = Console.ReadLine();
@@ -174,7 +179,6 @@ namespace Negocio
             Console.WriteLine("Error en el ingreso de la fecha");
             Console.WriteLine("Presione una tecla para salir");
             Console.ReadKey();
-            MostrarPrincipal();
         }
 
         private static void AltaEmbarcacion()
@@ -194,10 +198,12 @@ namespace Negocio
             catch (Exception)
             {
                 errorEnFecha();
+                return;
             }
             if (fechaConstruccion > DateTime.Now)
             {
                 errorEnFecha();
+                return;
             }
             Console.WriteLine("Ingrese el tipo de motor:");
             string tipoMotor = Console.ReadLine();
