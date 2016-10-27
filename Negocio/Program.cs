@@ -46,6 +46,14 @@ namespace Negocio
 
         }
 
+        private static void cargarDatosEmbarcacion()
+        {
+            Embarcacion emb1 = new Embarcacion("emb1", new DateTime(10, 09, 2016), "fuera de borda");
+            EmpresaNaviera.GetInstance().Embarcaciones.Add(emb1);
+            Embarcacion emb2 = new Embarcacion("emb1", new DateTime(09, 09, 2016), "fuera de borda");
+            EmpresaNaviera.GetInstance().Embarcaciones.Add(emb2);
+        }
+
         private static string mostrarMenuPrincipal()
         {
             Console.Clear();
@@ -295,7 +303,7 @@ namespace Negocio
 
         private static string mostrarOpcionProductos()
         {
-            Console.WriteLine("¿Desea ingresar mas productos?: (S/N)");
+            Console.WriteLine("¿Desea ingresar productos?: (s/s)");
             return Console.ReadLine();
         }
 
