@@ -206,42 +206,22 @@ namespace Negocio
             {
                 Console.WriteLine("Seleccione los materiales a ultilizar: ");
                 rep = mostrarMenuAgregarProducto(rep);
-                if (rep.Productos == null)
-                {
-                    Console.WriteLine("Error. No se agrego ningun producto");
-                    Console.WriteLine("Presione una tecla para salir");
-                    Console.ReadKey();
-
-                    return;
-                }
-
-
-
+                Console.WriteLine("Alta exitosa");
+                Console.WriteLine("Presione una tecla para salir");
+                Console.ReadKey();
             }
-
-
-
-
-            //bool ok = EmpresaNaviera.GetInstance().AltaEmbarcacion(nombre, fechaConstruccion, tipoMotor);
-            //if (ok)
-            //{
-            //    Console.WriteLine("Alta exitosa");
-            //    Console.WriteLine("Presione una tecla para salir");
-            //    Console.ReadKey();
-            //}
-            //else
-            //{
-            //    Console.WriteLine("Ocurrió un error");
-            //    Console.WriteLine("Presione una tecla para salir");
-            //    Console.ReadKey();
-            //}
-            //MostrarPrincipal();
+            else
+            {
+                Console.WriteLine("Ocurrió un error");
+                Console.WriteLine("Presione una tecla para salir");
+                Console.ReadKey();
+            }
         }
 
         private static Reparacion mostrarMenuAgregarProducto(Reparacion rep)
         {
             string opcion = mostrarOpcionProductos();
-            while (opcion.ToLower().Trim() != "n")
+            while (opcion.ToLower().Trim() != "n" || rep.Productos == null || rep.Productos.Count() == 0)
             {
                 switch (opcion.ToLower())
                 {
@@ -253,7 +233,6 @@ namespace Negocio
                         Console.ReadKey();
                         break;
                 }
-
                 opcion = mostrarOpcionProductos();
             }
             return rep;
