@@ -8,9 +8,13 @@ namespace Dominio
 {
     public class Direccion
     {
+        #region Atributos
         private string calle;
         private string numPuerta;
         private string ciudad;
+        #endregion
+
+        #region Propiedades
 
         public string Ciudad
         {
@@ -30,11 +34,15 @@ namespace Dominio
             set { calle = value; }
         }
 
+        #endregion
+
+        #region Constructor
         public Direccion(string Calle, string NumPuerta, string Ciudad)
         {
             calle = Calle;
             numPuerta = NumPuerta;
             ciudad = Ciudad;
         }
+        #endregion
     }
 }
