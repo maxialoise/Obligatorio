@@ -8,7 +8,6 @@ namespace Dominio
 {
     public class EmpresaNaviera
     {
-
         #region Atributos
         private List<Mecanico> mecanicos;
         private List<Embarcacion> embarcaciones;

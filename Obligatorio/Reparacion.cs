@@ -51,9 +51,9 @@ namespace Dominio
         #endregion
 
         #region Constructor
-        public Reparacion(DateTime FechaIngreso, DateTime FechaPrometidaEngreso, DateTime FechaRealEngreso, Embarcacion Embarcacion, List<Mecanico> Mecanicos, int Cantidad, Material Material)
+        public Reparacion(DateTime FechaIngreso, DateTime FechaPrometidaEngreso, DateTime FechaRealEngreso, Embarcacion Embarcacion, List<Mecanico> Mecanicos)
         {
-            Producto p = new Producto
+
             fechaIngreso = FechaIngreso;
             fechaPrometidaEngreso = FechaPrometidaEngreso;
             fechaRealEngreso = FechaRealEngreso;
@@ -66,9 +66,12 @@ namespace Dominio
         #region Metodos
         public double CalcularCosto()
         {
-
-
-            return 0;
+            double resultado = 0;
+            foreach (Producto p in productos)
+            {
+                resultado += p.Material.CalcularPrecioVenta() * p.Cantidad;
+            }
+            return CalcularManoDeObra() + resultado;
         }
         public double CalcularManoDeObra()
         {
@@ -79,13 +82,17 @@ namespace Dominio
             foreach (Mecanico m in mecanicos)
             {
                 costoTotalJornal += m.PrecioJornal;
-            }            
+            }
+
             d = dias.Days * costoTotalJornal;
             return d;
         }
-        public bool AltaProducto()
-        { 
-
+        public bool AltaProducto(int cantidad, Material material)
+        {
+            bool d = false;
+            Producto p = new Producto(cantidad, material);
+            productos.Add(p);
+            return d;
         }
         #endregion
     }

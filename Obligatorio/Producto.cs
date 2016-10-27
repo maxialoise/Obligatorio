@@ -8,9 +8,12 @@ namespace Dominio
 {
     public class Producto
     {
+        #region Atributos
         private int cantidad;
         private Material material;
+        #endregion
 
+        #region Propiedades
         public Material Material
         {
             get { return material; }
@@ -21,10 +24,14 @@ namespace Dominio
             get { return cantidad; }
             set { cantidad = value; }
         }
+        #endregion
+
+        #region Constructor
         public Producto(int Cantidad, Material Material)
         {
             cantidad = Cantidad;
             material = Material;
         }
+        #endregion
     }
 }
