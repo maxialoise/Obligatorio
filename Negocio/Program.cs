@@ -13,12 +13,8 @@ namespace Negocio
         {
             cargarDatosMateriales();
             cargarDatosMecanicos();
-
             MostrarPrincipal();
-
         }
-
-
 
         private static void cargarDatosMecanicos()
         {
