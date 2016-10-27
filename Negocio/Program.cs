@@ -10,8 +10,21 @@ namespace Negocio
     {
         static void Main(string[] args)
         {
-            //consola
+            cargarMateriales();
+
+
+            mostrarMenu();
     
+        }
+
+        private static void cargarMateriales()
+        {
+            throw new NotImplementedException();
+        }
+
+        private static void mostrarMenu()
+        {
+            throw new NotImplementedException();
         }
     }
 }
