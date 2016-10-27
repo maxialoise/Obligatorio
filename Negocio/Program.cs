@@ -119,28 +119,39 @@ namespace Negocio
             Console.WriteLine("Alta Reparacion");
             Console.WriteLine();
             Console.WriteLine("Ingrese la fecha de ingreso (dd/MM/yyyy)");
-            string fecha = Console.ReadLine();
-            DateTime fechaConstruccion = new DateTime();
+            string altaIngreso= Console.ReadLine();
+            DateTime fechaAltaIngreso = new DateTime();
             try
             {
-                fechaConstruccion = Convert.ToDateTime(fecha);
+                fechaAltaIngreso= Convert.ToDateTime(altaIngreso);
             }
             catch (Exception)
             {
-                Console.WriteLine("Error en el ingreso de la fecha");
-                Console.WriteLine("Presione una tecla para salir");
-                Console.ReadKey();
-                MostrarPrincipal();
+                errorEnFecha();
             }
-            if (fechaConstruccion > DateTime.Now)
+            if (fechaAltaIngreso > DateTime.Now)
             {
-                Console.WriteLine("Error en el ingreso de la fecha");
-                Console.WriteLine("Presione una tecla para salir");
-                Console.ReadKey();
-                MostrarPrincipal();
+                errorEnFecha();
             }
-            Console.WriteLine("Ingrese el tipo de motor:");
+
+            Console.WriteLine("Ingrese la fecha prometida de egreso (dd/MM/yyyy)");
+            string prometidaEgreso = Console.ReadLine();
+            DateTime fechaPrometidaEgreso = new DateTime();
+            try
+            {
+                fechaPrometidaEgreso = Convert.ToDateTime(prometidaEgreso);
+            }
+            catch (Exception)
+            {
+                errorEnFecha();
+            }
+            if (fechaPrometidaEgreso < DateTime.Now)
+            {
+                errorEnFecha();
+            }
+            Console.WriteLine("Ingrese el codigo de la embarcacion a reparar:");
             string tipoMotor = Console.ReadLine();
+
 
             bool ok = EmpresaNaviera.GetInstance().AltaEmbarcacion(nombre, fechaConstruccion, tipoMotor);
             if (ok)
@@ -155,6 +166,14 @@ namespace Negocio
                 Console.WriteLine("Presione una tecla para salir");
                 Console.ReadKey();
             }
+            MostrarPrincipal();
+        }
+
+        private static void errorEnFecha()
+        {
+            Console.WriteLine("Error en el ingreso de la fecha");
+            Console.WriteLine("Presione una tecla para salir");
+            Console.ReadKey();
             MostrarPrincipal();
         }
 
@@ -174,17 +193,11 @@ namespace Negocio
             }
             catch (Exception)
             {
-                Console.WriteLine("Error en el ingreso de la fecha");
-                Console.WriteLine("Presione una tecla para salir");
-                Console.ReadKey();
-                MostrarPrincipal();
+                errorEnFecha();
             }
             if (fechaConstruccion > DateTime.Now)
             {
-                Console.WriteLine("Error en el ingreso de la fecha");
-                Console.WriteLine("Presione una tecla para salir");
-                Console.ReadKey();
-                MostrarPrincipal();
+                errorEnFecha();
             }
             Console.WriteLine("Ingrese el tipo de motor:");
             string tipoMotor = Console.ReadLine();
