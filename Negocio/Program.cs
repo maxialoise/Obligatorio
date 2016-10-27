@@ -154,6 +154,7 @@ namespace Negocio
                 errorEnFecha();
                 return;
             }
+
             Console.WriteLine("Ingrese el codigo de la embarcacion a reparar:");
             string codigo = Console.ReadLine();
             int codEmbaracacion;
@@ -173,6 +174,33 @@ namespace Negocio
                 return;
             }
 
+
+            Console.WriteLine("Ingrese los mecanicos de la reparacion:");
+            List<Mecanico> listaMecanicos = new List<Mecanico>();
+            listaMecanicos = mostrarMenuAgregarMecanico(listaMecanicos);
+            if (listaMecanicos == null)
+            {
+                Console.WriteLine("Error. No se agrego ningun mecanico");
+                Console.WriteLine("Presione una tecla para salir");
+                Console.ReadKey();
+                return;
+            }
+            Reparacion rep = null;
+            bool ok = EmpresaNaviera.GetInstance().AltaReparacion(fechaAltaIngreso, fechaPrometidaEgreso, fechaPrometidaEgreso, e, listaMecanicos, out rep);
+
+
+
+            Console.WriteLine("Ingrese los materiales a ultilizar: ");
+            List<Producto> listaProductos = new List<Producto>();
+            listaProductos = mostrarMenuAgregarProducto(listaProductos);
+            if (listaProductos == null)
+            {
+                Console.WriteLine("Error. No se agrego ningun producto");
+                Console.WriteLine("Presione una tecla para salir");
+                Console.ReadKey();
+                return;
+            }
+
             //bool ok = EmpresaNaviera.GetInstance().AltaEmbarcacion(nombre, fechaConstruccion, tipoMotor);
             //if (ok)
             //{
@@ -187,6 +215,102 @@ namespace Negocio
             //    Console.ReadKey();
             //}
             //MostrarPrincipal();
+        }
+
+        private static List<Producto> mostrarMenuAgregarProducto(List<Producto> listaProductos)
+        {
+            string opcion = mostrarOpcionProductos();
+            while (opcion.ToLower().Trim() != "n")
+            {
+                switch (opcion)
+                {
+                    case "s":
+                        listaProductos = AgregarProducto(listaProductos);
+                        break;
+                    default:
+                        Console.WriteLine("Opción inválida, ingrese otra: ");
+                        Console.ReadKey();
+                        break;
+                }
+
+                opcion = mostrarOpcionProductos();
+            }
+            return listaProductos;
+        }
+
+        private static List<Producto> AgregarProducto(List<Producto> listaProductos)
+        {
+            Console.WriteLine("Ingrese el nombre del material: ");
+            string nombreMaterial = Console.ReadLine();
+            Material mat = EmpresaNaviera.GetInstance().BuscarMaterial(nombreMaterial);
+            if (mat != null)
+            {
+                listaProductos.Add(mecanico);
+                Console.WriteLine("Se agrego al mecanico: " + mecanico.Nombre);
+                Console.WriteLine("Presione tecla para continuar");
+                Console.ReadKey();
+            }
+            else
+            {
+                Console.WriteLine("El mecanico no existe");
+                Console.WriteLine("Presione tecla para continuar");
+                Console.ReadKey();
+            }
+            return listaMecanicos;
+        }
+
+        private static string mostrarOpcionProductos()
+        {
+            Console.WriteLine("¿Desea ingresar mas productos?: (S/N)");
+            return Console.ReadLine();
+        }
+
+        private static List<Mecanico> mostrarMenuAgregarMecanico(List<Mecanico> listaMecanicos)
+        {
+            string opcion = mostrarOpcionMecanicos();
+            while (opcion.ToLower().Trim() != "n")
+            {
+                switch (opcion)
+                {
+                    case "s":
+                        listaMecanicos = AgregarMecanico(listaMecanicos);
+                        break;
+                    default:
+                        Console.WriteLine("Opción inválida, ingrese otra: ");
+                        Console.ReadKey();
+                        break;
+                }
+
+                opcion = mostrarOpcionMecanicos();
+            }
+            return listaMecanicos;
+        }
+
+        private static List<Mecanico> AgregarMecanico(List<Mecanico> listaMecanicos)
+        {
+            Console.WriteLine("Ingrese el numeo de registro del mecanico");
+            string numRegistro = Console.ReadLine();
+            Mecanico mecanico = EmpresaNaviera.GetInstance().BuscarMecanico(numRegistro);
+            if (mecanico != null)
+            {
+                listaMecanicos.Add(mecanico);
+                Console.WriteLine("Se agrego al mecanico: " + mecanico.Nombre);
+                Console.WriteLine("Presione tecla para continuar");
+                Console.ReadKey();
+            }
+            else
+            {
+                Console.WriteLine("El mecanico no existe");
+                Console.WriteLine("Presione tecla para continuar");
+                Console.ReadKey();
+            }
+            return listaMecanicos;
+        }
+
+        private static string mostrarOpcionMecanicos()
+        {
+            Console.WriteLine("¿Desea ingresar mas mecanicos?: (S/N)");
+            return Console.ReadLine();
         }
 
         private static void errorEnFecha()
