@@ -83,7 +83,7 @@ namespace Negocio
 
             while (opcion.Trim() != "5")
             {
-                switch (opcion)
+                switch (opcion.ToLower())
                 {
                     case "1":
                         AltaMecanico();
@@ -243,7 +243,7 @@ namespace Negocio
             string opcion = mostrarOpcionProductos();
             while (opcion.ToLower().Trim() != "n")
             {
-                switch (opcion)
+                switch (opcion.ToLower())
                 {
                     case "s":
                         rep = AgregarMaterial(rep);
@@ -303,7 +303,7 @@ namespace Negocio
 
         private static string mostrarOpcionProductos()
         {
-            Console.WriteLine("¿Desea ingresar productos?: (s/s)");
+            Console.WriteLine("¿Desea ingresar productos?: (s/n)");
             return Console.ReadLine();
         }
 
@@ -312,7 +312,7 @@ namespace Negocio
             string opcion = mostrarOpcionMecanicos();
             while (opcion.ToLower().Trim() != "n")
             {
-                switch (opcion)
+                switch (opcion.ToLower())
                 {
                     case "s":
                         listaMecanicos = AgregarMecanico(listaMecanicos);
@@ -351,7 +351,7 @@ namespace Negocio
 
         private static string mostrarOpcionMecanicos()
         {
-            Console.WriteLine("¿Desea ingresar mas mecanicos?: (S/N)");
+            Console.WriteLine("¿Desea ingresar mecanicos?: (s/n)");
             return Console.ReadLine();
         }
 
