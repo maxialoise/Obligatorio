@@ -103,7 +103,6 @@ namespace Dominio
             bool exito = false;
             Reparacion rep = UltimaReparacionDeEmbarcacion(embarcacion.Codigo);
             repa = new Reparacion(fechaIngreso, fechaPrometidaEngreso, fechaRealEngreso, embarcacion, mecanicos);
-
             if (fechaIngreso <= fechaPrometidaEngreso && fechaIngreso <= fechaRealEngreso)
             {
                 if (rep != null)
@@ -126,13 +125,17 @@ namespace Dominio
         public List<Reparacion> ReparacionesDeEmbarcacion(int codigoEmb)
         {
             List<Reparacion> reps = null;
-            foreach (Reparacion r in reparaciones)
+            if (reparaciones.Count > 0)
             {
-                if (r.Embarcacion.Codigo == codigoEmb)
+                foreach (Reparacion r in reparaciones)
                 {
-                    reps.Add(r);
+                    if (r.Embarcacion.Codigo == codigoEmb)
+                    {
+                        reps.Add(r);
+                    }
                 }
             }
+           
             return reps;
         }
         public List<Mecanico> BuscarMecanicosSinCapExtra()
@@ -226,20 +229,24 @@ namespace Dominio
         {
             Reparacion retorno = null;
             DateTime? ultimaFechaRep = null;
-            foreach (Reparacion r in ReparacionesDeEmbarcacion(codigo))
+            if (ReparacionesDeEmbarcacion(codigo) != null)
             {
-                if (ultimaFechaRep == null)
+                foreach (Reparacion r in ReparacionesDeEmbarcacion(codigo))
                 {
-                    ultimaFechaRep = r.FechaRealEngreso;
-                    if (r.FechaRealEngreso > ultimaFechaRep)
+                    if (ultimaFechaRep == null)
+                    {
+                        ultimaFechaRep = r.FechaRealEngreso;
+                        if (r.FechaRealEngreso > ultimaFechaRep)
+                            retorno = r;
+                    }
+                    else if (r.FechaRealEngreso > ultimaFechaRep)
+                    {
+                        ultimaFechaRep = r.FechaRealEngreso;
                         retorno = r;
-                }
-                else if (r.FechaRealEngreso > ultimaFechaRep)
-                {
-                    ultimaFechaRep = r.FechaRealEngreso;
-                    retorno = r;
+                    }
                 }
             }
+          
             return retorno;
         }
         #endregion

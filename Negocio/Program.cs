@@ -185,7 +185,7 @@ namespace Negocio
             Console.WriteLine("Ingrese los mecanicos de la reparacion:");
             List<Mecanico> listaMecanicos = new List<Mecanico>();
             listaMecanicos = mostrarMenuAgregarMecanico(listaMecanicos);
-            if (listaMecanicos == null)
+            if (listaMecanicos.Count == 0)
             {
                 Console.WriteLine("Error. No se agrego ningun mecanico");
                 Console.WriteLine("Presione una tecla para salir");

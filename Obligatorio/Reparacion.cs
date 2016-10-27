@@ -59,7 +59,7 @@ namespace Dominio
             fechaRealEngreso = FechaRealEngreso;
             embarcacion = Embarcacion;
             mecanicos = Mecanicos;
-
+            productos = new List<Producto>();
         }
         #endregion
 
