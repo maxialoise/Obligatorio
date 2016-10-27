@@ -64,6 +64,7 @@ namespace Dominio
         #endregion
 
         #region Metodos
+        
         public double CalcularCosto()
         {
             double resultado = 0;
@@ -73,6 +74,7 @@ namespace Dominio
             }
             return CalcularManoDeObra() + resultado;
         }
+        //Calcula el costo total de mano de obra de una reparaciónn.
         public double CalcularManoDeObra()
         {
             double d = 0;
