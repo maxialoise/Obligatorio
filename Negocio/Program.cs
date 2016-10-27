@@ -115,7 +115,47 @@ namespace Negocio
 
         private static void AltaReparacion()
         {
+            Console.Clear();
             Console.WriteLine("Alta Reparacion");
+            Console.WriteLine();
+            Console.WriteLine("Ingrese la fecha de ingreso (dd/MM/yyyy)");
+            string fecha = Console.ReadLine();
+            DateTime fechaConstruccion = new DateTime();
+            try
+            {
+                fechaConstruccion = Convert.ToDateTime(fecha);
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Error en el ingreso de la fecha");
+                Console.WriteLine("Presione una tecla para salir");
+                Console.ReadKey();
+                MostrarPrincipal();
+            }
+            if (fechaConstruccion > DateTime.Now)
+            {
+                Console.WriteLine("Error en el ingreso de la fecha");
+                Console.WriteLine("Presione una tecla para salir");
+                Console.ReadKey();
+                MostrarPrincipal();
+            }
+            Console.WriteLine("Ingrese el tipo de motor:");
+            string tipoMotor = Console.ReadLine();
+
+            bool ok = EmpresaNaviera.GetInstance().AltaEmbarcacion(nombre, fechaConstruccion, tipoMotor);
+            if (ok)
+            {
+                Console.WriteLine("Alta exitosa");
+                Console.WriteLine("Presione una tecla para salir");
+                Console.ReadKey();
+            }
+            else
+            {
+                Console.WriteLine("Ocurrió un error");
+                Console.WriteLine("Presione una tecla para salir");
+                Console.ReadKey();
+            }
+            MostrarPrincipal();
         }
 
         private static void AltaEmbarcacion()
@@ -125,48 +165,31 @@ namespace Negocio
             Console.WriteLine();
             Console.WriteLine("Ingrese el nombre:");
             string nombre = Console.ReadLine();
-            Console.WriteLine("Ingrese la fecha de construccion (yyyyMMdd:");
+            Console.WriteLine("Ingrese la fecha de construccion (dd/MM/yyyy)");
             string fecha = Console.ReadLine();
-
-
-
-            Console.WriteLine("Ingrese la calle:");
-            string calle = Console.ReadLine();
-            Console.WriteLine("Ingrese el numero de puerta:");
-            string numPuerta = Console.ReadLine();
-            Console.WriteLine("Ingrese la ciudad:");
-            string ciudad = Console.ReadLine();
-            Console.WriteLine("Ingrese el numero de registro:");
-            string numRegistro = Console.ReadLine();
-            Console.WriteLine("Ingrese el precio del jornal:");
-            string jornal = Console.ReadLine();
-            double precioJornal = 0;
-            if (!double.TryParse(jornal, out precioJornal))
+            DateTime fechaConstruccion = new DateTime();
+            try
             {
-                Console.WriteLine("Error en el ingreso del jornal");
+                fechaConstruccion = Convert.ToDateTime(fecha);
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Error en el ingreso de la fecha");
                 Console.WriteLine("Presione una tecla para salir");
                 Console.ReadKey();
                 MostrarPrincipal();
             }
-            Console.WriteLine("¿Tiene capacitacion extra? (S/N): ");
-            string capExtra = Console.ReadLine();
-            bool tieneCapExtra = false;
-            switch (capExtra.ToLower())
+            if (fechaConstruccion > DateTime.Now)
             {
-                case "s":
-                    tieneCapExtra = true;
-                    break;
-                case "n":
-                    tieneCapExtra = false;
-                    break;
-                default:
-                    Console.WriteLine("Error al ingresar si tiene capacitacion extra");
-                    Console.WriteLine("Presione una tecla para salir");
-                    Console.ReadKey();
-                    MostrarPrincipal();
-                    break;
+                Console.WriteLine("Error en el ingreso de la fecha");
+                Console.WriteLine("Presione una tecla para salir");
+                Console.ReadKey();
+                MostrarPrincipal();
             }
-            bool ok = EmpresaNaviera.GetInstance().AltaMecanico(nombre, telefono, calle, numPuerta, ciudad, numRegistro, precioJornal, tieneCapExtra);
+            Console.WriteLine("Ingrese el tipo de motor:");
+            string tipoMotor = Console.ReadLine();
+
+            bool ok = EmpresaNaviera.GetInstance().AltaEmbarcacion(nombre, fechaConstruccion, tipoMotor);
             if (ok)
             {
                 Console.WriteLine("Alta exitosa");

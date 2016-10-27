@@ -10,7 +10,7 @@ namespace Dominio
     {
         #region Atributos
         private int codigo;
-        private static int ultimoCodigo = 0;
+        private static int ultimoCodigo = 1;
         private string nombre;
         private DateTime fechaConstruccion;
         private string tipoMotor;
@@ -44,9 +44,9 @@ namespace Dominio
         {
             ultimoCodigo++;
         }
-        public Embarcacion(int Codigo, string Nombre, DateTime FechaConstruccion, string TipoMotor)
+        public Embarcacion(string Nombre, DateTime FechaConstruccion, string TipoMotor)
         {
-            codigo = Codigo;
+            codigo = ultimoCodigo;
             nombre = Nombre;
             fechaConstruccion = FechaConstruccion;
             tipoMotor = TipoMotor;

@@ -88,12 +88,12 @@ namespace Dominio
             }
             return exito;
         }
-        public bool AltaEmbarcacion(int codigo, string nombre, DateTime fechaConstruccion, string tipoMotor)
+        public bool AltaEmbarcacion(string nombre, DateTime fechaConstruccion, string tipoMotor)
         {
             bool exito = false;
-            if (!ExisteEmbarcacion(codigo))
+            if (!ExisteEmbarcacion(nombre))
             {
-                embarcaciones.Add(new Embarcacion(codigo, nombre, fechaConstruccion, tipoMotor));
+                embarcaciones.Add(new Embarcacion(nombre, fechaConstruccion, tipoMotor));
                 exito = true;
             }
             return exito;
@@ -173,12 +173,12 @@ namespace Dominio
                     }
                     return existe;
                 }
-        private bool ExisteEmbarcacion(int codigo)
+        private bool ExisteEmbarcacion(string nombre)
                 {
                     bool existe = false;
                     foreach (Embarcacion embarcacion in embarcaciones)
                     {
-                        if (embarcacion.Codigo == codigo)
+                        if (embarcacion.Nombre == nombre)
                             existe = true;
                     }
                     return existe;
