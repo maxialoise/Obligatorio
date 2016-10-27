@@ -88,12 +88,12 @@ namespace Dominio
             }
             return exito;
         }
-        public bool AltaEmbarcacion(string nombre, DateTime fechaConstruccion, string tipoMotor)
+        public bool AltaEmbarcacion(string nombre, string nombre, DateTime fechaConstruccion, string tipoMotor)
         {
             bool exito = false;
-            if (!ExisteEmbarcacion(nombre))
+            if (!ExisteEmbarcacion(codigo))
             {
-                embarcaciones.Add(new Embarcacion(nombre, fechaConstruccion, tipoMotor));
+                embarcaciones.Add(new Embarcacion( nombre, fechaConstruccion, tipoMotor));
                 exito = true;
             }
             return exito;
@@ -154,55 +154,55 @@ namespace Dominio
 
         #region MetodosPrivados
         private bool ExisteMecanico(string numRegistro)
-                {
-                    bool existe = false;
-                    foreach (Mecanico mecanico in mecanicos)
-                    {
-                        if (mecanico.NumRegistro == numRegistro)
-                            existe = true;
-                    }
-                    return existe;
-                }
+        {
+            bool existe = false;
+            foreach (Mecanico mecanico in mecanicos)
+            {
+                if (mecanico.NumRegistro == numRegistro)
+                    existe = true;
+            }
+            return existe;
+        }
         private bool ExisteMaterial(string nombre)
-                {
-                    bool existe = false;
-                    foreach (Material material in materiales)
-                    {
-                        if (material.Nombre == nombre)
-                            existe = true;
-                    }
-                    return existe;
-                }
-        private bool ExisteEmbarcacion(string nombre)
-                {
-                    bool existe = false;
-                    foreach (Embarcacion embarcacion in embarcaciones)
-                    {
-                        if (embarcacion.Nombre == nombre)
-                            existe = true;
-                    }
-                    return existe;
-                }
+        {
+            bool existe = false;
+            foreach (Material material in materiales)
+            {
+                if (material.Nombre == nombre)
+                    existe = true;
+            }
+            return existe;
+        }
+        private bool ExisteEmbarcacion(int codigo)
+        {
+            bool existe = false;
+            foreach (Embarcacion embarcacion in embarcaciones)
+            {
+                if (embarcacion.Codigo == codigo)
+                    existe = true;
+            }
+            return existe;
+        }
         private Reparacion UltimaReparacionDeEmbarcacion(int codigo)
+        {
+            Reparacion retorno = null;
+            DateTime? ultimaFechaRep = null;
+            foreach (Reparacion r in ReparacionesDeEmbarcacion(codigo))
+            {
+                if (ultimaFechaRep == null)
                 {
-                    Reparacion retorno = null;
-                    DateTime? ultimaFechaRep = null;
-                    foreach (Reparacion r in ReparacionesDeEmbarcacion(codigo))
-                    {
-                        if (ultimaFechaRep == null)
-                        {
-                            ultimaFechaRep = r.FechaRealEngreso;
-                            if (r.FechaRealEngreso > ultimaFechaRep)
-                                retorno = r;
-                        }
-                        else if (r.FechaRealEngreso > ultimaFechaRep)
-                        {
-                            ultimaFechaRep = r.FechaRealEngreso;
-                            retorno = r;
-                        }
-                    }
-                    return retorno;
+                    ultimaFechaRep = r.FechaRealEngreso;
+                    if (r.FechaRealEngreso > ultimaFechaRep)
+                        retorno = r;
                 }
+                else if (r.FechaRealEngreso > ultimaFechaRep)
+                {
+                    ultimaFechaRep = r.FechaRealEngreso;
+                    retorno = r;
+                }
+            }
+            return retorno;
+        }
         #endregion
 
     }

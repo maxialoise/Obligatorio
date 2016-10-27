@@ -36,6 +36,7 @@ namespace Dominio
         #endregion
 
         #region Metodos
+        //REALIZA EL CALCULO ESPECIFICO PARA EL COSTO DE COMPRA DEPENDIENTO DEL PAIS DE ORIGEN.
         public override double CalcularPrecioVenta()
         {
             double d;

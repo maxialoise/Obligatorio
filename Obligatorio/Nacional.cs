@@ -36,6 +36,7 @@ namespace Dominio
         #endregion
 
         #region Metodos
+        //REALIZA EL CALCULO ESPECIFICO PARA EL COSTO DE COMPRA DEPENDIENTO DE LOS AÑOS EN PLAZA Y SU COSTO FIJO
         public override double CalcularPrecioVenta()
         {
             return base.CostoCompra + (aniosPlaza * costoFijo);

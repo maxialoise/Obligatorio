@@ -64,7 +64,7 @@ namespace Dominio
         #endregion
 
         #region Metodos
-        
+        //CALCULO PARA EL COSTO TOTAL DE UNA REPARACIÓN.
         public double CalcularCosto()
         {
             double resultado = 0;
@@ -74,7 +74,8 @@ namespace Dominio
             }
             return CalcularManoDeObra() + resultado;
         }
-        //Calcula el costo total de mano de obra de una reparaciónn.
+        //CALCULO DEL COSTO TOTAL DE MANO DE OBRA MULTIPLICANDO LA CANTIDAD DE DIAS EL CUAL ESTUVO ESA REPARACIÓN
+        //POR EL COSTO DEL JORNAL DE TODOS LOS MECANICOS.
         public double CalcularManoDeObra()
         {
             double d = 0;
@@ -89,6 +90,7 @@ namespace Dominio
             d = dias.Days * costoTotalJornal;
             return d;
         }
+        //REALIZA LA CREACION DE UN PRODUCTO QUE CONTIENE LA CANTIDAD DE MATERIALES UTILIZADOS PARA LA REPARACIÓN.
         public bool AltaProducto(int cantidad, Material material)
         {
             bool d = false;

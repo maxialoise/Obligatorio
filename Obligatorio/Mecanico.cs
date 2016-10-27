@@ -55,7 +55,7 @@ namespace Dominio
         }
         #endregion
 
-        #region
+        #region Constructor
         public Mecanico(string Nombre, string Telefono, string NumRegistro, string Calle, string NumPuerta, string Ciudad, double PrecioJornal, bool TieneCapExtra)
         {
             direccion = new Direccion(Calle, NumPuerta, Ciudad);

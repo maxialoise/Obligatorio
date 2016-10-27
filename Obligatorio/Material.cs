@@ -52,6 +52,7 @@ namespace Dominio
         #endregion
 
         #region Métodos
+        //MÉTODO ABSTRACTO EL CUAL SE UTILIZARA EN LA CLASES HEREDADAS PARA REALIZAR SUS CORRESPONDIENTES CALCULOS.
         public abstract double CalcularPrecioVenta();
         #endregion
     }
