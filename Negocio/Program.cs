@@ -221,7 +221,6 @@ namespace Negocio
                 Console.WriteLine("Presione una tecla para salir");
                 Console.ReadKey();
             }
-            MostrarPrincipal();
         }
 
         private static void AltaMecanico()
@@ -266,7 +265,7 @@ namespace Negocio
                     Console.WriteLine("Error al ingresar si tiene capacitacion extra");
                     Console.WriteLine("Presione una tecla para salir");
                     Console.ReadKey();
-                    break;
+                    return;
             }
             bool ok = EmpresaNaviera.GetInstance().AltaMecanico(nombre, telefono, calle, numPuerta, ciudad, numRegistro, precioJornal, tieneCapExtra);
             if (ok)
@@ -281,7 +280,6 @@ namespace Negocio
                 Console.WriteLine("Presione una tecla para salir");
                 Console.ReadKey();
             }
-            return;
         }
     }
 }
