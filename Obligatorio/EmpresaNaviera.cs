@@ -93,7 +93,7 @@ namespace Dominio
             bool exito = false;
             if (!ExisteEmbarcacion(nombre))
             {
-                embarcaciones.Add(new Embarcacion( nombre, fechaConstruccion, tipoMotor));
+                embarcaciones.Add(new Embarcacion(nombre, fechaConstruccion, tipoMotor));
                 exito = true;
             }
             return exito;
@@ -150,6 +150,19 @@ namespace Dominio
         {
             Importado.Recargo = valor;
         }
+        public Embarcacion BuscarEmbarcacion(int codigo)
+        {
+            Embarcacion emb = null;
+            foreach (Embarcacion e in embarcaciones)
+            {
+                if (codigo == e.Codigo)
+                {
+                    emb = new Embarcacion();
+                    emb = e;
+                }
+            }
+            return emb;
+        }
         #endregion
 
         #region MetodosPrivados
@@ -204,6 +217,5 @@ namespace Dominio
             return retorno;
         }
         #endregion
-
     }
 }
