@@ -53,7 +53,7 @@ namespace Dominio
         #region Constructor
         public Reparacion(DateTime FechaIngreso, DateTime FechaPrometidaEngreso, DateTime FechaRealEngreso, Embarcacion Embarcacion, List<Mecanico> Mecanicos, int Cantidad, Material Material)
         {
-            Producto p = new Producto
+            Producto p = new Producto(Cantidad, Material);
             fechaIngreso = FechaIngreso;
             fechaPrometidaEngreso = FechaPrometidaEngreso;
             fechaRealEngreso = FechaRealEngreso;
@@ -84,8 +84,8 @@ namespace Dominio
             return d;
         }
         public bool AltaProducto()
-        { 
-
+        {
+            return false;
         }
         #endregion
     }
