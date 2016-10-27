@@ -129,8 +129,11 @@ namespace Negocio
             Console.WriteLine();
             Console.WriteLine("Ingrese el nombre:");
             string nombre = Console.ReadLine();
-            Console.WriteLine("Ingrese el telefono:");
-            string telefono = Console.ReadLine();
+            Console.WriteLine("Ingrese la fecha de construccion (yyyyMMdd:");
+            string fecha = Console.ReadLine();
+
+
+
             Console.WriteLine("Ingrese la calle:");
             string calle = Console.ReadLine();
             Console.WriteLine("Ingrese el numero de puerta:");
