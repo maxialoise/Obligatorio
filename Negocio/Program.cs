@@ -164,6 +164,13 @@ namespace Negocio
                 Console.ReadKey();
                 return;
             }
+            if (codEmbaracacion < 0)
+            {
+                Console.WriteLine("Error con el codigo de embarcacion");
+                Console.WriteLine("Presione una tecla para salir");
+                Console.ReadKey();
+                return;
+            }
             Embarcacion e = EmpresaNaviera.GetInstance().BuscarEmbarcacion(codEmbaracacion);
             if (e == null)
             {
@@ -259,6 +266,13 @@ namespace Negocio
             string jornal = Console.ReadLine();
             double precioJornal = 0;
             if (!double.TryParse(jornal, out precioJornal))
+            {
+                Console.WriteLine("Error en el ingreso del jornal");
+                Console.WriteLine("Presione una tecla para salir");
+                Console.ReadKey();
+                return;
+            }
+            if (precioJornal < 0)
             {
                 Console.WriteLine("Error en el ingreso del jornal");
                 Console.WriteLine("Presione una tecla para salir");

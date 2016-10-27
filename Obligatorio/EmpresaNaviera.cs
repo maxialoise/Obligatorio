@@ -98,10 +98,12 @@ namespace Dominio
             }
             return exito;
         }
-        public bool AltaReparacion(DateTime fechaIngreso, DateTime fechaPrometidaEngreso, DateTime fechaRealEngreso, int cantidad, Material material, Embarcacion embarcacion, List<Mecanico> mecanicos)
+        public bool AltaReparacion(DateTime fechaIngreso, DateTime fechaPrometidaEngreso, DateTime fechaRealEngreso, Embarcacion embarcacion, List<Mecanico> mecanicos, out Reparacion repa)
         {
             bool exito = false;
             Reparacion rep = UltimaReparacionDeEmbarcacion(embarcacion.Codigo);
+            repa = new Reparacion(fechaIngreso, fechaPrometidaEngreso, fechaRealEngreso, embarcacion, mecanicos);
+
             if (fechaIngreso <= fechaPrometidaEngreso && fechaIngreso <= fechaRealEngreso)
             {
                 if (rep != null)
@@ -109,13 +111,13 @@ namespace Dominio
                     //controlar que la fechaRealEgreso de la ultima rep sea menor a fecha ingreso
                     if (rep.FechaRealEngreso <= fechaIngreso)
                     {
-                        reparaciones.Add(new Reparacion(fechaIngreso, fechaPrometidaEngreso, fechaRealEngreso, embarcacion, mecanicos));
+                        reparaciones.Add(repa);
                         exito = true;
                     }
                 }
                 else
                 {
-                    reparaciones.Add(new Reparacion(fechaIngreso, fechaPrometidaEngreso, fechaRealEngreso, embarcacion, mecanicos));
+                    reparaciones.Add(repa);
                     exito = true;
                 }
             }
@@ -162,6 +164,30 @@ namespace Dominio
                 }
             }
             return emb;
+        }
+        public Mecanico BuscarMecanico(string numRegistro)
+        {
+            Mecanico mec = null;
+            foreach (Mecanico m in mecanicos)
+            {
+                if (numRegistro == m.NumRegistro)
+                {
+                    mec = m;
+                }
+            }
+            return mec;
+        }
+        public Material BuscarMateria(string nombre)
+        {
+            Material mat = null;
+            foreach (Material m in materiales)
+            {
+                if (m.Nombre == nombre)
+                {
+                    mat = m;
+                }
+            }
+            return mat;
         }
         #endregion
 

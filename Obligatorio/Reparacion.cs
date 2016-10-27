@@ -10,7 +10,7 @@ namespace Dominio
     {
         #region Atributos
         private DateTime fechaIngreso;
-        private DateTime fechaPrometidaEngreso;
+        private DateTime fechaPrometidaEgreso;
         private DateTime fechaRealEngreso;
         private List<Producto> productos;
         private Embarcacion embarcacion;
@@ -38,10 +38,10 @@ namespace Dominio
             get { return fechaIngreso; }
             set { fechaIngreso = value; }
         }
-        public DateTime FechaPrometidaEngreso
+        public DateTime FechaPrometidaEgreso
         {
-            get { return fechaPrometidaEngreso; }
-            set { fechaPrometidaEngreso = value; }
+            get { return fechaPrometidaEgreso; }
+            set { fechaPrometidaEgreso = value; }
         }
         public DateTime FechaRealEngreso
         {
@@ -55,7 +55,7 @@ namespace Dominio
         {
 
             fechaIngreso = FechaIngreso;
-            fechaPrometidaEngreso = FechaPrometidaEngreso;
+            fechaPrometidaEgreso = FechaPrometidaEngreso;
             fechaRealEngreso = FechaRealEngreso;
             embarcacion = Embarcacion;
             mecanicos = Mecanicos;
