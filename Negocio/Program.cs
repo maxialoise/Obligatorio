@@ -11,12 +11,13 @@ namespace Negocio
     {
         static void Main(string[] args)
         {
-            cargarDatosMateriales();
-            cargarDatosMecanicos();
+            CargarDatosMateriales();
+            CargarDatosMecanicos();
+            CargarDatosEmbarcaciones();
             MostrarPrincipal();
         }
 
-        private static void cargarDatosMecanicos()
+        private static void CargarDatosMecanicos()
         {
             Mecanico mec1 = new Mecanico("pedro perez", "555-1234", "0001", "ellauri", "1234", "montevideo", 900, false);
             EmpresaNaviera.GetInstance().Mecanicos.Add(mec1);
@@ -28,7 +29,7 @@ namespace Negocio
             EmpresaNaviera.GetInstance().Mecanicos.Add(mec4);
         }
 
-        private static void cargarDatosMateriales()
+        private static void CargarDatosMateriales()
         {
             Material material1 = new Nacional("madera", 600, 200, "La madera feliz", 15, 50);
             EmpresaNaviera.GetInstance().Materiales.Add(material1);
@@ -46,18 +47,18 @@ namespace Negocio
 
         }
 
-        private static void cargarDatosEmbarcacion()
+        private static void CargarDatosEmbarcaciones()
         {
-            Embarcacion emb1 = new Embarcacion("emb1", new DateTime(10, 09, 2016), "fuera de borda");
+            Embarcacion emb1 = new Embarcacion("emb1", new DateTime(2016, 09, 20), "fuera de borda");
             EmpresaNaviera.GetInstance().Embarcaciones.Add(emb1);
-            Embarcacion emb2 = new Embarcacion("emb1", new DateTime(09, 09, 2016), "fuera de borda");
+            Embarcacion emb2 = new Embarcacion("emb2", new DateTime(2016, 09, 19), "otros");
             EmpresaNaviera.GetInstance().Embarcaciones.Add(emb2);
         }
 
-        private static string mostrarMenuPrincipal()
+        private static string MostrarMenuPrincipal()
         {
             Console.Clear();
-            mostrarTituloEmpresa();
+            MostrarTituloEmpresa();
             Console.WriteLine("Menu: ");
             Console.WriteLine("---------------------------------------");
             Console.WriteLine("1-Registrar mecanico");
@@ -70,7 +71,7 @@ namespace Negocio
             return Console.ReadLine();
         }
 
-        private static void mostrarTituloEmpresa()
+        private static void MostrarTituloEmpresa()
         {
             Console.WriteLine("Empresa Naviera: El Crustaceo Cascarudo");
             Console.WriteLine("---------------------------------------");
@@ -79,11 +80,11 @@ namespace Negocio
 
         private static void MostrarPrincipal()
         {
-            string opcion = mostrarMenuPrincipal();
+            string opcion = MostrarMenuPrincipal();
 
             while (opcion.Trim() != "5")
             {
-                switch (opcion)
+                switch (opcion.ToLower())
                 {
                     case "1":
                         AltaMecanico();
@@ -103,7 +104,7 @@ namespace Negocio
                         break;
                 }
 
-                opcion = mostrarMenuPrincipal();
+                opcion = MostrarMenuPrincipal();
             }
             Console.WriteLine("Gracias. Presione una tecla para salir");
             Console.ReadKey();
@@ -206,44 +207,24 @@ namespace Negocio
             {
                 Console.WriteLine("Seleccione los materiales a ultilizar: ");
                 rep = mostrarMenuAgregarProducto(rep);
-                if (rep.Productos == null)
-                {
-                    Console.WriteLine("Error. No se agrego ningun producto");
-                    Console.WriteLine("Presione una tecla para salir");
-                    Console.ReadKey();
-
-                    return;
-                }
-
-
-
+                Console.WriteLine("Alta exitosa");
+                Console.WriteLine("Presione una tecla para salir");
+                Console.ReadKey();
             }
-
-
-
-
-            //bool ok = EmpresaNaviera.GetInstance().AltaEmbarcacion(nombre, fechaConstruccion, tipoMotor);
-            //if (ok)
-            //{
-            //    Console.WriteLine("Alta exitosa");
-            //    Console.WriteLine("Presione una tecla para salir");
-            //    Console.ReadKey();
-            //}
-            //else
-            //{
-            //    Console.WriteLine("Ocurrió un error");
-            //    Console.WriteLine("Presione una tecla para salir");
-            //    Console.ReadKey();
-            //}
-            //MostrarPrincipal();
+            else
+            {
+                Console.WriteLine("Ocurrió un error");
+                Console.WriteLine("Presione una tecla para salir");
+                Console.ReadKey();
+            }
         }
 
         private static Reparacion mostrarMenuAgregarProducto(Reparacion rep)
         {
             string opcion = mostrarOpcionProductos();
-            while (opcion.ToLower().Trim() != "n")
+            while (opcion.ToLower().Trim() != "n" || rep.Productos == null || rep.Productos.Count() == 0)
             {
-                switch (opcion)
+                switch (opcion.ToLower())
                 {
                     case "s":
                         rep = AgregarMaterial(rep);
@@ -253,7 +234,6 @@ namespace Negocio
                         Console.ReadKey();
                         break;
                 }
-
                 opcion = mostrarOpcionProductos();
             }
             return rep;
@@ -303,7 +283,7 @@ namespace Negocio
 
         private static string mostrarOpcionProductos()
         {
-            Console.WriteLine("¿Desea ingresar productos?: (s/s)");
+            Console.WriteLine("¿Desea ingresar productos?: (s/n)");
             return Console.ReadLine();
         }
 
@@ -312,7 +292,7 @@ namespace Negocio
             string opcion = mostrarOpcionMecanicos();
             while (opcion.ToLower().Trim() != "n")
             {
-                switch (opcion)
+                switch (opcion.ToLower())
                 {
                     case "s":
                         listaMecanicos = AgregarMecanico(listaMecanicos);
@@ -351,7 +331,7 @@ namespace Negocio
 
         private static string mostrarOpcionMecanicos()
         {
-            Console.WriteLine("¿Desea ingresar mas mecanicos?: (S/N)");
+            Console.WriteLine("¿Desea ingresar mecanicos?: (s/n)");
             return Console.ReadLine();
         }
 
