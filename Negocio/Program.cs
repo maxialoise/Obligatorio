@@ -49,9 +49,9 @@ namespace Negocio
 
         private static void CargarDatosEmbarcaciones()
         {
-            Embarcacion emb1 = new Embarcacion("emb1", new DateTime(10, 09, 2016), "fuera de borda");
+            Embarcacion emb1 = new Embarcacion("emb1", new DateTime(2016, 09, 20), "fuera de borda");
             EmpresaNaviera.GetInstance().Embarcaciones.Add(emb1);
-            Embarcacion emb2 = new Embarcacion("emb1", new DateTime(09, 09, 2016), "fuera de borda");
+            Embarcacion emb2 = new Embarcacion("emb2", new DateTime(2016, 09, 19), "otros");
             EmpresaNaviera.GetInstance().Embarcaciones.Add(emb2);
         }
 
