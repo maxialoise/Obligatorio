@@ -177,7 +177,7 @@ namespace Dominio
             }
             return mec;
         }
-        public Material BuscarMateria(string nombre)
+        public Material BuscarMaterial(string nombre)
         {
             Material mat = null;
             foreach (Material m in materiales)
