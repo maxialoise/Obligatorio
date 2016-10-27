@@ -155,8 +155,23 @@ namespace Negocio
                 return;
             }
             Console.WriteLine("Ingrese el codigo de la embarcacion a reparar:");
-            string tipoMotor = Console.ReadLine();
-
+            string codigo = Console.ReadLine();
+            int codEmbaracacion;
+            if (!int.TryParse(codigo, out codEmbaracacion))
+            {
+                Console.WriteLine("Error con el codigo de embarcacion");
+                Console.WriteLine("Presione una tecla para salir");
+                Console.ReadKey();
+                return;
+            }
+            Embarcacion e = EmpresaNaviera.GetInstance().BuscarEmbarcacion(codEmbaracacion);
+            if (e == null)
+            {
+                Console.WriteLine("Error con el codigo de embarcacion");
+                Console.WriteLine("Presione una tecla para salir");
+                Console.ReadKey();
+                return;
+            }
 
             //bool ok = EmpresaNaviera.GetInstance().AltaEmbarcacion(nombre, fechaConstruccion, tipoMotor);
             //if (ok)
