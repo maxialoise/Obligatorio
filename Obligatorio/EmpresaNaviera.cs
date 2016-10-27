@@ -58,6 +58,7 @@ namespace Dominio
         #endregion
 
         #region MetodosPublicos
+        //REALIZA EL ALTA DEL MECANICO VALIDANDO QUE NO EXISTA EL MISMO POR EL NUMERO DE REGISTRO
         public bool AltaMecanico(string nombre, string telefono, string calle, string numPuerta, string ciudad, string numRegistro, double precioJornal, bool tieneCapExtra)
         {
             bool exito = false;
@@ -68,6 +69,7 @@ namespace Dominio
             }
             return exito;
         }
+        //REALIZA EL ALTA DEL MECANICO VALIDANDO QUE NO EXISTA EL MISMO POR EL NOMBRE DEL MATERIAL
         public bool AltaMaterial(string nombre, double peso, double costoCompra, string nombreEmpresa, string paisOrigen)
         {
             bool exito = false;
@@ -78,6 +80,7 @@ namespace Dominio
             }
             return exito;
         }
+        //REALIZA EL ALTA DEL MECANICO VALIDANDO QUE NO EXISTA EL MISMO POR EL NOMBRE DEL MATERIAL
         public bool AltaMaterial(string nombre, double peso, double costoCompra, string nombreEmpresa, int aniosPlaza, double costoFijo)
         {
             bool exito = false;
@@ -88,6 +91,7 @@ namespace Dominio
             }
             return exito;
         }
+        //REALIZA EL ALTA DE LA EMBARCACION VALIDANDO QUE NO EXISTA EL MISMO POR EL NOMBRE DE LA EMBARCACION
         public bool AltaEmbarcacion(string nombre, DateTime fechaConstruccion, string tipoMotor)
         {
             bool exito = false;
@@ -98,6 +102,9 @@ namespace Dominio
             }
             return exito;
         }
+        //REALIZA EL ALTA DE LA REPARACIONES VALIDANDO QUE LAS FECHAS DE LA REPARACION INGRESADA PARA UNA MISMA EMBARCACION EXISTENTE SEAN DIFERENTES EN CUANTO
+        // A SU FECHA DE INGRESO CON FECHA REAL DE EGRESO PARA QUE NO SE ENCUENTREN DOS REPARACIONES DE UNA EMBARCACION EN LA MISMA FECHA. SOLO SE PUEDE REPARAR
+        // UNA EMBARCACION SI LA FECHA INGRESADA ES MAYOR A LA FECHA REAL DE EGRESO
         public bool AltaReparacion(DateTime fechaIngreso, DateTime fechaPrometidaEngreso, DateTime fechaRealEngreso, Embarcacion embarcacion, List<Mecanico> mecanicos, out Reparacion repa)
         {
             bool exito = false;
@@ -122,6 +129,7 @@ namespace Dominio
             }
             return exito;
         }
+
         public List<Reparacion> ReparacionesDeEmbarcacion(int codigoEmb)
         {
             List<Reparacion> reps = null;
@@ -135,9 +143,10 @@ namespace Dominio
                     }
                 }
             }
-           
+
             return reps;
         }
+        // METODO PARA OBTENER LA LISTA DE MECANICOS SIN CAP EXTRA
         public List<Mecanico> BuscarMecanicosSinCapExtra()
         {
             List<Mecanico> list = new List<Mecanico>();
@@ -151,10 +160,12 @@ namespace Dominio
             }
             return list;
         }
+        // METODO COMPARTIDO PARA ESTABLECER EL RECARGO, NO SE UTILIZA EN ESTA INSTANCIA.
         public void EstablecerRecargo(double valor)
         {
             Importado.Recargo = valor;
         }
+        // METODO QUE DEVUELVE UNA EMBARCACION PEDIDA, VALIDANDO POR SU CODIGO
         public Embarcacion BuscarEmbarcacion(int codigo)
         {
             Embarcacion emb = null;
@@ -168,6 +179,7 @@ namespace Dominio
             }
             return emb;
         }
+        // METODO QUE DEVUELVE UN MECANICO VALIDANDO POR SU NUMERO DE REGISTRO. SI NO LO ENCUENTRA, DEVUELVE VACIO
         public Mecanico BuscarMecanico(string numRegistro)
         {
             Mecanico mec = null;
@@ -180,6 +192,7 @@ namespace Dominio
             }
             return mec;
         }
+        // METODO QUE DEVUELVE UN MATERIAL, VALIDANDO POR SU NOMBRE. SI NO LO ENCUENTRA, DEVUELVE VACIO
         public Material BuscarMaterial(string nombre)
         {
             Material mat = null;
@@ -195,6 +208,7 @@ namespace Dominio
         #endregion
 
         #region MetodosPrivados
+        // METODO QUE VALIDA LA EXISTENCIA DE UN MECANICO POR SU NUMERO DE REGISTRO
         private bool ExisteMecanico(string numRegistro)
         {
             bool existe = false;
@@ -205,6 +219,7 @@ namespace Dominio
             }
             return existe;
         }
+        // METODO QUE VALIDA LA EXISTENCIA DE UN MATERIAL POR SU NOMBRE
         private bool ExisteMaterial(string nombre)
         {
             bool existe = false;
@@ -215,6 +230,7 @@ namespace Dominio
             }
             return existe;
         }
+        // METODO QUE VALIDA LA EXISTENCIA DE UNA EMBARCACION VALIDANDO POR SU NOMBRE
         private bool ExisteEmbarcacion(string nombre)
         {
             bool existe = false;
@@ -225,6 +241,7 @@ namespace Dominio
             }
             return existe;
         }
+        // METODO QUE VALIDA LO ANTERIOR COMENTADO EN "ALTAREPARACION"
         private Reparacion UltimaReparacionDeEmbarcacion(int codigo)
         {
             Reparacion retorno = null;
@@ -246,7 +263,7 @@ namespace Dominio
                     }
                 }
             }
-          
+
             return retorno;
         }
         #endregion
