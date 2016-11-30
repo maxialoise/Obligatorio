@@ -10,7 +10,7 @@
     <asp:TextBox ID="txtContrasenia" runat="server" TextMode="Password"></asp:TextBox>
     <br />
     <br />
-    <asp:Button ID="btnLogin" runat="server" OnClick="btnLogin_Click" Text="Login" />
+    <asp:Button ID="btnLogin" runat="server" OnClick="btnLogin_Click" Text="Login" CssClass="btn btn-primary"/>
     <br />
     <br />
     <asp:Label ID="lblMensaje" runat="server"></asp:Label>
