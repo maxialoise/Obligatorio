@@ -10,7 +10,7 @@ namespace NegocioWeb
 {
     public partial class MReparacion : System.Web.UI.Page
     {
-        static List<Dictionary<string, int>> map = new List<Dictionary<string, int>>();
+        private static List<Dictionary<string, int>> map = new List<Dictionary<string, int>>();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -18,29 +18,42 @@ namespace NegocioWeb
             {
                 if (!IsPostBack)
                 {
-                    ddlReparaciones.DataSource = EmpresaNaviera.GetInstance().ReparacionesPendientes();
-                    ddlReparaciones.DataTextField = "NombreEmbarcacion";
-                    ddlReparaciones.DataValueField = "CodigoEmbarcacion";
-                    ddlReparaciones.DataBind();
-
-                    cbMecanicos.DataSource = EmpresaNaviera.GetInstance().BuscarMecanicoSinAsig();
-                    cbMecanicos.DataTextField = "Nombre";
-                    cbMecanicos.DataValueField = "NumRegistro";
-                    cbMecanicos.DataBind();
-
-                    ddlMateriales.DataSource = EmpresaNaviera.GetInstance().Materiales;
-                    ddlMateriales.DataTextField = "Nombre";
-                    ddlMateriales.DataValueField = "Nombre";
-                    ddlMateriales.DataBind();
-
-                    ddlCantidad.DataSource = Enumerable.Range(1, 15);
-                    ddlCantidad.DataBind();
+                    BindData();
                 }
             }
             catch (Exception)
             {
                 lblError.Text = "Error en carga de pagina";
             }
+        }
+
+        private void BindData()
+        {
+            List<Reparacion> repPendientes = EmpresaNaviera.GetInstance().ReparacionesPendientes();
+
+            if (repPendientes.Count <= 0)
+            {
+                lblAviso.Text = "No hay Embarcaciones en reparacion";
+            }
+            ddlReparaciones.DataSource = repPendientes;
+            ddlReparaciones.DataTextField = "NombreEmbarcacion";
+            ddlReparaciones.DataValueField = "CodigoEmbarcacion";
+            ddlReparaciones.DataBind();
+
+            
+
+            cbMecanicos.DataSource = EmpresaNaviera.GetInstance().BuscarMecanicoSinAsig();
+            cbMecanicos.DataTextField = "Nombre";
+            cbMecanicos.DataValueField = "NumRegistro";
+            cbMecanicos.DataBind();
+
+            ddlMateriales.DataSource = EmpresaNaviera.GetInstance().Materiales;
+            ddlMateriales.DataTextField = "Nombre";
+            ddlMateriales.DataValueField = "Nombre";
+            ddlMateriales.DataBind();
+
+            ddlCantidad.DataSource = Enumerable.Range(1, 15);
+            ddlCantidad.DataBind();
         }
 
         protected void btnAgregar_Click(object sender, EventArgs e)
@@ -64,33 +77,62 @@ namespace NegocioWeb
         {
             try
             {
-                int codigo = int.Parse(ddlReparaciones.SelectedValue);
-
-                List<string> numRegMecanico = new List<string>();
-
-                for (int i = 0; i < cbMecanicos.Items.Count; i++)
+                if (map.Count > 0)
                 {
-                    if (cbMecanicos.Items[i].Selected)
+                    int codigo = int.Parse(ddlReparaciones.SelectedValue);
+                    bool mecanicoSeleccionado = false;
+
+                    List<string> numRegMecanico = new List<string>();
+
+                    for (int i = 0; i < cbMecanicos.Items.Count; i++)
                     {
-                        numRegMecanico.Add(cbMecanicos.Items[i].Value);
+                        if (cbMecanicos.Items[i].Selected)
+                        {
+                            mecanicoSeleccionado = true;
+                            numRegMecanico.Add(cbMecanicos.Items[i].Value);
+                        }
                     }
-                }
+                    if (mecanicoSeleccionado)
+                    {
+                        bool result = EmpresaNaviera.GetInstance().ModificacionDeReparacion(codigo, numRegMecanico, map);
 
-                bool result = EmpresaNaviera.GetInstance().ModificacionDeReparacion(codigo, numRegMecanico, map);
-
-                if (result)
-                {
-                    lblError.Text = "Modificacion exitosa";
+                        if (result)
+                        {
+                            LimpiarListBox();
+                            BindData();
+                            lblError.Text = "Modificacion exitosa";
+                        }
+                        else
+                        {
+                            lblError.Text = "Error al realizar modificacion";
+                        }
+                    }
+                    else
+                    {
+                        lblError.Text = "Se debe asignar algun mecanico";
+                    }                   
                 }
                 else
                 {
-                    lblError.Text = "Error al realizar modificacion";
+                    lblError.Text = "Debe seleccionar algun material";
                 }
+              
             }
             catch (Exception ex)
             {
                 lblError.Text = ex.Message;
             }
+        }
+
+        private void LimpiarListBox()
+        {
+            map.Clear();
+            lstSeleccion.Items.Clear();
+        }
+
+        protected void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            LimpiarListBox();
         }
     }
 }

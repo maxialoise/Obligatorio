@@ -10,6 +10,8 @@ namespace NegocioWeb
 {
     public partial class AMateriales : System.Web.UI.Page
     {
+        bool seIngresoAlgunMaterial = false;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -45,6 +47,7 @@ namespace NegocioWeb
         {
             try
             {
+                seIngresoAlgunMaterial = true;
                 string nombre = txtNombre.Text;
                 double peso = double.Parse(txtPeso.Text);
                 double costoCompra =  double.Parse(txtCostoCompra.Text);
