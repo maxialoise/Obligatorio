@@ -44,8 +44,6 @@ namespace NegocioWeb
             {
                 lblError.Text = ex.Message;
             }
-
-
         }
     }
 }

@@ -10,6 +10,8 @@ namespace NegocioWeb
 {
     public class Global : System.Web.HttpApplication
     {
+       
+
         protected void Application_Start(object sender, EventArgs e)
         {
             Mecanico mec1 = new Mecanico("pedro perez", "555-1234", "0001", "ellauri", "1234", "montevideo", 900, false);
@@ -42,6 +44,8 @@ namespace NegocioWeb
             EmpresaNaviera.GetInstance().Materiales.Add(material5);
             Material material6 = new Importado("cobre", 8500, 900, "Rocky Balboa", "paraguay");
             EmpresaNaviera.GetInstance().Materiales.Add(material6);
+
+           
         }
     }
 }

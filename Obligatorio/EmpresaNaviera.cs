@@ -299,7 +299,70 @@ namespace Dominio
             }
             return ret;
         }
+        //Se realizar asignacion de materiales y mecanicos a una reparacions(MODIFICACION DE REPARACION)
+        public bool ModificacionDeReparacion(int codigo, List<string> numRegMecanico, List<Dictionary<string, int>> lst)
+        {
+            bool ret = false;
+            try
+            {
+                List<Reparacion> lstRep = ReparacionesPendientes();
+                List<Mecanico> mecanicoAInsertar = new List<Mecanico>();
+                List<Producto> productoAInsertar = new List<Producto>();
+
+                foreach (var diccionario in lst)
+                {
+                    foreach (var pareja in diccionario)
+                    {
+                        foreach (var mat in Materiales)
+                        {
+                            if (mat.Nombre == pareja.Key)
+                            {
+                                Producto p = new Producto(pareja.Value, mat);
+                                productoAInsertar.Add(p);
+                            }
+                        }
+                    }
+                }
+
+                foreach (Mecanico m in BuscarMecanicoSinAsig())
+                {
+                    foreach (var item in numRegMecanico)
+                    {
+                        if (m.NumRegistro == item)
+                        {
+                            mecanicoAInsertar.Add(m);
+                        }
+                    }
+                }
+
+                foreach (Reparacion r in lstRep)
+                {
+                    //para todas mis reparaciones pendientes, si el codigo de esa embaracion es el codigo que el usuario selecciono,
+                    //le agrego la lista de productos y los mecanicos
+                    if (r.Embarcacion.Codigo == codigo)
+                    {
+                        //
+                        foreach (var prod in productoAInsertar)
+                        {
+                            r.Productos.Add(prod);
+                        }
+                        //
+                        foreach (var mec in mecanicoAInsertar)
+                        {
+                            r.Mecanicos.Add(mec);
+                        }
+                        ret = true;
+                    }
+                }
+                return ret;
+            }
+            catch (Exception)
+            {
+                return ret;
+            }
+        }
         #endregion
+
         #region MetodosPrivados
         // METODO QUE VALIDA LA EXISTENCIA DE UN MECANICO POR SU NUMERO DE REGISTRO
         private bool ExisteMecanico(string numRegistro)
