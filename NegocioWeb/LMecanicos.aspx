@@ -13,7 +13,6 @@
             <asp:BoundField DataField="Telefono" HeaderText="Telefono" />
             <asp:BoundField DataField="NumRegistro" HeaderText="Numero de registro" />
             <asp:BoundField DataField="PrecioJornal" HeaderText="Precio de jornal" />
-            <asp:BoundField DataField="TieneCapExtra" HeaderText="Tiene Cap extra" />
         </Columns>
     </asp:GridView>
 </asp:Content>

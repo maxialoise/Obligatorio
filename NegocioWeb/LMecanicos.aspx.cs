@@ -14,7 +14,7 @@ namespace NegocioWeb
         {
             if (!IsPostBack)
             {
-                List<Mecanico> lista = EmpresaNaviera.GetInstance().Mecanicos;
+                List<Mecanico> lista = EmpresaNaviera.GetInstance().BuscarMecanicosSinCapExtra();
                 lista.Sort((x, y) => string.Compare(x.Nombre, y.Nombre));
                 CargarMecanicos(lista);
             }

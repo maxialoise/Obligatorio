@@ -15,7 +15,7 @@ namespace NegocioWeb
             if (!IsPostBack)
             {
                 divNacional.Visible = false;
-                divImportado.Visible = false;
+                divImportado.Visible = true;
             }
         }
 

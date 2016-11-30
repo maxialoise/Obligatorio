@@ -12,7 +12,7 @@
     <div runat="server" id="divBuscar">
         <asp:Label runat="server" Text="Numero de registro: "></asp:Label>
         <asp:TextBox runat="server" ID="txtBuscarReg"></asp:TextBox>
-        <asp:Button runat="server" CausesValidation="False" Text="Buscar" ID="btnBuscar" OnClick="btnBuscar_Click" />
+        <asp:Button runat="server" CausesValidation="False" Text="Buscar" ID="btnBuscar" OnClick="btnBuscar_Click" CssClass="btn btn-primary" />
     </div>
 
     <br />
@@ -47,9 +47,9 @@
     <asp:Label runat="server" Text="Tiene Capacitacion Extra: "></asp:Label>
     <asp:CheckBox runat="server" ID="cbCapExtra"></asp:CheckBox>
     <br />
-    <asp:Button runat="server" Text="Ingresar" ID="btnIngresar" OnClick="btnIngresar_Click" />
-    <asp:Button runat="server" Text="Modificar" ID="btnModificar" OnClick="btnModificar_Click" />
-        <asp:Button runat="server" CausesValidation="False" Text="Limpiar" ID="btnLimpiar" OnClick="btnLimpiar_Click"/>
+    <asp:Button runat="server" Text="Ingresar" ID="btnIngresar" OnClick="btnIngresar_Click" CssClass="btn btn-primary" />
+    <asp:Button runat="server" Text="Modificar" ID="btnModificar" OnClick="btnModificar_Click" CssClass="btn btn-primary" />
+    <asp:Button runat="server" CausesValidation="False" Text="Limpiar" ID="btnLimpiar" OnClick="btnLimpiar_Click" CssClass="btn btn-warning" />
     <br />
     <asp:ValidationSummary ID="ValidationSummary1" runat="server" />
     <br />
