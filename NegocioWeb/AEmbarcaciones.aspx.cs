@@ -12,7 +12,12 @@ namespace NegocioWeb
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            Usuario usu = Session["usuario"] as Usuario;
 
+            if (usu == null || usu.Rol != 0) 
+            {
+                Response.Redirect("Login.aspx");
+            }
         }
 
         protected void btnIngresar_Click(object sender, EventArgs e)

@@ -42,7 +42,21 @@ namespace NegocioWeb
             EmpresaNaviera.GetInstance().Materiales.Add(material5);
             Material material6 = new Importado("cobre", 8500, 900, "Rocky Balboa", "paraguay");
             EmpresaNaviera.GetInstance().Materiales.Add(material6);
-           
+
+            EmpresaNaviera.GetInstance().Usuarios.Add(new Usuario()
+            {
+                NombreUsu = "admin",
+                Contrasenia = "adm12",
+                Rol = 0
+            });
+
+            EmpresaNaviera.GetInstance().Usuarios.Add(new Usuario()
+            {
+                NombreUsu = "asistente",
+                Contrasenia = "asi12",
+                Rol = 1
+            });
+
         }
     }
 }

@@ -94,6 +94,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="DetalleReparacion.aspx" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -172,6 +173,13 @@
     </Compile>
     <Compile Include="AReparacion.aspx.designer.cs">
       <DependentUpon>AReparacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DetalleReparacion.aspx.cs">
+      <DependentUpon>DetalleReparacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DetalleReparacion.aspx.designer.cs">
+      <DependentUpon>DetalleReparacion.aspx</DependentUpon>
     </Compile>
     <Compile Include="FinalizarReparacion.aspx.cs">
       <DependentUpon>FinalizarReparacion.aspx</DependentUpon>

@@ -14,6 +14,13 @@ namespace NegocioWeb
         {
             try
             {
+                Usuario usu = Session["usuario"] as Usuario;
+
+                if (usu == null || usu.Rol != 1)
+                {
+                    Response.Redirect("Login.aspx");
+                }
+
                 if (!IsPostBack)
                 {
                     ddlReparaciones.DataSource = EmpresaNaviera.GetInstance().ReparacionesPendientes();

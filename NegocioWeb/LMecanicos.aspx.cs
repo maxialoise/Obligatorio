@@ -12,6 +12,13 @@ namespace NegocioWeb
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            Usuario usu = Session["usuario"] as Usuario;
+
+            if (usu == null || usu.Rol != 1)
+            {
+                Response.Redirect("Login.aspx");
+            }
+
             if (!IsPostBack)
             {
                 List<Mecanico> lista = EmpresaNaviera.GetInstance().BuscarMecanicosSinCapExtra();
