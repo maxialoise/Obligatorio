@@ -11,7 +11,7 @@ namespace NegocioWeb
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            Session["usuario"] = null;
         }
     }
 }

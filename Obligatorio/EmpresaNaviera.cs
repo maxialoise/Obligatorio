@@ -21,12 +21,10 @@ namespace Dominio
         public Usuario Login(string nomUsu, string contrasenia)
         {
             Usuario usu = this.BuscarUsuario(nomUsu);
-
             if (usu != null)
             {
                 if (usu.Contrasenia != contrasenia) usu = null;
             }
-
             return usu;
         }
         public Usuario BuscarUsuario(string nomUsu)
@@ -101,7 +99,7 @@ namespace Dominio
             set { reparaciones = value; }
         }
 
-        
+
 
 
         //REALIZA EL ALTA DEL MECANICO VALIDANDO QUE NO EXISTA EL MISMO POR EL NUMERO DE REGISTRO
@@ -175,6 +173,7 @@ namespace Dominio
             }
             return exito;
         }
+        //alta reparacion con fecha ingreso, prometida y cod de emb
         public bool AltaReparacion(DateTime fechaIngreso, DateTime fechaPrometidaEgreso, int codEmbarcacion, out string mensajeError)
         {
             bool exito = false;
@@ -243,6 +242,7 @@ namespace Dominio
             }
             return exito;
         }
+        //devuelve todas las reparaciones de una embarcacion
         public List<Reparacion> ReparacionesDeEmbarcacion(int codigoEmb)
         {
             List<Reparacion> reps = new List<Reparacion>(); ;
@@ -305,7 +305,7 @@ namespace Dominio
             }
             return mec;
         }
-
+        // devuelve una lista de mecanicos sin reparacion asignada
         public List<Mecanico> BuscarMecanicoSinAsig()
         {
             List<Mecanico> lstMec = new List<Mecanico>();
@@ -345,7 +345,6 @@ namespace Dominio
             }
             return ret;
         }
-
         //Listado de todas las reparaciones pendientes
         public List<Reparacion> ReparacionesFinalizadas()
         {
@@ -359,8 +358,8 @@ namespace Dominio
             }
             return ret;
         }
-
-        public Reparacion DetallesRep(int codigoEmb)
+        //devuelve la reparacion actual de esa embarcacion
+        public Reparacion ReparacionDeEmbarcacion(int codigoEmb)
         {
             Reparacion rep = null;
             foreach (Reparacion r in ReparacionesFinalizadas())
@@ -370,11 +369,8 @@ namespace Dominio
                     rep = r;
                 }
             }
-
             return rep;
         }
-
-
         //Se realizar asignacion de materiales y mecanicos a una reparacions(MODIFICACION DE REPARACION)
         public bool ModificacionDeReparacion(int codigo, List<string> numRegMecanico, List<Dictionary<string, int>> lst)
         {
@@ -437,7 +433,7 @@ namespace Dominio
                 return ret;
             }
         }
-
+        //finaliza una reparacion, le asigna la fecha actual a FechaRealEgreso
         public bool FinalizarReparacion(int codigo)
         {
             bool ret = false;
@@ -448,11 +444,10 @@ namespace Dominio
                 {
                     if (rep.Embarcacion.Codigo == codigo)
                     {
-                        rep.FechaRealEngreso = DateTime.Today;
+                        rep.FechaRealEngreso = DateTime.Now;
                         ret = true;
                     }
                 }
-
                 return ret;
             }
             catch (Exception)
