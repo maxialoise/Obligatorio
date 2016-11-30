@@ -28,7 +28,7 @@ namespace NegocioWeb
                 ok = int.TryParse(Request.QueryString["code"], out CodigoEmbarcacion);
             }
 
-            if (ok) rep = EmpresaNaviera.GetInstance().ReparacionDeEmbarcacion(CodigoEmbarcacion);
+            if (ok) rep = EmpresaNaviera.GetInstance().ReparacionActualDeEmbarcacion(CodigoEmbarcacion);
 
             if (rep != null)
             {

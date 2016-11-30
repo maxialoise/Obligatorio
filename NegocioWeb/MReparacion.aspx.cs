@@ -49,7 +49,7 @@ namespace NegocioWeb
 
             
 
-            cbMecanicos.DataSource = EmpresaNaviera.GetInstance().BuscarMecanicoSinAsig();
+            cbMecanicos.DataSource = EmpresaNaviera.GetInstance().BuscarMecanicosSinAsig();
             cbMecanicos.DataTextField = "Nombre";
             cbMecanicos.DataValueField = "NumRegistro";
             cbMecanicos.DataBind();
