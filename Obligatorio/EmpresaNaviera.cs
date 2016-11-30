@@ -13,18 +13,35 @@ namespace Dominio
         private List<Embarcacion> embarcaciones;
         private List<Reparacion> reparaciones;
         private List<Material> materiales;
+        private List<Usuario> usuarios;
         #endregion
 
         #region Propiedades
-        public List<Material> Materiales
+
+        public Usuario Login(string nomUsu, string contrasenia)
         {
-            get { return materiales; }
-            set { materiales = value; }
+            Usuario usu = this.BuscarUsuario(nomUsu);
+
+            if (usu != null)
+            {
+                if (usu.Contrasenia != contrasenia) usu = null;
+            }
+
+            return usu;
         }
-        public List<Reparacion> Reparaciones
+        public Usuario BuscarUsuario(string nomUsu)
         {
-            get { return reparaciones; }
-            set { reparaciones = value; }
+            Usuario ret = null;
+            int indice = 0;
+
+            while (indice < usuarios.Count && ret == null)
+            {
+                Usuario aux = usuarios[indice];
+                if (aux.NombreUsu == nomUsu) ret = aux;
+                indice++;
+            }
+
+            return ret;
         }
         public List<Embarcacion> Embarcaciones
         {
@@ -58,6 +75,18 @@ namespace Dominio
         #endregion
 
         #region MetodosPublicos
+
+        public List<Material> Materiales
+        {
+            get { return materiales; }
+            set { materiales = value; }
+        }
+        public List<Reparacion> Reparaciones
+        {
+            get { return reparaciones; }
+            set { reparaciones = value; }
+        }
+
         //REALIZA EL ALTA DEL MECANICO VALIDANDO QUE NO EXISTA EL MISMO POR EL NUMERO DE REGISTRO
         public bool AltaMecanico(string nombre, string telefono, string calle, string numPuerta, string ciudad, string numRegistro, double precioJornal, bool tieneCapExtra)
         {
@@ -299,6 +328,20 @@ namespace Dominio
             }
             return ret;
         }
+
+        //Listado de todas las reparaciones pendientes
+        public List<Reparacion> ReparacionesFinalizadas()
+        {
+            List<Reparacion> ret = new List<Reparacion>();
+            foreach (Reparacion r in Reparaciones)
+            {
+                if (r.FechaRealEngreso != null)
+                {
+                    ret.Add(r);
+                }
+            }
+            return ret;
+        }
         //Se realizar asignacion de materiales y mecanicos a una reparacions(MODIFICACION DE REPARACION)
         public bool ModificacionDeReparacion(int codigo, List<string> numRegMecanico, List<Dictionary<string, int>> lst)
         {
@@ -354,6 +397,29 @@ namespace Dominio
                         ret = true;
                     }
                 }
+                return ret;
+            }
+            catch (Exception)
+            {
+                return ret;
+            }
+        }
+
+        public bool FinalizarReparacion(int codigo)
+        {
+            bool ret = false;
+            try
+            {
+                List<Reparacion> lstRep = ReparacionesPendientes();
+                foreach (var rep in lstRep)
+                {
+                    if (rep.Embarcacion.Codigo == codigo)
+                    {
+                        rep.FechaRealEngreso = DateTime.Today;
+                        ret = true;
+                    }
+                }
+
                 return ret;
             }
             catch (Exception)

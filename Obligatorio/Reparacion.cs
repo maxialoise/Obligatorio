@@ -38,6 +38,11 @@ namespace Dominio
             get { return embarcacion.Codigo; }
         }
 
+        public double CostoReparacion
+        {
+            get { return CalcularCosto(); }
+        }
+
         public List<Producto> Productos
         {
             get { return productos; }

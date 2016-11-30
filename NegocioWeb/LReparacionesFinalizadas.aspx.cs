@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Dominio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,7 +12,16 @@ namespace NegocioWeb
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                List<Reparacion> lista = EmpresaNaviera.GetInstance().ReparacionesFinalizadas();
+                CargarPendientes(lista);
+            }
+        }
+        private void CargarPendientes(List<Reparacion> lista)
+        {
+            grvFinalizadas.DataSource = lista;
+            grvFinalizadas.DataBind();
         }
     }
 }
