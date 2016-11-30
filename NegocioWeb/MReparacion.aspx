@@ -5,7 +5,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:Label ID="Label1" runat="server" Text="Reparaciones a embarcacion: "></asp:Label>
     <asp:DropDownList ID="ddlReparaciones" runat="server"></asp:DropDownList>
-    <asp:Label ID="lblAviso" runat="server"></asp:Label>
+    <b><asp:Label ID="lblAviso" runat="server"></asp:Label></b>
     <br />
     <asp:Label ID="Label2" runat="server" Text="Mecanicos: "></asp:Label>
     <asp:CheckBoxList ID="cbMecanicos" runat="server"></asp:CheckBoxList>
