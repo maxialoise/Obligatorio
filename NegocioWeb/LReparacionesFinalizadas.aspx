@@ -8,7 +8,7 @@
             <asp:BoundField DataField="FechaIngreso" HeaderText="Fecha de ingreso" />
             <asp:BoundField DataField="FechaRealEngreso" HeaderText="Fecha de entrega" />
             <asp:BoundField DataField="CostoReparacion" HeaderText="Costo total de la reparacion" />
-            <asp:ButtonField ButtonType="Button" CommandName="detalle" Text="Ver Detalle" />
+            <asp:ButtonField ButtonType="Button" CommandName="detalle" Text="Ver Detalle"/>
         </Columns>
     </asp:GridView>
 

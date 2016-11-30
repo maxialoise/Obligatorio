@@ -10,6 +10,7 @@ namespace NegocioWeb
 {
     public partial class FinalizarReparacion : System.Web.UI.Page
     {
+        private static bool hayRepPendientes = true;
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -23,7 +24,15 @@ namespace NegocioWeb
 
                 if (!IsPostBack)
                 {
-                    ddlReparaciones.DataSource = EmpresaNaviera.GetInstance().ReparacionesPendientes();
+                    List<Reparacion> pendientes = EmpresaNaviera.GetInstance().ReparacionesPendientes();
+
+                    if (pendientes.Count <= 0)
+                    {
+                        hayRepPendientes = false;
+                        lblAviso.Text = "No hay reparaciones a finalizar";
+                    }
+
+                    ddlReparaciones.DataSource = pendientes;
                     ddlReparaciones.DataTextField = "NombreEmbarcacion";
                     ddlReparaciones.DataValueField = "CodigoEmbarcacion";
                     ddlReparaciones.DataBind();
@@ -39,15 +48,22 @@ namespace NegocioWeb
         {
             try
             {
-                int codigo = int.Parse(ddlReparaciones.SelectedValue);
-                bool result = EmpresaNaviera.GetInstance().FinalizarReparacion(codigo);
-                if (result)
+                if (hayRepPendientes)
                 {
-                    lblError.Text = "Reparacion finalizada";
+                    int codigo = int.Parse(ddlReparaciones.SelectedValue);
+                    bool result = EmpresaNaviera.GetInstance().FinalizarReparacion(codigo);
+                    if (result)
+                    {
+                        lblError.Text = "Reparacion finalizada";
+                    }
+                    else
+                    {
+                        lblError.Text = "Error al finalizar reparacion";
+                    }
                 }
                 else
                 {
-                    lblError.Text = "Error al finalizar reparacion";
+                    lblError.Text = "No hay reparaciones a finalizar";
                 }
             }
             catch (Exception ex)
