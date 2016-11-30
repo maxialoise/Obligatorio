@@ -1,0 +1,45 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterEmpresa.Master.cs" Inherits="NegocioWeb.Site1" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <link href="css/datepicker.css" rel="stylesheet" />
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="js/jquery-ui.js"></script>
+    <script src="js/datepicker-es.js"></script>
+    <script src="js/tether.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>    
+    <script src="js/script.js"></script>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <asp:Menu ID="Menu1" runat="server" Orientation="Horizontal">
+                <Items>
+                    <asp:MenuItem NavigateUrl="~/AMMecanicos.aspx" Text="Alta Modificacion Mecanicos | " Value="Alta Modificacion Mecanicos"></asp:MenuItem>
+                    <asp:MenuItem NavigateUrl="~/AEmbarcaciones.aspx" Text="Alta Embarcaciones | " Value="Alta Embarcaciones "></asp:MenuItem>
+                    <asp:MenuItem NavigateUrl="~/AReparacion.aspx" Text="Alta Reparacion | " Value="Alta Reparacion"></asp:MenuItem>
+                    <asp:MenuItem NavigateUrl="~/AMateriales.aspx" Text="Alta Materiales | " Value="Alta Materiales"></asp:MenuItem>
+                    <asp:MenuItem NavigateUrl="~/MReparacion.aspx" Text="Modificar Reparacion | " Value="Modificar Reparacion"></asp:MenuItem>
+                    <asp:MenuItem NavigateUrl="~/LReparacionesPendientes.aspx" Text="Listado Reparaciones Pendientes| " Value="Listado Reparaciones Pendientes"></asp:MenuItem>
+                    <asp:MenuItem NavigateUrl="~/LEmbarcaciones.aspx" Text="Listado Embarcaciones | " Value="Listado Embarcaciones"></asp:MenuItem>
+                    <asp:MenuItem NavigateUrl="~/FinalizarReparacion.aspx" Text="Finalizar Reparacion | " Value="Finalizar Reparacion"></asp:MenuItem>
+                    <asp:MenuItem NavigateUrl="~/LReparacionesFinalizadas.aspx" Text="Listado Reparaciones Finalizadas | " Value="Listado Reparaciones Finalizadas"></asp:MenuItem>
+                    <asp:MenuItem NavigateUrl="~/LMecanicos.aspx" Text="Listado Mecanicos | " Value="Listado Mecanicos"></asp:MenuItem>
+                    <asp:MenuItem NavigateUrl="~/Login.aspx" Text="Login" Value="Login"></asp:MenuItem>
+                </Items>
+            </asp:Menu>
+            <br />
+            <div class="card">
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

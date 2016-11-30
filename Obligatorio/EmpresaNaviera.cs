@@ -64,7 +64,7 @@ namespace Dominio
             bool exito = false;
             if (!ExisteMecanico(numRegistro))
             {
-                mecanicos.Add(new Mecanico(nombre, telefono, calle, numPuerta, ciudad, numRegistro, precioJornal, tieneCapExtra));
+                mecanicos.Add(new Mecanico(nombre, telefono, numRegistro, calle, numPuerta, ciudad, precioJornal, tieneCapExtra));
                 exito = true;
             }
             return exito;
@@ -129,10 +129,77 @@ namespace Dominio
             }
             return exito;
         }
+        public bool AltaReparacion(DateTime fechaIngreso, DateTime fechaPrometidaEgreso, int codEmbarcacion, out string mensajeError)
+        {
+            bool exito = false;
+            mensajeError = string.Empty;
+            Embarcacion embarcacion = BuscarEmbarcacion(codEmbarcacion);
+            if (embarcacion != null)
+            {
+                if (fechaIngreso <= fechaPrometidaEgreso)
+                {
+                    // buscar que esa repa no este siendo reparada (fechar real egreso != null)
+                    if (!EmbarcacionEnReparacion(embarcacion))
+                    {
+                        reparaciones.Add(new Reparacion(fechaIngreso, fechaPrometidaEgreso, embarcacion));
+                        exito = true;
+                    }
+                    else
+                    {
+                        mensajeError = "Error. Embarcacion actualmente en reparacion";
+                    }
+                }
+                else
+                {
+                    mensajeError = "Error. Fecha de Egreso menor a la de ingreso";
+                }
+            }
+            else
+            {
+                mensajeError = "Error. Embarcacion no existe";
+            }
+            return exito;
+        }
+        //Con la lista de todas las reparaciones de una embarcacion, revisa si esta siendo reparada en este momento
+        private bool EmbarcacionEnReparacion(Embarcacion embarcacion)
+        {
+            bool ret = false;
+            List<Reparacion> reps = ReparacionesDeEmbarcacion(embarcacion.Codigo);
+            foreach (var rep in reps)
+            {
+                if (rep.FechaRealEngreso == null)
+                {
+                    ret = true;
+                    break;
+                }
+            }
+            return ret;
+        }
+        //REALIZA LA MODIFICACION DEL MECANICO
+        public bool ModificacionMecanico(string nombre, string telefono, string calle, string numPuerta, string ciudad, string numRegistro, double precioJornal, bool tieneCapExtra, string oldNumRegistro)
+        {
+            bool exito = false;
 
+            foreach (Mecanico m in mecanicos)
+            {
+                if (oldNumRegistro == m.NumRegistro)
+                {
+                    m.Direccion.Calle = calle;
+                    m.Direccion.Ciudad = ciudad;
+                    m.Direccion.NumPuerta = numPuerta;
+                    m.Nombre = nombre;
+                    m.NumRegistro = numRegistro;
+                    m.PrecioJornal = precioJornal;
+                    m.Telefono = telefono;
+                    m.TieneCapExtra = tieneCapExtra;
+                    exito = true;
+                }
+            }
+            return exito;
+        }
         public List<Reparacion> ReparacionesDeEmbarcacion(int codigoEmb)
         {
-            List<Reparacion> reps = null;
+            List<Reparacion> reps = new List<Reparacion>(); ;
             if (reparaciones.Count > 0)
             {
                 foreach (Reparacion r in reparaciones)
@@ -192,6 +259,20 @@ namespace Dominio
             }
             return mec;
         }
+
+        public List<Mecanico> BuscarMecanicoSinAsig()
+        {
+            List<Mecanico> lstMec = new List<Mecanico>();
+            List<Reparacion> lst = ReparacionesPendientes();
+            foreach (Mecanico mecanico in Mecanicos)
+            {
+                if (!lst.Exists(x => x.Mecanicos.Exists(y => y.NumRegistro == mecanico.NumRegistro)))
+                {
+                    lstMec.Add(mecanico);
+                }
+            }
+            return lstMec;
+        }
         // METODO QUE DEVUELVE UN MATERIAL, VALIDANDO POR SU NOMBRE. SI NO LO ENCUENTRA, DEVUELVE VACIO
         public Material BuscarMaterial(string nombre)
         {
@@ -205,8 +286,20 @@ namespace Dominio
             }
             return mat;
         }
+        //Listado de todas las reparaciones pendientes
+        public List<Reparacion> ReparacionesPendientes()
+        {
+            List<Reparacion> ret = new List<Reparacion>();
+            foreach (Reparacion r in Reparaciones)
+            {
+                if (r.FechaRealEngreso == null)
+                {
+                    ret.Add(r);
+                }
+            }
+            return ret;
+        }
         #endregion
-
         #region MetodosPrivados
         // METODO QUE VALIDA LA EXISTENCIA DE UN MECANICO POR SU NUMERO DE REGISTRO
         private bool ExisteMecanico(string numRegistro)
@@ -246,7 +339,7 @@ namespace Dominio
         {
             Reparacion retorno = null;
             DateTime? ultimaFechaRep = null;
-            if (ReparacionesDeEmbarcacion(codigo) != null)
+            if (ReparacionesDeEmbarcacion(codigo).Count > 0)
             {
                 foreach (Reparacion r in ReparacionesDeEmbarcacion(codigo))
                 {

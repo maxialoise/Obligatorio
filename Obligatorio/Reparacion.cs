@@ -11,7 +11,7 @@ namespace Dominio
         #region Atributos
         private DateTime fechaIngreso;
         private DateTime fechaPrometidaEgreso;
-        private DateTime fechaRealEngreso;
+        private DateTime ?fechaRealEngreso;
         private List<Producto> productos;
         private Embarcacion embarcacion;
         private List<Mecanico> mecanicos;
@@ -28,6 +28,16 @@ namespace Dominio
             get { return embarcacion; }
             set { embarcacion = value; }
         }
+        public string NombreEmbarcacion
+        {
+            get { return embarcacion.Nombre; }
+        }
+
+        public int CodigoEmbarcacion
+        {
+            get { return embarcacion.Codigo; }
+        }
+
         public List<Producto> Productos
         {
             get { return productos; }
@@ -43,7 +53,7 @@ namespace Dominio
             get { return fechaPrometidaEgreso; }
             set { fechaPrometidaEgreso = value; }
         }
-        public DateTime FechaRealEngreso
+        public DateTime ?FechaRealEngreso
         {
             get { return fechaRealEngreso; }
             set { fechaRealEngreso = value; }
@@ -53,12 +63,21 @@ namespace Dominio
         #region Constructor
         public Reparacion(DateTime FechaIngreso, DateTime FechaPrometidaEngreso, DateTime FechaRealEngreso, Embarcacion Embarcacion, List<Mecanico> Mecanicos)
         {
-
             fechaIngreso = FechaIngreso;
             fechaPrometidaEgreso = FechaPrometidaEngreso;
             fechaRealEngreso = FechaRealEngreso;
             embarcacion = Embarcacion;
             mecanicos = Mecanicos;
+            productos = new List<Producto>();
+        }
+
+        public Reparacion(DateTime FechaIngreso, DateTime FechaPrometidaEngreso, Embarcacion Embarcacion)
+        {
+            fechaIngreso = FechaIngreso;
+            fechaPrometidaEgreso = FechaPrometidaEngreso;
+            embarcacion = Embarcacion;
+            fechaRealEngreso = null;
+            mecanicos = new List<Mecanico>();
             productos = new List<Producto>();
         }
         #endregion
@@ -80,7 +99,7 @@ namespace Dominio
         {
             double d = 0;
             double costoTotalJornal = 0;
-            TimeSpan dias = fechaRealEngreso - fechaIngreso;
+            TimeSpan dias = Convert.ToDateTime(fechaRealEngreso) - fechaIngreso;
 
             foreach (Mecanico m in mecanicos)
             {

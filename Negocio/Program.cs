@@ -46,8 +46,6 @@ namespace Negocio
             EmpresaNaviera.GetInstance().Materiales.Add(material5);
             Material material6 = new Importado("cobre", 8500, 900, "Rocky Balboa", "paraguay");
             EmpresaNaviera.GetInstance().Materiales.Add(material6);
-
-
         }
 
         private static void CargarDatosEmbarcaciones()
