@@ -34,9 +34,9 @@ namespace Dominio
             Usuario ret = null;
             int indice = 0;
 
-            while (indice < usuarios.Count && ret == null)
+            while (indice < Usuarios.Count && ret == null)
             {
-                Usuario aux = usuarios[indice];
+                Usuario aux = Usuarios[indice];
                 if (aux.NombreUsu == nomUsu) ret = aux;
                 indice++;
             }
@@ -52,6 +52,18 @@ namespace Dominio
         {
             get { return mecanicos; }
             set { mecanicos = value; }
+        }
+        public List<Usuario> Usuarios
+        {
+            get
+            {
+                return usuarios;
+            }
+
+            set
+            {
+                usuarios = value;
+            }
         }
         #endregion
 
@@ -71,6 +83,8 @@ namespace Dominio
             this.mecanicos = new List<Mecanico>();
             this.reparaciones = new List<Reparacion>();
             this.materiales = new List<Material>();
+            this.usuarios = new List<Usuario>();
+
         }
         #endregion
 
@@ -86,6 +100,9 @@ namespace Dominio
             get { return reparaciones; }
             set { reparaciones = value; }
         }
+
+        
+
 
         //REALIZA EL ALTA DEL MECANICO VALIDANDO QUE NO EXISTA EL MISMO POR EL NUMERO DE REGISTRO
         public bool AltaMecanico(string nombre, string telefono, string calle, string numPuerta, string ciudad, string numRegistro, double precioJornal, bool tieneCapExtra)
@@ -342,6 +359,22 @@ namespace Dominio
             }
             return ret;
         }
+
+        public Reparacion DetallesRep(int codigoEmb)
+        {
+            Reparacion rep = null;
+            foreach (Reparacion r in ReparacionesFinalizadas())
+            {
+                if (r.Embarcacion.Codigo == codigoEmb)
+                {
+                    rep = r;
+                }
+            }
+
+            return rep;
+        }
+
+
         //Se realizar asignacion de materiales y mecanicos a una reparacions(MODIFICACION DE REPARACION)
         public bool ModificacionDeReparacion(int codigo, List<string> numRegMecanico, List<Dictionary<string, int>> lst)
         {

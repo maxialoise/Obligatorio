@@ -16,6 +16,13 @@ namespace NegocioWeb
         {
             try
             {
+                Usuario usu = Session["usuario"] as Usuario;
+
+                if (usu == null || usu.Rol != 0)
+                {
+                    Response.Redirect("Login.aspx");
+                }
+
                 if (!IsPostBack)
                 {
                     BindData();

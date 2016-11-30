@@ -94,7 +94,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Logout.aspx" />
+    <Content Include="DetalleReparacion.aspx" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -174,6 +174,13 @@
     <Compile Include="AReparacion.aspx.designer.cs">
       <DependentUpon>AReparacion.aspx</DependentUpon>
     </Compile>
+    <Compile Include="DetalleReparacion.aspx.cs">
+      <DependentUpon>DetalleReparacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DetalleReparacion.aspx.designer.cs">
+      <DependentUpon>DetalleReparacion.aspx</DependentUpon>
+    </Compile>
     <Compile Include="FinalizarReparacion.aspx.cs">
       <DependentUpon>FinalizarReparacion.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -204,13 +211,6 @@
     </Compile>
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Logout.aspx.cs">
-      <DependentUpon>Logout.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Logout.aspx.designer.cs">
-      <DependentUpon>Logout.aspx</DependentUpon>
     </Compile>
     <Compile Include="LReparacionesFinalizadas.aspx.cs">
       <DependentUpon>LReparacionesFinalizadas.aspx</DependentUpon>
