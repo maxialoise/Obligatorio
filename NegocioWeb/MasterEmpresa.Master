@@ -21,16 +21,7 @@
         <div>
             <asp:Menu ID="Menu1" runat="server" Orientation="Horizontal">
                 <Items>
-                    <asp:MenuItem NavigateUrl="~/AMMecanicos.aspx" Text="Alta Modificacion Mecanicos | " Value="Alta Modificacion Mecanicos"></asp:MenuItem>
-                    <asp:MenuItem NavigateUrl="~/AEmbarcaciones.aspx" Text="Alta Embarcaciones | " Value="Alta Embarcaciones "></asp:MenuItem>
-                    <asp:MenuItem NavigateUrl="~/AReparacion.aspx" Text="Alta Reparacion | " Value="Alta Reparacion"></asp:MenuItem>
-                    <asp:MenuItem NavigateUrl="~/AMateriales.aspx" Text="Alta Materiales | " Value="Alta Materiales"></asp:MenuItem>
-                    <asp:MenuItem NavigateUrl="~/MReparacion.aspx" Text="Modificar Reparacion | " Value="Modificar Reparacion"></asp:MenuItem>
-                    <asp:MenuItem NavigateUrl="~/LReparacionesPendientes.aspx" Text="Listado Reparaciones Pendientes| " Value="Listado Reparaciones Pendientes"></asp:MenuItem>
-                    <asp:MenuItem NavigateUrl="~/LEmbarcaciones.aspx" Text="Listado Embarcaciones | " Value="Listado Embarcaciones"></asp:MenuItem>
-                    <asp:MenuItem NavigateUrl="~/FinalizarReparacion.aspx" Text="Finalizar Reparacion | " Value="Finalizar Reparacion"></asp:MenuItem>
-                    <asp:MenuItem NavigateUrl="~/LReparacionesFinalizadas.aspx" Text="Listado Reparaciones Finalizadas | " Value="Listado Reparaciones Finalizadas"></asp:MenuItem>
-                    <asp:MenuItem NavigateUrl="~/LMecanicos.aspx" Text="Listado Mecanicos | " Value="Listado Mecanicos"></asp:MenuItem>
+                    <asp:MenuItem NavigateUrl="~/AUsuario.aspx" Text="Alta Usuarios | " Value="Alta Usuarios"></asp:MenuItem>
                     <asp:MenuItem NavigateUrl="~/Login.aspx" Text="Login |" Value="Login"></asp:MenuItem>
                     <asp:MenuItem NavigateUrl="~/Logout.aspx" Text="Logout" Value="Logout"></asp:MenuItem>
                 </Items>

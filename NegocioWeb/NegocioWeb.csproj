@@ -94,7 +94,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DetalleReparacion.aspx" />
+    <Content Include="AUsuario.aspx" />
     <Content Include="Logout.aspx" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
@@ -116,10 +116,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AEmbarcaciones.aspx" />
-    <Content Include="AMateriales.aspx" />
-    <Content Include="AMMecanicos.aspx" />
-    <Content Include="AReparacion.aspx" />
     <Content Include="css\bootstrap-flex.css" />
     <Content Include="css\bootstrap-flex.min.css" />
     <Content Include="css\bootstrap-grid.css" />
@@ -128,7 +124,6 @@
     <Content Include="css\bootstrap-reboot.min.css" />
     <Content Include="css\bootstrap.min.css" />
     <Content Include="css\datepicker.css" />
-    <Content Include="FinalizarReparacion.aspx" />
     <Content Include="Global.asax" />
     <Content Include="js\bootstrap.min.js" />
     <Content Include="js\datepicker-es.js" />
@@ -136,75 +131,21 @@
     <Content Include="js\jquery-ui.js" />
     <Content Include="js\script.js" />
     <Content Include="js\tether.min.js" />
-    <Content Include="LEmbarcaciones.aspx" />
-    <Content Include="LMecanicos.aspx" />
     <Content Include="Login.aspx" />
-    <Content Include="LReparacionesFinalizadas.aspx" />
-    <Content Include="LReparacionesPendientes.aspx" />
-    <Content Include="MReparacion.aspx" />
     <Content Include="scripts\ai.0.15.0-build58334.js" />
     <Content Include="scripts\ai.0.15.0-build58334.min.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AEmbarcaciones.aspx.cs">
-      <DependentUpon>AEmbarcaciones.aspx</DependentUpon>
+    <Compile Include="AUsuario.aspx.cs">
+      <DependentUpon>AUsuario.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AEmbarcaciones.aspx.designer.cs">
-      <DependentUpon>AEmbarcaciones.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="AMateriales.aspx.cs">
-      <DependentUpon>AMateriales.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AMateriales.aspx.designer.cs">
-      <DependentUpon>AMateriales.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="AMMecanicos.aspx.cs">
-      <DependentUpon>AMMecanicos.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AMMecanicos.aspx.designer.cs">
-      <DependentUpon>AMMecanicos.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="AReparacion.aspx.cs">
-      <DependentUpon>AReparacion.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AReparacion.aspx.designer.cs">
-      <DependentUpon>AReparacion.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="DetalleReparacion.aspx.cs">
-      <DependentUpon>DetalleReparacion.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="DetalleReparacion.aspx.designer.cs">
-      <DependentUpon>DetalleReparacion.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="FinalizarReparacion.aspx.cs">
-      <DependentUpon>FinalizarReparacion.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="FinalizarReparacion.aspx.designer.cs">
-      <DependentUpon>FinalizarReparacion.aspx</DependentUpon>
+    <Compile Include="AUsuario.aspx.designer.cs">
+      <DependentUpon>AUsuario.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="LEmbarcaciones.aspx.cs">
-      <DependentUpon>LEmbarcaciones.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="LEmbarcaciones.aspx.designer.cs">
-      <DependentUpon>LEmbarcaciones.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="LMecanicos.aspx.cs">
-      <DependentUpon>LMecanicos.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="LMecanicos.aspx.designer.cs">
-      <DependentUpon>LMecanicos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
@@ -219,27 +160,6 @@
     </Compile>
     <Compile Include="Logout.aspx.designer.cs">
       <DependentUpon>Logout.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="LReparacionesFinalizadas.aspx.cs">
-      <DependentUpon>LReparacionesFinalizadas.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="LReparacionesFinalizadas.aspx.designer.cs">
-      <DependentUpon>LReparacionesFinalizadas.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="LReparacionesPendientes.aspx.cs">
-      <DependentUpon>LReparacionesPendientes.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="LReparacionesPendientes.aspx.designer.cs">
-      <DependentUpon>LReparacionesPendientes.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="MReparacion.aspx.cs">
-      <DependentUpon>MReparacion.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="MReparacion.aspx.designer.cs">
-      <DependentUpon>MReparacion.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MasterEmpresa.Master.cs">
