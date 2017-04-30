@@ -13,6 +13,8 @@ namespace Dominio
     {
         #region Propiedades
 
+        public int Id { get; set; }
+
         public string Rol { get; set; }
 
         public string Email { get; set; }
@@ -95,10 +97,11 @@ namespace Dominio
 
                     cnn.Open();
 
-                    int res = cmd.ExecuteNonQuery();
+                    int res = int.Parse(cmd.ExecuteScalar().ToString());
 
-                    if (res > 0)
-                        resultado = true;
+                    this.Id = res;
+
+                    resultado = true;
 
                     cmd.Dispose();
                 }
