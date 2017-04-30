@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Dominio
 {
-    public class Evaluador
+    public class Evaluador : Persona
     {
         #region Propiedades
 
