@@ -5,12 +5,15 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Configuration;
 
 namespace Dominio
 {
     public class Usuario
     {
         #region Propiedades
+
+        public int Id { get; set; }
 
         public string Rol { get; set; }
 
@@ -94,10 +97,11 @@ namespace Dominio
 
                     cnn.Open();
 
-                    int res = cmd.ExecuteNonQuery();
+                    int res = int.Parse(cmd.ExecuteScalar().ToString());
 
-                    if (res > 0)
-                        resultado = true;
+                    this.Id = res;
+
+                    resultado = true;
 
                     cmd.Dispose();
                 }
