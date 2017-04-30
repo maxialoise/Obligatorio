@@ -37,7 +37,7 @@ namespace Dominio
 
             try
             {
-                using (SqlConnection cnn = new SqlConnection(@"Server=PC-102717\FARRIOLA; Database = Emprendimientos;Integrated Security=SSPI"))
+                using (SqlConnection cnn = new SqlConnection(@"Server=MAXI; Database = Emprendimientos;Integrated Security=SSPI"))
                 {
                     SqlCommand cmd = new SqlCommand("Buscar_Usuario", cnn);
                     cmd.Parameters.AddWithValue("@email", email);
@@ -83,7 +83,7 @@ namespace Dominio
 
             try
             {
-                using (SqlConnection cnn = new SqlConnection(@"Server=PC-102717\FARRIOLA; Database = Emprendimientos;Integrated Security=SSPI"))
+                using (SqlConnection cnn = new SqlConnection(@"Server=MAXI; Database = Emprendimientos;Integrated Security=SSPI"))
                 {
                     SqlCommand cmd = new SqlCommand("Alta_Usuario", cnn);
                     cmd.CommandType = CommandType.StoredProcedure;

@@ -18,8 +18,12 @@
     <asp:TextBox ID="txtCedula" runat="server"></asp:TextBox>
     <br />
     <br />
-    <asp:Label ID="Label6" runat="server" Text="Email:"></asp:Label>
+    <asp:Label ID="Label6" runat="server" Text="Email: (Será su nombre de usuario)"></asp:Label>
     <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
+    <br />
+    <br />
+    <asp:Label ID="Label7" runat="server" Text="Password:"></asp:Label>
+    <asp:TextBox ID="txtPassword" runat="server" TextMode="Password"></asp:TextBox>
     <br />
     <br />
     <asp:Button ID="btnAgregar" runat="server" Text="Agregar Personas" OnClick="btnAgregar_Click" CssClass="btn btn-primary" />
