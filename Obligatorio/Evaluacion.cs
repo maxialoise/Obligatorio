@@ -24,5 +24,11 @@ namespace Dominio
         {
         }
         #endregion
+
+        #region Metodos
+
+
+
+        #endregion
     }
 }
