@@ -94,6 +94,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AsignarEvaluadores.aspx" />
     <Content Include="AUsuario.aspx" />
     <Content Include="Logout.aspx" />
     <Content Include="packages.config" />
@@ -138,6 +139,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AsignarEvaluadores.aspx.cs">
+      <DependentUpon>AsignarEvaluadores.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AsignarEvaluadores.aspx.designer.cs">
+      <DependentUpon>AsignarEvaluadores.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AUsuario.aspx.cs">
       <DependentUpon>AUsuario.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
