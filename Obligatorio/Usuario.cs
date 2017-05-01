@@ -59,10 +59,10 @@ namespace Dominio
                             if (reader["Email"] != DBNull.Value)
                                 usu.Email = (string)reader["Email"];
 
-                            if (reader["Email"] != DBNull.Value)
+                            if (reader["Password"] != DBNull.Value)
                                 usu.Password = (string)reader["Password"];
 
-                            if (reader["Email"] != DBNull.Value)
+                            if (reader["Rol"] != DBNull.Value)
                                 usu.Rol = (string)reader["Rol"];
                         }
 

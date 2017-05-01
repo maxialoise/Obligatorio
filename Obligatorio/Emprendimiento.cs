@@ -83,6 +83,56 @@ namespace Dominio
             }
         }
 
+        public static List<Emprendimiento> ObtenerEmprendimientoPorEvaluador(string email)
+        {
+            List<Emprendimiento> lst = null;
+
+            try
+            {
+                using (SqlConnection cnn = new SqlConnection(@"Server=PC-102717\FARRIOLA; Database = Emprendimientos;Integrated Security=SSPI"))
+                {
+                    SqlCommand cmd = new SqlCommand("ObtenerEmprendimientoPorEvaluador", cnn);
+                    cmd.Parameters.AddWithValue("@email", email);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cnn.Open();
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    if (reader.HasRows)
+                    {
+                        lst = new List<Emprendimiento>();
+
+                        while (reader.Read())
+                        {
+                            Emprendimiento emp = new Emprendimiento();
+
+                            if (reader["Id"] != DBNull.Value)
+                                emp.Id = (int)reader["Id"];
+
+                            if (reader["Titulo"] != DBNull.Value)
+                                emp.Titulo = (string)reader["Titulo"];
+
+                            if (reader["Descripcion"] != DBNull.Value)
+                                emp.Descripcion = (string)reader["Descripcion"];
+
+                            if (reader["IdEvaluacion"] != DBNull.Value)
+                                emp.PuntajeFinal = (int)reader["PuntajeFinal"];
+
+                            lst.Add(emp);
+                        }
+                    }
+
+                    cmd.Dispose();
+                }
+
+                return lst;
+            }
+            catch (Exception)
+            {
+                return lst;
+            }
+        }
+
         public bool AltaEmprendimiento()
         {
             bool resultado = false;

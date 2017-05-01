@@ -42,25 +42,30 @@ namespace Dominio
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@evaluador", this.Evaluador.Id);
                     cmd.Parameters.AddWithValue("@idEmprendimiento", idEmprendimiento);
+                    SqlParameter outputParam = cmd.Parameters.Add("@retorno", SqlDbType.Int);
+                    outputParam.Direction = ParameterDirection.Output;
+
                     cnn.Open();
 
-                    int res = cmd.ExecuteNonQuery();
+                    int res = cmd.ExecuteNonQuery();                    
 
-                    if (res == -1)
-                    {
-                        message = "Ya se encuentra asignado el evaluador a el emprendimiento seleccionado";
-                    }
-                    else if (res == -2)
-                    {
-                        message = "El emprendimiento seleccionado ya cuenta con 3 evaluadores";
-                    }
-                    else if (res > 0)
+                    if (res != -1)
                     {
                         result = true;
+                        message = "Exito";
                     }
                     else
                     {
-                        message = "Error inesperado";
+                        int retorno = int.Parse(outputParam.Value.ToString());
+                        if (retorno == -3)
+                        {
+                            message = "Ya se encuentra asignado ese evaluador al emprendimiento";
+                        }
+                        else if (retorno == -2)
+                        {
+                            message = "El emprendimiento seleccionado ya cuenta con 3 evaluadores";
+                        }
+
                     }
 
                     cmd.Dispose();
