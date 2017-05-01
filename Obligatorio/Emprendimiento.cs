@@ -34,6 +34,55 @@ namespace Dominio
 
         #region Metodos
 
+        public static List<Emprendimiento> ObtenerEmprendimientos()
+        {
+            List<Emprendimiento> lst = null;
+
+            try
+            {
+                using (SqlConnection cnn = new SqlConnection(@"Server=PC-102717\FARRIOLA; Database = Emprendimientos;Integrated Security=SSPI"))
+                {
+                    SqlCommand cmd = new SqlCommand("Obtener_Emprendimientos", cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cnn.Open();
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    if (reader.HasRows)
+                    {
+                        lst = new List<Emprendimiento>();
+
+                        while (reader.Read())
+                        {
+                            Emprendimiento emp = new Emprendimiento();
+
+                            if (reader["Id"] != DBNull.Value)
+                                emp.Id = (int)reader["Id"];
+
+                            if (reader["Titulo"] != DBNull.Value)
+                                emp.Titulo = (string)reader["Titulo"];
+
+                            if (reader["Descripcion"] != DBNull.Value)
+                                emp.Descripcion = (string)reader["Descripcion"];
+
+                            if (reader["PuntajeFinal"] != DBNull.Value)
+                                emp.PuntajeFinal = (int)reader["PuntajeFinal"];
+
+                            lst.Add(emp);
+                        }
+                    }
+
+                    cmd.Dispose();
+                }
+
+                return lst;
+            }
+            catch (Exception)
+            {
+                return lst;
+            }
+        }
+
         public bool AltaEmprendimiento()
         {
             bool resultado = false;
@@ -61,7 +110,7 @@ namespace Dominio
                     foreach (var integrante in this.Intregrantes)
                     {
                         integrante.Usuario.AltaUsuario(cnn, cmd);
-                        integrante.AltaPersona(cnn, cmd,this.Id);
+                        integrante.AltaPersona(cnn, cmd, this.Id);
                     }
 
                     trn.Commit();
