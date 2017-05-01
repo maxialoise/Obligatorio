@@ -82,6 +82,39 @@ namespace Dominio
             }
         }
 
+        public bool ActualizarEvaluacion()
+        {
+            bool result = false;
+
+            try
+            {
+                using (SqlConnection cnn = new SqlConnection(@"Server=PC-102717\FARRIOLA; Database = Emprendimientos;Integrated Security=SSPI"))
+                {
+                    SqlCommand cmd = new SqlCommand("ActualizarEvaluacion", cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@idEvaluacion", this.IdEvaluacion);
+                    cmd.Parameters.AddWithValue("@puntaje", this.Puntaje);
+                    cmd.Parameters.AddWithValue("@justificacion", this.Justificacion);
+
+                    cnn.Open();
+
+                    int res = cmd.ExecuteNonQuery();
+
+                    if (res > 0)
+                        result = true;
+
+                    cmd.Dispose();
+                }
+
+                return result;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
         #endregion
     }
 }
