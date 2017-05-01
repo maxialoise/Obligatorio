@@ -63,17 +63,18 @@ namespace NegocioWeb
             try
             {
                 bool ret = false;
+                string msg = string.Empty;
                 int idEvaluador = int.Parse(ddlEvaluadores.SelectedValue);
                 int idEmprendimiento = int.Parse(ddlEmprendimientos.SelectedValue);
                 Evaluacion evaluacion = new Evaluacion { Evaluador = new Evaluador { Id = idEvaluador } };
-                ret = evaluacion.AltaEvaluacion(idEmprendimiento);
+                ret = evaluacion.AltaEvaluacion(idEmprendimiento, out msg);
                 if (ret)
                 {
                     lblMensaje.Text = "Evaluador asignado con exito";
                 }
                 else
                 {
-                    lblError.Text = "Error en carga de pagina";
+                    lblError.Text = msg;
                 }
             }
             catch (Exception)
