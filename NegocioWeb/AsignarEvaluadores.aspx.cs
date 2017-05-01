@@ -34,6 +34,7 @@ namespace NegocioWeb
 
         private void BindData()
         {
+
             List<Evaluador> evaluadores = Evaluador.ObtenerEvaluadores();
 
             if (evaluadores.Count <= 0)
@@ -42,7 +43,7 @@ namespace NegocioWeb
             }
             ddlEvaluadores.DataSource = evaluadores;
             ddlEvaluadores.DataTextField = "Nombre";
-            ddlEvaluadores.DataValueField = "Id";
+            ddlEvaluadores.DataValueField = "IdEvaluador";
             ddlEvaluadores.DataBind();
 
 

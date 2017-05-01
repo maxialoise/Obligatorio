@@ -12,7 +12,7 @@ namespace Dominio
     {
         #region Propiedades
 
-        public int Id { get; set; }
+        public int IdEvaluador { get; set; }
 
         public string Telefono { get; set; }
 
@@ -24,6 +24,7 @@ namespace Dominio
         public Evaluador()
         {
         }
+
         #endregion
 
         #region Metodos
@@ -50,14 +51,17 @@ namespace Dominio
                         {
                             Evaluador ev = new Evaluador();
 
-                            if (reader["Id"] != DBNull.Value)
-                                ev.Id = (int)reader["Id"];
+                            if (reader["IdEvaluador"] != DBNull.Value)
+                                ev.IdEvaluador = (int)reader["IdEvaluador"];
 
                             if (reader["Telefono"] != DBNull.Value)
                                 ev.Telefono = (string)reader["Telefono"];
 
                             if (reader["Calificacion"] != DBNull.Value)
                                 ev.Calificacion = (int)reader["Calificacion"];
+
+                            if (reader["Nombre"] != DBNull.Value)
+                                ev.Nombre = (string)reader["Nombre"];
 
                             lstEvaluadores.Add(ev);
                         }
