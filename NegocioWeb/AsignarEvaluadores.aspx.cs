@@ -37,25 +37,33 @@ namespace NegocioWeb
 
             List<Evaluador> evaluadores = Evaluador.ObtenerEvaluadores();
 
-            if (evaluadores.Count <= 0)
+            if (evaluadores == null || evaluadores.Count <= 0)
             {
                 lblAvisoEval.Text = "No hay Evaluadores en el sistema";
             }
-            ddlEvaluadores.DataSource = evaluadores;
-            ddlEvaluadores.DataTextField = "Nombre";
-            ddlEvaluadores.DataValueField = "IdEvaluador";
-            ddlEvaluadores.DataBind();
+            else
+            {
+                ddlEvaluadores.DataSource = evaluadores;
+                ddlEvaluadores.DataTextField = "Nombre";
+                ddlEvaluadores.DataValueField = "IdEvaluador";
+                ddlEvaluadores.DataBind();
+            }
+
 
 
             List<Emprendimiento> emprendimientos = Emprendimiento.ObtenerEmprendimientos();
-            if (emprendimientos.Count <= 0)
+            if (emprendimientos == null || emprendimientos.Count <= 0)
             {
                 lblAvisoEmpren.Text = "No hay Emprendimientos en el sistema";
             }
-            ddlEmprendimientos.DataSource = emprendimientos;
-            ddlEmprendimientos.DataTextField = "Titulo";
-            ddlEmprendimientos.DataValueField = "Id";
-            ddlEmprendimientos.DataBind();
+            else
+            {
+                ddlEmprendimientos.DataSource = emprendimientos;
+                ddlEmprendimientos.DataTextField = "Titulo";
+                ddlEmprendimientos.DataValueField = "Id";
+                ddlEmprendimientos.DataBind();
+            }
+
         }
 
         protected void btnIngresar_Click(object sender, EventArgs e)
@@ -81,8 +89,8 @@ namespace NegocioWeb
             }
             catch (Exception)
             {
-                lblError.Text = "Error en carga de pagina";                
-            }    
+                lblError.Text = "Error en carga de pagina";
+            }
         }
     }
 }

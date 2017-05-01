@@ -20,6 +20,8 @@ namespace Dominio
 
         public int PuntajeFinal { get; set; }
 
+        public int TiempoPrevisto { get; set; }
+
         public List<Persona> Intregrantes { get; set; }
 
         public List<Evaluacion> Evaluaciones { get; set; }
@@ -116,6 +118,9 @@ namespace Dominio
                             if (reader["Descripcion"] != DBNull.Value)
                                 emp.Descripcion = (string)reader["Descripcion"];
 
+                            if (reader["TiempoPrevisto"] != DBNull.Value)
+                                emp.TiempoPrevisto = (int)reader["TiempoPrevisto"];
+
                             if (reader["IdEvaluacion"] != DBNull.Value)
                             {
                                 valor = (int)reader["IdEvaluacion"];
@@ -153,6 +158,7 @@ namespace Dominio
                     cmd.Parameters.AddWithValue("@titulo", this.Titulo);
                     cmd.Parameters.AddWithValue("@descripcion", this.Descripcion);
                     cmd.Parameters.AddWithValue("@puntajeFinal", this.PuntajeFinal);
+                    cmd.Parameters.AddWithValue("@tiempoPrevisto", this.TiempoPrevisto);
 
                     cnn.Open();
                     trn = cnn.BeginTransaction();

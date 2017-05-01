@@ -97,6 +97,7 @@
     <Content Include="AsignarEvaluadores.aspx" />
     <Content Include="AUsuario.aspx" />
     <Content Include="EvaluarEmprendimientos.aspx" />
+    <Content Include="GenerarTxt.aspx" />
     <Content Include="Logout.aspx" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
@@ -160,6 +161,13 @@
     </Compile>
     <Compile Include="EvaluarEmprendimientos.aspx.designer.cs">
       <DependentUpon>EvaluarEmprendimientos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GenerarTxt.aspx.cs">
+      <DependentUpon>GenerarTxt.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GenerarTxt.aspx.designer.cs">
+      <DependentUpon>GenerarTxt.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

@@ -104,6 +104,8 @@ namespace NegocioWeb
                     lblTitulo.Visible = true;
                     lblDescripcion.Text = "Descripción: " + emprendimientos.Find(x => x.Id == idEmprend).Descripcion;
                     lblDescripcion.Visible = true;
+                    lblTiempoPrevisto.Text = "Tiempo Previsto: " + emprendimientos.Find(x => x.Id == idEmprend).TiempoPrevisto;
+                    lblTiempoPrevisto.Visible = true;
 
                     txtPuntaje.Visible = true;
                     txtJustificacion.Visible = true;
@@ -128,6 +130,8 @@ namespace NegocioWeb
                 lblTitulo.Visible = false;
                 lblDescripcion.Text = string.Empty;
                 lblDescripcion.Visible = false;
+                lblTiempoPrevisto.Text = string.Empty;    
+                lblTiempoPrevisto.Visible = false;
 
                 txtPuntaje.Visible = false;
                 txtJustificacion.Visible = false;

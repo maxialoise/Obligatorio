@@ -49,7 +49,8 @@ namespace NegocioWeb
                 {
                     string titulo = txtTitulo.Text;
                     string desc = txtDescripcion.Text;
-                    Emprendimiento empr = new Emprendimiento { Titulo = titulo, Descripcion = desc, Intregrantes = integrantes};
+                    int tiempo = int.Parse(txtTiempo.Text);
+                    Emprendimiento empr = new Emprendimiento { Titulo = titulo, Descripcion = desc, Intregrantes = integrantes, TiempoPrevisto = tiempo};
                     empr.AltaEmprendimiento();
                 }
                 else
