@@ -68,6 +68,7 @@ namespace NegocioWeb
                 if (ret)
                 {
                     lblMensaje.Text = "Emprendimiento evaluado con exito";
+                    BindData();
                 }
                 else
                 {
@@ -91,7 +92,7 @@ namespace NegocioWeb
                 int idEmprend = int.Parse(ddlEmprendimientos.SelectedValue);
                 if (idEmprend.ToString() != "NA")
                 {
-                    lblId.Text = emprendimientos.Find(x => x.Id == idEmprend).Id.ToString();
+                    lblId.Text = idEmprend.ToString();
                     lblId.Visible = true;
                     lblTitulo.Text = emprendimientos.Find(x => x.Id == idEmprend).Titulo;
                     lblTitulo.Visible = true;
