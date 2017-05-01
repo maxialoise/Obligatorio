@@ -35,18 +35,22 @@ namespace NegocioWeb
 
         private void BindData()
         {
-            Usuario usu = Session["usuario"] as Usuario;            
+            Usuario usu = Session["usuario"] as Usuario;
             string email = usu.Email;
             emprendimientos = Emprendimiento.ObtenerEmprendimientosPorEvaluador(email);
-            if (emprendimientos.Count <= 0)
+            if (emprendimientos == null || emprendimientos.Count <= 0)
             {
                 lblAvisoEmpren.Text = "No hay Emprendimientos para Evaluar";
             }
-            ddlEmprendimientos.DataSource = emprendimientos;
-            ddlEmprendimientos.DataTextField = "Titulo";
-            ddlEmprendimientos.DataValueField = "Id";
-            ddlEmprendimientos.DataBind();
-            ddlEmprendimientos.Items.Insert(0, new ListItem("Seleccione un emprendimiento", "NA"));
+            else
+            {
+                ddlEmprendimientos.DataSource = emprendimientos;
+                ddlEmprendimientos.DataTextField = "Titulo";
+                ddlEmprendimientos.DataValueField = "Id";
+                ddlEmprendimientos.DataBind();
+                ddlEmprendimientos.Items.Insert(0, new ListItem("Seleccione un emprendimiento", "NA"));
+            }
+
         }
 
         protected void btnIngresar_Click(object sender, EventArgs e)
@@ -77,9 +81,9 @@ namespace NegocioWeb
             }
             catch (Exception ex)
             {
-                lblError.Text = ex.Message;                
+                lblError.Text = ex.Message;
             }
-            
+
         }
 
         protected void ddlEmprendimientos_SelectedIndexChanged(object sender, EventArgs e)
@@ -88,7 +92,7 @@ namespace NegocioWeb
             {
                 lblMensaje.Text = string.Empty;
                 lblError.Text = string.Empty;
-                
+
                 int idEmprend = int.Parse(ddlEmprendimientos.SelectedValue);
                 if (idEmprend.ToString() != "NA")
                 {
@@ -107,7 +111,7 @@ namespace NegocioWeb
             catch (Exception)
             {
                 lblError.Text = "Error en carga de pagina";
-            }           
+            }
         }
     }
 }
