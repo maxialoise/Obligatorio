@@ -45,6 +45,7 @@ namespace NegocioWeb
             ddlEmprendimientos.DataTextField = "Titulo";
             ddlEmprendimientos.DataValueField = "Id";
             ddlEmprendimientos.DataBind();
+            ddlEmprendimientos.Items.Insert(0, new ListItem("Por favor seleccione un emprendimiento", "NA"));
         }
 
         protected void btnIngresar_Click(object sender, EventArgs e)
@@ -56,15 +57,10 @@ namespace NegocioWeb
         {
             try
             {
-                //cuando se seleccione un emprendimiento
-                //mostrar sus datos (id, nombre, desctipcion)
-                //mostrar campos para modificar evaluacion (puntaje, justificacion, fecha(hoy))
                 lblMensaje.Text = string.Empty;
                 lblError.Text = string.Empty;
                 bool ret = false;
                 int idEmprendimiento = int.Parse(ddlEmprendimientos.SelectedValue);
-                //Evaluacion evaluacion = new Evaluacion { Evaluador = new Evaluador { Id = idEvaluador } };
-                //ret = evaluacion.AltaEvaluacion(idEmprendimiento);
                 if (ret)
                 {
                     //lblMensaje.Text = "Evaluador asignado con exito";

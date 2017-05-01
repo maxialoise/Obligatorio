@@ -4,7 +4,9 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:Label ID="Label2" runat="server" Text="Emprendimientos: "></asp:Label>
-    <asp:DropDownList ID="ddlEmprendimientos" runat="server" OnSelectedIndexChanged="ddlEmprendimientos_SelectedIndexChanged"></asp:DropDownList>
+    <asp:DropDownList ID="ddlEmprendimientos" runat="server" OnSelectedIndexChanged="ddlEmprendimientos_SelectedIndexChanged" AutoPostBack="true">
+        <asp:ListItem Selected="True">Seleccione emprendimiento</asp:ListItem>
+    </asp:DropDownList>
     <b>
         <asp:Label ID="lblAvisoEmpren" runat="server"></asp:Label>
     </b>

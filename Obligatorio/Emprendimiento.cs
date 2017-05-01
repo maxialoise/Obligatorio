@@ -105,6 +105,7 @@ namespace Dominio
                         while (reader.Read())
                         {
                             Emprendimiento emp = new Emprendimiento();
+                            int valor = 0;
 
                             if (reader["Id"] != DBNull.Value)
                                 emp.Id = (int)reader["Id"];
@@ -116,7 +117,11 @@ namespace Dominio
                                 emp.Descripcion = (string)reader["Descripcion"];
 
                             if (reader["IdEvaluacion"] != DBNull.Value)
-                                emp.PuntajeFinal = (int)reader["PuntajeFinal"];
+                            {
+                                valor = (int)reader["IdEvaluacion"];
+                                emp.Evaluaciones = new List<Evaluacion>();
+                                emp.Evaluaciones.Add(new Evaluacion { IdEvaluacion = valor });
+                            }
 
                             lst.Add(emp);
                         }

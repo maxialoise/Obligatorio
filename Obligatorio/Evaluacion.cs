@@ -11,6 +11,8 @@ namespace Dominio
     public class Evaluacion
     {
         #region Propiedades
+
+        public int IdEvaluacion { get; set; }
         public Evaluador Evaluador { get; set; }
 
         public int Puntaje { get; set; }
