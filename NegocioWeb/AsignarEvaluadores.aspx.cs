@@ -45,7 +45,16 @@ namespace NegocioWeb
             ddlEvaluadores.DataValueField = "Id";
             ddlEvaluadores.DataBind();
 
-            //List<Emprendimiento> emprendimientos = Emprendimiento.ObtenerEmprendimientos();
+
+            List<Emprendimiento> emprendimientos = Emprendimiento.ObtenerEmprendimientos();
+            if (emprendimientos.Count <= 0)
+            {
+                lblAvisoEmpren.Text = "No hay Emprendimientos en el sistema";
+            }
+            ddlEmprendimientos.DataSource = emprendimientos;
+            ddlEmprendimientos.DataTextField = "Titulo";
+            ddlEmprendimientos.DataValueField = "Id";
+            ddlEmprendimientos.DataBind();
         }
 
         protected void btnIngresar_Click(object sender, EventArgs e)
