@@ -41,9 +41,11 @@ namespace NegocioWeb
             if (emprendimientos == null || emprendimientos.Count <= 0)
             {
                 lblAvisoEmpren.Text = "No hay Emprendimientos para Evaluar";
+                LimpiarYOcultar();
             }
             else
             {
+                LimpiarYOcultar();
                 ddlEmprendimientos.DataSource = emprendimientos;
                 ddlEmprendimientos.DataTextField = "Titulo";
                 ddlEmprendimientos.DataValueField = "Id";
@@ -96,21 +98,46 @@ namespace NegocioWeb
                 int idEmprend = int.Parse(ddlEmprendimientos.SelectedValue);
                 if (idEmprend.ToString() != "NA")
                 {
-                    lblId.Text = idEmprend.ToString();
+                    lblId.Text = "Id: " + idEmprend.ToString();
                     lblId.Visible = true;
-                    lblTitulo.Text = emprendimientos.Find(x => x.Id == idEmprend).Titulo;
+                    lblTitulo.Text = "Título: " + emprendimientos.Find(x => x.Id == idEmprend).Titulo;
                     lblTitulo.Visible = true;
-                    lblDescripcion.Text = emprendimientos.Find(x => x.Id == idEmprend).Descripcion;
+                    lblDescripcion.Text = "Descripción: " + emprendimientos.Find(x => x.Id == idEmprend).Descripcion;
                     lblDescripcion.Visible = true;
 
                     txtPuntaje.Visible = true;
                     txtJustificacion.Visible = true;
+                    lblPuntaje.Visible = true;
+                    lblJustificacion.Visible = true;
                 }
 
             }
             catch (Exception)
             {
                 lblError.Text = "Error en carga de pagina";
+            }
+        }
+
+        private void LimpiarYOcultar()
+        {
+            try
+            {
+                lblId.Text = string.Empty;
+                lblId.Visible = false;
+                lblTitulo.Text = string.Empty;
+                lblTitulo.Visible = false;
+                lblDescripcion.Text = string.Empty;
+                lblDescripcion.Visible = false;
+
+                txtPuntaje.Visible = false;
+                txtJustificacion.Visible = false;
+                lblPuntaje.Visible = false;
+                lblJustificacion.Visible = false;
+            }
+            catch (Exception)
+            {
+
+                throw;
             }
         }
     }

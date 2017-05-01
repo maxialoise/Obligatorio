@@ -15,8 +15,10 @@
     <br />
     <asp:Label ID="lblDescripcion" runat="server" Visible="false"></asp:Label>
     <br />
+    <asp:Label  ID="lblPuntaje"  runat="server" Visible="False">Puntaje:</asp:Label>
     <asp:TextBox ID="txtPuntaje" runat="server" Visible="false"></asp:TextBox>
     <br />
+     <asp:Label  ID="lblJustificacion"  runat="server" Visible="False">Justificación:</asp:Label>
     <asp:TextBox ID="txtJustificacion" runat="server" Visible="false"></asp:TextBox>
     <br />
 
