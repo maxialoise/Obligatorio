@@ -18,4 +18,5 @@
     <asp:Button ID="btnIngresar" runat="server" Text="Asignar" OnClick="btnIngresar_Click" CssClass="btn btn-primary" />
     <br />
     <asp:Label ID="lblError" runat="server"></asp:Label>
+    <asp:Label ID="lblMensaje" runat="server"></asp:Label>
 </asp:Content>

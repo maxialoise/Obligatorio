@@ -59,7 +59,28 @@ namespace NegocioWeb
 
         protected void btnIngresar_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                bool ret = false;
+                int idEvaluador = int.Parse(ddlEvaluadores.SelectedValue);
+                int idEmprendimiento = int.Parse(ddlEmprendimientos.SelectedValue);
+                Evaluacion evaluacion = new Evaluacion { Evaluador = new Evaluador { Id = idEvaluador } };
+                ret = evaluacion.AltaEvaluacion(idEmprendimiento);
+                if (ret)
+                {
+                    lblMensaje.Text = "Evaluador asignado con exito";
+                }
+                else
+                {
+                    lblError.Text = "Error en carga de pagina";
+                }
+            }
+            catch (Exception)
+            {
+                lblError.Text = "Error en carga de pagina";                
+            }
+            
+            
         }
     }
 }
