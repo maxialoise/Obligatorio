@@ -10,6 +10,7 @@ namespace NegocioWeb
 {
     public partial class EvaluarEmprendimientos : System.Web.UI.Page
     {
+        private static List<Emprendimiento> emprendimientos = new List<Emprendimiento>();
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -36,7 +37,7 @@ namespace NegocioWeb
         {
             Usuario usu = Session["usuario"] as Usuario;            
             string email = usu.Email;
-            List<Emprendimiento> emprendimientos = Emprendimiento.ObtenerEmprendimientosPorEvaluador(email);
+            emprendimientos = Emprendimiento.ObtenerEmprendimientosPorEvaluador(email);
             if (emprendimientos.Count <= 0)
             {
                 lblAvisoEmpren.Text = "No hay Emprendimientos para Evaluar";
@@ -45,12 +46,39 @@ namespace NegocioWeb
             ddlEmprendimientos.DataTextField = "Titulo";
             ddlEmprendimientos.DataValueField = "Id";
             ddlEmprendimientos.DataBind();
-            ddlEmprendimientos.Items.Insert(0, new ListItem("Por favor seleccione un emprendimiento", "NA"));
+            ddlEmprendimientos.Items.Insert(0, new ListItem("Seleccione un emprendimiento", "NA"));
         }
 
         protected void btnIngresar_Click(object sender, EventArgs e)
         {
+            try
+            {
+                lblMensaje.Text = string.Empty;
+                lblError.Text = string.Empty;
+                int puntaje = int.Parse(txtPuntaje.Text);
+                string justif = txtJustificacion.Text;
+                bool ret = false;
+                int idEmprend = int.Parse(ddlEmprendimientos.SelectedValue);
+                int idEval = 0;
+                //buscar el id de evaluacion en los emprendimientos
+                idEval = emprendimientos.Find(x => x.Id == idEmprend).Evaluaciones[0].IdEvaluacion;
+                Evaluacion evaluacion = new Evaluacion { IdEvaluacion = idEval, Puntaje = puntaje, Justificacion = justif };
+                ret = evaluacion.ActualizarEvaluacion();
 
+                if (ret)
+                {
+                    lblMensaje.Text = "Emprendimiento evaluado con exito";
+                }
+                else
+                {
+                    lblError.Text = "Error al evaluar emprendimiento: " + idEmprend;
+                }
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = ex.Message;                
+            }
+            
         }
 
         protected void ddlEmprendimientos_SelectedIndexChanged(object sender, EventArgs e)
@@ -59,16 +87,21 @@ namespace NegocioWeb
             {
                 lblMensaje.Text = string.Empty;
                 lblError.Text = string.Empty;
-                bool ret = false;
-                int idEmprendimiento = int.Parse(ddlEmprendimientos.SelectedValue);
-                if (ret)
+                
+                int idEmprend = int.Parse(ddlEmprendimientos.SelectedValue);
+                if (idEmprend.ToString() != "NA")
                 {
-                    //lblMensaje.Text = "Evaluador asignado con exito";
+                    lblId.Text = emprendimientos.Find(x => x.Id == idEmprend).Id.ToString();
+                    lblId.Visible = true;
+                    lblTitulo.Text = emprendimientos.Find(x => x.Id == idEmprend).Titulo;
+                    lblTitulo.Visible = true;
+                    lblDescripcion.Text = emprendimientos.Find(x => x.Id == idEmprend).Descripcion;
+                    lblDescripcion.Visible = true;
+
+                    txtPuntaje.Visible = true;
+                    txtJustificacion.Visible = true;
                 }
-                else
-                {
-                    //lblError.Text = msg;
-                }
+
             }
             catch (Exception)
             {
