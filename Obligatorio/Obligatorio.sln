@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dominio", "Dominio.csproj", "{E8BB8998-87C1-4B20-B7D5-113BFCA6D599}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NegocioWeb", "..\NegocioWeb\NegocioWeb.csproj", "{66C189CF-3424-4372-9D1A-81C1465471B1}"
+	ProjectSection(ProjectDependencies) = postProject
+		{2E46813D-68E9-46E6-A3AE-41FCE0D752BC} = {2E46813D-68E9-46E6-A3AE-41FCE0D752BC}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WcfEmprendimientos", "..\WcfEmprendimientos\WcfEmprendimientos.csproj", "{2E46813D-68E9-46E6-A3AE-41FCE0D752BC}"
 EndProject

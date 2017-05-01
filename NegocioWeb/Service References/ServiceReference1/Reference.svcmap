@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="ddf26fd5-fea8-47a7-bda8-632482899076" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:4528/Emprendimientos.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="Emprendimientos.xsd" MetadataType="Schema" ID="1af314e1-dddd-4c18-84c7-60566cb34d6a" SourceId="1" SourceUrl="http://localhost:4528/Emprendimientos.svc?xsd=xsd2" />
+    <MetadataFile FileName="Emprendimientos.disco" MetadataType="Disco" ID="8541e030-16db-4802-a1b4-b76fd9c00dd7" SourceId="1" SourceUrl="http://localhost:4528/Emprendimientos.svc?disco" />
+    <MetadataFile FileName="Emprendimientos1.xsd" MetadataType="Schema" ID="1902a209-db13-4b3d-ac7c-bc1ad0349bcd" SourceId="1" SourceUrl="http://localhost:4528/Emprendimientos.svc?xsd=xsd1" />
+    <MetadataFile FileName="Emprendimientos.wsdl" MetadataType="Wsdl" ID="b685c5a2-ca0c-4912-bf08-34bca2cdf773" SourceId="1" SourceUrl="http://localhost:4528/Emprendimientos.svc?wsdl" />
+    <MetadataFile FileName="Emprendimientos2.xsd" MetadataType="Schema" ID="f5682013-6b0c-4adf-8650-077040c6ea01" SourceId="1" SourceUrl="http://localhost:4528/Emprendimientos.svc?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

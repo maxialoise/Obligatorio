@@ -22,6 +22,8 @@ namespace Dominio
 
         public int TiempoPrevisto { get; set; }
 
+        public int Costo { get; set; }
+
         public List<Persona> Intregrantes { get; set; }
 
         public List<Evaluacion> Evaluaciones { get; set; }
@@ -66,6 +68,12 @@ namespace Dominio
 
                             if (reader["Descripcion"] != DBNull.Value)
                                 emp.Descripcion = (string)reader["Descripcion"];
+
+                            if (reader["TiempoPrevisto"] != DBNull.Value)
+                                emp.TiempoPrevisto = (int)reader["TiempoPrevisto"];
+
+                            if (reader["Costo"] != DBNull.Value)
+                                emp.Costo = (int)reader["Costo"];
 
                             if (reader["PuntajeFinal"] != DBNull.Value)
                                 emp.PuntajeFinal = (int)reader["PuntajeFinal"];
@@ -121,6 +129,9 @@ namespace Dominio
                             if (reader["TiempoPrevisto"] != DBNull.Value)
                                 emp.TiempoPrevisto = (int)reader["TiempoPrevisto"];
 
+                            if (reader["Costo"] != DBNull.Value)
+                                emp.Costo = (int)reader["Costo"];
+
                             if (reader["IdEvaluacion"] != DBNull.Value)
                             {
                                 valor = (int)reader["IdEvaluacion"];
@@ -159,6 +170,7 @@ namespace Dominio
                     cmd.Parameters.AddWithValue("@descripcion", this.Descripcion);
                     cmd.Parameters.AddWithValue("@puntajeFinal", this.PuntajeFinal);
                     cmd.Parameters.AddWithValue("@tiempoPrevisto", this.TiempoPrevisto);
+                    cmd.Parameters.AddWithValue("@costo", this.Costo);
 
                     cnn.Open();
                     trn = cnn.BeginTransaction();

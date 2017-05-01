@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Dominio;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -17,40 +18,31 @@ namespace NegocioWeb
 
         protected void btnIngresar_Click(object sender, EventArgs e)
         {
+            List<Emprendimiento> lista = new List<Emprendimiento>();
             //Llamar WCF 
+            ServiceReference1.EmprendimientosClient cliente = new ServiceReference1.EmprendimientosClient();
+            foreach (var emp in cliente.ObtenerEmprendimientos())
+            {
+                lista.Add(new Emprendimiento { Id = emp.Id, Titulo = emp.Titulo, Costo = emp.Costo, TiempoPrevisto = emp.TiempoPrevisto, Descripcion = emp.Descripcion, PuntajeFinal = emp.PuntajeFinal });
+            }
 
 
             // Generar TXT
-
             string path = @"E:\AppServ\Example.txt";
 
             if (!File.Exists(path))
             {
                 File.Create(path).Dispose();
-                using (TextWriter tw = new StreamWriter(path))
-                {
-                    tw.WriteLine("The very first line!");
-                    tw.Close();
-                }
-
             }
 
-            else if (File.Exists(path))
+            using (TextWriter tw = new StreamWriter(path))
             {
-                using (TextWriter tw = new StreamWriter(path))
+                foreach (var emp in lista)
                 {
-                    tw.WriteLine("The next line!");
-                    tw.Close();
+                    tw.WriteLine(emp.Id + "#" + emp.Titulo + "#" + emp.Costo + "#" + emp.TiempoPrevisto + "#" + emp.PuntajeFinal + "#" + emp.Descripcion + ".");
                 }
+                tw.Close();
             }
-
-
-            // Create a string array that consists of three lines.
-            string[] lines = { "First line", "Second line", "Third line" };
-            // WriteAllLines creates a file, writes a collection of strings to the file,
-            // and then closes the file.  You do NOT need to call Flush() or Close().
-            System.IO.File.WriteAllLines(@"C:\Users\Public\TestFolder\WriteLines.txt", lines);
-
         }
     }
 }

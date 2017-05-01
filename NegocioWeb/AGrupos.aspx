@@ -11,7 +11,10 @@
     <br />
     <asp:Label ID="Label8" runat="server" Text="Tiempo previsto:(Días)"></asp:Label>
     <asp:TextBox ID="txtTiempo" runat="server"></asp:TextBox>
-    <br />    
+    <br />   
+    <asp:Label ID="Label9" runat="server" Text="Costo:"></asp:Label>
+    <asp:TextBox ID="txtCosto" runat="server"></asp:TextBox>
+    <br />      
     <asp:Label ID="Label3" runat="server" Text="Integrantes: "></asp:Label>
     <br />
     <asp:Label ID="Label4" runat="server" Text="Nombre:"></asp:Label>

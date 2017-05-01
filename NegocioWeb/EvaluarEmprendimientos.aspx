@@ -17,6 +17,8 @@
     <br />
     <asp:Label ID="lblTiempoPrevisto"  runat="server" Visible="false"></asp:Label>
     <br />
+    <asp:Label ID="lblCosto"  runat="server" Visible="false"></asp:Label>
+    <br />
     <asp:Label  ID="lblPuntaje"  runat="server" Visible="False">Puntaje:</asp:Label>
     <asp:TextBox ID="txtPuntaje" runat="server" Visible="false"></asp:TextBox>
     <br />
