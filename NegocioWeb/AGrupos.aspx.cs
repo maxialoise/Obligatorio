@@ -10,16 +10,17 @@ namespace NegocioWeb
 {
     public partial class WebForm1 : System.Web.UI.Page
     {
-        List<Persona> integrantes = null;
+        private static List<Persona> integrantes = new List<Persona>();
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            integrantes = new List<Persona>();
         }
 
         protected void btnAgregar_Click(object sender, EventArgs e)
         {
             try
             {
+
                 string nombre = txtNom.Text;
                 string cedula = txtCedula.Text;
                 string email = txtEmail.Text;
@@ -48,25 +49,8 @@ namespace NegocioWeb
                 {
                     string titulo = txtTitulo.Text;
                     string desc = txtDescripcion.Text;
-                    Emprendimiento empr = new Emprendimiento { Titulo = titulo, Descripcion = desc };
-                    //alta empre
-
-                    foreach (var integrante in integrantes)
-                    {
-                        integrante.Usuario.AltaUsuario();
-                        //integrante.AltaPersona(empr.Id);                        
-                    }
-                   
-                    //if (result)
-                    //{
-                    //    //LimpiarListBox();
-                    //    lblError.Text = "Creacion exitosa";
-                    //}
-                    //else
-                    //{
-                    //    lblError.Text = "Error al Crear";
-                    //}
-
+                    Emprendimiento empr = new Emprendimiento { Titulo = titulo, Descripcion = desc, Intregrantes = integrantes};
+                    empr.AltaEmprendimiento();
                 }
                 else
                 {

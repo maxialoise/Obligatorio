@@ -20,6 +20,9 @@ namespace Dominio
 
         public int PuntajeFinal { get; set; }
 
+        public List<Persona> Intregrantes { get; set; }
+
+        public List<Evaluacion> Evaluaciones { get; set; }
 
         #endregion
 
@@ -34,6 +37,7 @@ namespace Dominio
         public bool AltaEmprendimiento()
         {
             bool resultado = false;
+            SqlTransaction trn = null;
 
             try
             {
@@ -47,10 +51,20 @@ namespace Dominio
                     cmd.Parameters.AddWithValue("@puntajeFinal", this.PuntajeFinal);
 
                     cnn.Open();
+                    trn = cnn.BeginTransaction();
+                    cmd.Transaction = trn;
 
                     var res = cmd.ExecuteScalar();
 
                     this.Id = int.Parse(res.ToString());
+
+                    foreach (var integrante in this.Intregrantes)
+                    {
+                        integrante.Usuario.AltaUsuario(cnn, cmd);
+                        integrante.AltaPersona(cnn, cmd,this.Id);
+                    }
+
+                    trn.Commit();
 
                     resultado = true;
 
@@ -62,6 +76,7 @@ namespace Dominio
             catch (Exception ex)
             {
                 string error = ex.Message;
+                trn.Rollback();
                 return resultado;
             }
         }

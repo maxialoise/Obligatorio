@@ -33,34 +33,27 @@ namespace Dominio
 
         #region Metodos
 
-        public bool AltaPersona(int idEmprendimiento)
+        public bool AltaPersona(SqlConnection cnn, SqlCommand cmd, int idEmprendimiento)
         {
             bool resultado = false;
 
             try
             {
-                using (SqlConnection cnn = new SqlConnection(@"Server=PC-102717\FARRIOLA; Database = Emprendimientos;Integrated Security=SSPI"))
-                {
-                    SqlCommand cmd = new SqlCommand("Alta_Persona", cnn);
-                    cmd.CommandType = CommandType.StoredProcedure;
 
+                cmd.CommandText = "Alta_Persona";
 
-                    cmd.Parameters.AddWithValue("@cedula", this.Cedula);
-                    cmd.Parameters.AddWithValue("@nombre", this.Nombre);
-                    cmd.Parameters.AddWithValue("@email", this.Email);
-                    cmd.Parameters.AddWithValue("@idUsuario", this.Usuario.Id);
-                    cmd.Parameters.AddWithValue("@idEmprendimiento", idEmprendimiento);
+                cmd.Parameters.Clear();
+                cmd.Parameters.AddWithValue("@cedula", this.Cedula);
+                cmd.Parameters.AddWithValue("@nombre", this.Nombre);
+                cmd.Parameters.AddWithValue("@email", this.Email);
+                cmd.Parameters.AddWithValue("@idUsuario", this.Usuario.Id);
+                cmd.Parameters.AddWithValue("@idEmprendimiento", idEmprendimiento);
 
-                    cnn.Open();
+                var res = cmd.ExecuteNonQuery();
 
-                    var res = cmd.ExecuteNonQuery();
+                this.Id = int.Parse(res.ToString());
 
-                    this.Id = int.Parse(res.ToString());
-
-                    resultado = true;
-
-                    cmd.Dispose();
-                }
+                resultado = true;
 
                 return resultado;
             }

@@ -40,7 +40,7 @@ namespace Dominio
 
             try
             {
-                using (SqlConnection cnn = new SqlConnection(@"Server=MAXI; Database = Emprendimientos;Integrated Security=SSPI"))
+                using (SqlConnection cnn = new SqlConnection(@"Server=PC-102717\FARRIOLA; Database = Emprendimientos;Integrated Security=SSPI"))
                 {
                     SqlCommand cmd = new SqlCommand("Buscar_Usuario", cnn);
                     cmd.Parameters.AddWithValue("@email", email);
@@ -80,31 +80,24 @@ namespace Dominio
             }
         }
 
-        public bool AltaUsuario()
+        public bool AltaUsuario(SqlConnection cnn, SqlCommand cmd)
         {
             bool resultado = false;
 
             try
             {
-                using (SqlConnection cnn = new SqlConnection(@"Server=MAXI; Database = Emprendimientos;Integrated Security=SSPI"))
-                {
-                    SqlCommand cmd = new SqlCommand("Alta_Usuario", cnn);
-                    cmd.CommandType = CommandType.StoredProcedure;
 
-                    cmd.Parameters.AddWithValue("@email", this.Email);
-                    cmd.Parameters.AddWithValue("@password", this.Password);
-                    cmd.Parameters.AddWithValue("@rol", this.Rol);
+                cmd.CommandText = "Alta_Usuario";
+                cmd.Parameters.Clear();
+                cmd.Parameters.AddWithValue("@email", this.Email);
+                cmd.Parameters.AddWithValue("@password", this.Password);
+                cmd.Parameters.AddWithValue("@rol", this.Rol);
 
-                    cnn.Open();
+                var res = cmd.ExecuteScalar();
 
-                    int res = int.Parse(cmd.ExecuteScalar().ToString());
+                this.Id = int.Parse(res.ToString());
 
-                    this.Id = res;
-
-                    resultado = true;
-
-                    cmd.Dispose();
-                }
+                resultado = true;
 
                 return resultado;
             }
@@ -114,7 +107,17 @@ namespace Dominio
                 return resultado;
             }
         }
-
-        #endregion
+        public bool AltaUsuario()
+        {
+            SqlConnection cnn = new SqlConnection(@"Server=PC-102717\FARRIOLA; Database = Emprendimientos;Integrated Security=SSPI");
+            SqlCommand cmd = new SqlCommand("Alta_Usuario", cnn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cnn.Open();
+            bool res = AltaUsuario(cnn, cmd);
+            cnn.Close();
+            return res;
+        }
     }
+    #endregion
 }
+
