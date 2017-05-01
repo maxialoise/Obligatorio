@@ -83,7 +83,7 @@ namespace Dominio
             }
         }
 
-        public static List<Emprendimiento> ObtenerEmprendimientoPorEvaluador(string email)
+        public static List<Emprendimiento> ObtenerEmprendimientosPorEvaluador(string email)
         {
             List<Emprendimiento> lst = null;
 

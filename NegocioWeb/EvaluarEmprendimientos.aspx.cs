@@ -8,7 +8,7 @@ using System.Web.UI.WebControls;
 
 namespace NegocioWeb
 {
-    public partial class AsignarEvaluadores : System.Web.UI.Page
+    public partial class EvaluarEmprendimientos : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -16,7 +16,7 @@ namespace NegocioWeb
             {
                 Usuario usu = Session["usuario"] as Usuario;
 
-                if (usu == null || usu.Rol != "Admin")
+                if (usu == null || usu.Rol != "Evaluador")
                 {
                     Response.Redirect("Login.aspx");
                 }
@@ -34,23 +34,12 @@ namespace NegocioWeb
 
         private void BindData()
         {
-
-            List<Evaluador> evaluadores = Evaluador.ObtenerEvaluadores();
-
-            if (evaluadores.Count <= 0)
-            {
-                lblAvisoEval.Text = "No hay Evaluadores en el sistema";
-            }
-            ddlEvaluadores.DataSource = evaluadores;
-            ddlEvaluadores.DataTextField = "Nombre";
-            ddlEvaluadores.DataValueField = "IdEvaluador";
-            ddlEvaluadores.DataBind();
-
-
-            List<Emprendimiento> emprendimientos = Emprendimiento.ObtenerEmprendimientos();
+            Usuario usu = Session["usuario"] as Usuario;            
+            string email = usu.Email;
+            List<Emprendimiento> emprendimientos = Emprendimiento.ObtenerEmprendimientosPorEvaluador(email);
             if (emprendimientos.Count <= 0)
             {
-                lblAvisoEmpren.Text = "No hay Emprendimientos en el sistema";
+                lblAvisoEmpren.Text = "No hay Emprendimientos para Evaluar";
             }
             ddlEmprendimientos.DataSource = emprendimientos;
             ddlEmprendimientos.DataTextField = "Titulo";
@@ -60,29 +49,35 @@ namespace NegocioWeb
 
         protected void btnIngresar_Click(object sender, EventArgs e)
         {
+
+        }
+
+        protected void ddlEmprendimientos_SelectedIndexChanged(object sender, EventArgs e)
+        {
             try
             {
+                //cuando se seleccione un emprendimiento
+                //mostrar sus datos (id, nombre, desctipcion)
+                //mostrar campos para modificar evaluacion (puntaje, justificacion, fecha(hoy))
                 lblMensaje.Text = string.Empty;
                 lblError.Text = string.Empty;
                 bool ret = false;
-                string msg = string.Empty;
-                int idEvaluador = int.Parse(ddlEvaluadores.SelectedValue);
                 int idEmprendimiento = int.Parse(ddlEmprendimientos.SelectedValue);
-                Evaluacion evaluacion = new Evaluacion { Evaluador = new Evaluador { Id = idEvaluador } };
-                ret = evaluacion.AltaEvaluacion(idEmprendimiento, out msg);
+                //Evaluacion evaluacion = new Evaluacion { Evaluador = new Evaluador { Id = idEvaluador } };
+                //ret = evaluacion.AltaEvaluacion(idEmprendimiento);
                 if (ret)
                 {
-                    lblMensaje.Text = "Evaluador asignado con exito";
+                    //lblMensaje.Text = "Evaluador asignado con exito";
                 }
                 else
                 {
-                    lblError.Text = msg;
+                    //lblError.Text = msg;
                 }
             }
             catch (Exception)
             {
-                lblError.Text = "Error en carga de pagina";                
-            }    
+                lblError.Text = "Error en carga de pagina";
+            }           
         }
     }
 }

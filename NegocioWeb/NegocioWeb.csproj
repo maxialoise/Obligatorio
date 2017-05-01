@@ -96,6 +96,7 @@
   <ItemGroup>
     <Content Include="AsignarEvaluadores.aspx" />
     <Content Include="AUsuario.aspx" />
+    <Content Include="EvaluarEmprendimientos.aspx" />
     <Content Include="Logout.aspx" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
@@ -152,6 +153,13 @@
     </Compile>
     <Compile Include="AUsuario.aspx.designer.cs">
       <DependentUpon>AUsuario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EvaluarEmprendimientos.aspx.cs">
+      <DependentUpon>EvaluarEmprendimientos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EvaluarEmprendimientos.aspx.designer.cs">
+      <DependentUpon>EvaluarEmprendimientos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
