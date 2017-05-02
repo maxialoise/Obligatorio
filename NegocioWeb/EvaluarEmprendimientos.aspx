@@ -21,9 +21,11 @@
     <br />
     <asp:Label  ID="lblPuntaje"  runat="server" Visible="False">Puntaje:</asp:Label>
     <asp:TextBox ID="txtPuntaje" runat="server" Visible="false"></asp:TextBox>
+    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtPuntaje" ErrorMessage="ingresar puntaje"></asp:RequiredFieldValidator>
     <br />
      <asp:Label  ID="lblJustificacion"  runat="server" Visible="False">Justificación:</asp:Label>
     <asp:TextBox ID="txtJustificacion" runat="server" Visible="false"></asp:TextBox>
+    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtJustificacion" ErrorMessage="ingresar justificacion"></asp:RequiredFieldValidator>
     <br />
 
     <asp:Button ID="btnIngresar" runat="server" Text="Asignar" OnClick="btnIngresar_Click" CssClass="btn btn-primary" />

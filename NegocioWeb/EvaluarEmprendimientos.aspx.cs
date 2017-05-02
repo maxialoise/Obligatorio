@@ -62,7 +62,7 @@ namespace NegocioWeb
                 lblMensaje.Text = string.Empty;
                 lblError.Text = string.Empty;
                 int puntaje = int.Parse(txtPuntaje.Text);
-                if (puntaje > 0 && puntaje <= 4)
+                if (puntaje >=0  && puntaje <= 4)
                 {
                     string justif = txtJustificacion.Text;
                     bool ret = false;
@@ -85,7 +85,7 @@ namespace NegocioWeb
                 }
                 else
                 {
-                    lblError.Text = "El puntaje ingresado debe de estar en el rango de 1 a 4, valor ingresado: " + puntaje;
+                    lblError.Text = "El puntaje ingresado debe de estar en el rango de 0 a 4, valor ingresado: " + puntaje;
                 }
             }
             catch (Exception ex)

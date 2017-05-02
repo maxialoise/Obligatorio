@@ -5,15 +5,19 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:Label ID="Label4" runat="server" Text="Nombre:"></asp:Label>
     <asp:TextBox ID="txtNombre" runat="server"></asp:TextBox>
+    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtNombre" ErrorMessage="error"></asp:RequiredFieldValidator>
     <br />
     <asp:Label ID="Label5" runat="server" Text="Cedula:"></asp:Label>
     <asp:TextBox ID="txtCedula" runat="server"></asp:TextBox>
+    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtCedula" ErrorMessage="error"></asp:RequiredFieldValidator>
     <br />
     <asp:Label ID="Label1" runat="server" Text="Email:"></asp:Label>
     <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
+    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtEmail" ErrorMessage="error"></asp:RequiredFieldValidator>
     <br />
     <asp:Label ID="Label2" runat="server" Text="Contraseña:"></asp:Label>
     <asp:TextBox ID="txtContrasenia" runat="server" TextMode="Password"></asp:TextBox>
+    <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtContrasenia" ErrorMessage="error"></asp:RequiredFieldValidator>
     <br />
     <asp:Label ID="lblTel" runat="server" Text="Telefono:" Visible="false"></asp:Label>
     <asp:TextBox ID="txtTel" runat="server" Visible="false"></asp:TextBox>
