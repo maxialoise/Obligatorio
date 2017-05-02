@@ -62,23 +62,30 @@ namespace NegocioWeb
                 lblMensaje.Text = string.Empty;
                 lblError.Text = string.Empty;
                 int puntaje = int.Parse(txtPuntaje.Text);
-                string justif = txtJustificacion.Text;
-                bool ret = false;
-                int idEmprend = int.Parse(ddlEmprendimientos.SelectedValue);
-                int idEval = 0;
-                //buscar el id de evaluacion en los emprendimientos
-                idEval = emprendimientos.Find(x => x.Id == idEmprend).Evaluaciones[0].IdEvaluacion;
-                Evaluacion evaluacion = new Evaluacion { IdEvaluacion = idEval, Puntaje = puntaje, Justificacion = justif };
-                ret = evaluacion.ActualizarEvaluacion();
-
-                if (ret)
+                if (puntaje > 0 && puntaje <= 4)
                 {
-                    lblMensaje.Text = "Emprendimiento evaluado con exito";
-                    BindData();
+                    string justif = txtJustificacion.Text;
+                    bool ret = false;
+                    int idEmprend = int.Parse(ddlEmprendimientos.SelectedValue);
+                    int idEval = 0;
+                    //buscar el id de evaluacion en los emprendimientos
+                    idEval = emprendimientos.Find(x => x.Id == idEmprend).Evaluaciones[0].IdEvaluacion;
+                    Evaluacion evaluacion = new Evaluacion { IdEvaluacion = idEval, Puntaje = puntaje, Justificacion = justif };
+                    ret = evaluacion.ActualizarEvaluacion();
+
+                    if (ret)
+                    {
+                        lblMensaje.Text = "Emprendimiento evaluado con exito";
+                        BindData();
+                    }
+                    else
+                    {
+                        lblError.Text = "Error al evaluar emprendimiento: " + idEmprend;
+                    }
                 }
                 else
                 {
-                    lblError.Text = "Error al evaluar emprendimiento: " + idEmprend;
+                    lblError.Text = "El puntaje ingresado debe de estar en el rango de 1 a 4, valor ingresado: " + puntaje;
                 }
             }
             catch (Exception ex)
@@ -132,7 +139,7 @@ namespace NegocioWeb
                 lblTitulo.Visible = false;
                 lblDescripcion.Text = string.Empty;
                 lblDescripcion.Visible = false;
-                lblTiempoPrevisto.Text = string.Empty;    
+                lblTiempoPrevisto.Text = string.Empty;
                 lblTiempoPrevisto.Visible = false;
                 lblCosto.Text = string.Empty;
                 lblCosto.Visible = false;
