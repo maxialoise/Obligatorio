@@ -20,7 +20,6 @@ namespace NegocioWeb
         {
             try
             {
-
                 string nombre = txtNom.Text;
                 string cedula = txtCedula.Text;
                 string email = txtEmail.Text;

@@ -22,11 +22,9 @@ namespace WcfEmprendimientos.DTOS
         [DataMember]
         public int Costo { get; set; }
         [DataMember]
-        public List<String> Intregrantes { get; set; }
+        public List<DTOPersona> Intregrantes { get; set; }
         [DataMember]
-        public List<String> Evaluadores { get; set; }
-        [DataMember]
-        public List<String> Justificaciones { get; set; }
+        public List<DTOEvaluador> Evaluadores { get; set; }
 
         public DTOEmprendimiento(int id, string titulo, string descripcion, int puntajeFinal, int tiempo, int costo)
         {

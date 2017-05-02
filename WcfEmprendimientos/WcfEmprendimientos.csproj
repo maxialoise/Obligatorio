@@ -66,6 +66,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DTOS\DTOEmprendimiento.cs" />
+    <Compile Include="DTOS\DTOEvaluador.cs" />
+    <Compile Include="DTOS\DTOPersona.cs" />
     <Compile Include="Emprendimientos.svc.cs">
       <DependentUpon>Emprendimientos.svc</DependentUpon>
     </Compile>

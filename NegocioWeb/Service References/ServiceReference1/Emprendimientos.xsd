@@ -10,11 +10,40 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="Costo" type="xs:int" />
       <xs:element minOccurs="0" name="Descripcion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Evaluadores" nillable="true" type="tns:ArrayOfDTOEvaluador" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Intregrantes" nillable="true" type="tns:ArrayOfDTOPersona" />
       <xs:element minOccurs="0" name="PuntajeFinal" type="xs:int" />
       <xs:element minOccurs="0" name="TiempoPrevisto" type="xs:int" />
       <xs:element minOccurs="0" name="Titulo" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="DTOEmprendimiento" nillable="true" type="tns:DTOEmprendimiento" />
+  <xs:complexType name="ArrayOfDTOEvaluador">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DTOEvaluador" nillable="true" type="tns:DTOEvaluador" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDTOEvaluador" nillable="true" type="tns:ArrayOfDTOEvaluador" />
+  <xs:complexType name="DTOEvaluador">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="IdEmprendimiento" type="xs:int" />
+      <xs:element minOccurs="0" name="Justificacion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NombreEvaluador" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DTOEvaluador" nillable="true" type="tns:DTOEvaluador" />
+  <xs:complexType name="ArrayOfDTOPersona">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DTOPersona" nillable="true" type="tns:DTOPersona" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDTOPersona" nillable="true" type="tns:ArrayOfDTOPersona" />
+  <xs:complexType name="DTOPersona">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="IdEmprendimiento" type="xs:int" />
+      <xs:element minOccurs="0" name="Nombre" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DTOPersona" nillable="true" type="tns:DTOPersona" />
 </xs:schema>

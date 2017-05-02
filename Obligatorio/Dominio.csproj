@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Script SQL 2.0\Emprendimientos.sql" />
+    <Content Include="Script SQL 2.0\EmprendimientosFinal.sql" />
     <Content Include="Script SQL\Script.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

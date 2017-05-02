@@ -18,31 +18,59 @@ namespace NegocioWeb
 
         protected void btnIngresar_Click(object sender, EventArgs e)
         {
-            List<Emprendimiento> lista = new List<Emprendimiento>();
-            //Llamar WCF 
-            ServiceReference1.EmprendimientosClient cliente = new ServiceReference1.EmprendimientosClient();
-            foreach (var emp in cliente.ObtenerEmprendimientos())
+            try
             {
-                lista.Add(new Emprendimiento { Id = emp.Id, Titulo = emp.Titulo, Costo = emp.Costo, TiempoPrevisto = emp.TiempoPrevisto, Descripcion = emp.Descripcion, PuntajeFinal = emp.PuntajeFinal });
-            }
+                List<Emprendimiento> lista = new List<Emprendimiento>();
 
+                ServiceReference1.EmprendimientosClient cliente = new ServiceReference1.EmprendimientosClient();
 
-            // Generar TXT
-            string path = @"E:\AppServ\Example.txt";
-
-            if (!File.Exists(path))
-            {
-                File.Create(path).Dispose();
-            }
-
-            using (TextWriter tw = new StreamWriter(path))
-            {
-                foreach (var emp in lista)
+                if (cliente.ObtenerEmprendimientos() != null)
                 {
-                    tw.WriteLine(emp.Id + "#" + emp.Titulo + "#" + emp.Costo + "#" + emp.TiempoPrevisto + "#" + emp.PuntajeFinal + "#" + emp.Descripcion + ".");
+                    foreach (var emp in cliente.ObtenerEmprendimientos())
+                    {
+                        Emprendimiento empr = new Emprendimiento();
+                        empr.Id = emp.Id;
+                        empr.Titulo = emp.Titulo;
+                        empr.Costo = emp.Costo;
+                        empr.TiempoPrevisto = emp.TiempoPrevisto;
+                        empr.PuntajeFinal = emp.PuntajeFinal;
+                        string integrantes = "";
+                        string evaluadores = "";
+
+                        foreach (var integrante in emp.Intregrantes)
+                        {
+                            integrantes += integrante.Nombre + ", ";
+                        }
+                        foreach (var evaluador in emp.Evaluadores)
+                        {
+                            evaluadores += evaluador.NombreEvaluador + " " + evaluador.Justificacion + ", ";
+                        }
+
+                        empr.Descripcion = "Integrantes: " + integrantes + " Evaluadores: " + evaluadores;
+                        lista.Add(empr);
+                    }
+
+                    string path = @"E:\Example.txt";
+
+                    if (!File.Exists(path))
+                        File.Create(path).Dispose();
+
+                    using (TextWriter tw = new StreamWriter(path))
+                    {
+                        foreach (var emp in lista)
+                        {
+                            tw.WriteLine(emp.Id + "#" + emp.Titulo + "#" + emp.Costo + "#" + emp.TiempoPrevisto + "#" + emp.PuntajeFinal + "#" + emp.Descripcion + ".");
+                        }
+                        tw.Close();
+                        lblMensaje.Text = "Archivo";
+                    }
                 }
-                tw.Close();
             }
+            catch (Exception)
+            {
+                lblMensaje.Text = "Error generando txt";
+            }
+
         }
     }
 }
