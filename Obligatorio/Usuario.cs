@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Configuration;
+using System.Configuration.Install;
 
 namespace Dominio
 {
@@ -37,10 +38,11 @@ namespace Dominio
         public static Usuario BuscarUsuario(string email, string password)
         {
             Usuario usu = null;
-
+            
             try
             {
-                using (SqlConnection cnn = new SqlConnection(@"Server=PC-102717\FARRIOLA; Database = Emprendimientos;Integrated Security=SSPI"))
+                string cadena = ConfigurationManager.ConnectionStrings["miConexion"].ConnectionString;
+                using (SqlConnection cnn = new SqlConnection(cadena))
                 {
                     SqlCommand cmd = new SqlCommand("Buscar_Usuario", cnn);
                     cmd.Parameters.AddWithValue("@email", email);
@@ -104,12 +106,12 @@ namespace Dominio
             catch (Exception ex)
             {
                 string error = ex.Message;
-                return resultado;
+                throw ex;
             }
         }
         public bool AltaUsuario()
         {
-            SqlConnection cnn = new SqlConnection(@"Server=PC-102717\FARRIOLA; Database = Emprendimientos;Integrated Security=SSPI");
+            SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["miConexion"].ConnectionString);
             SqlCommand cmd = new SqlCommand("Alta_Usuario", cnn);
             cmd.CommandType = CommandType.StoredProcedure;
             cnn.Open();
@@ -117,6 +119,7 @@ namespace Dominio
             cnn.Close();
             return res;
         }
+
     }
     #endregion
 }

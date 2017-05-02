@@ -50,7 +50,7 @@ namespace NegocioWeb
                         lista.Add(empr);
                     }
 
-                    string path = @"E:\Example.txt";
+                    string path = @"D:\ListaEmprendimientos.txt";
 
                     if (!File.Exists(path))
                         File.Create(path).Dispose();
@@ -62,7 +62,7 @@ namespace NegocioWeb
                             tw.WriteLine(emp.Id + "#" + emp.Titulo + "#" + emp.Costo + "#" + emp.TiempoPrevisto + "#" + emp.PuntajeFinal + "#" + emp.Descripcion + ".");
                         }
                         tw.Close();
-                        lblMensaje.Text = "Archivo";
+                        lblMensaje.Text = "Archivo creado correctamente en: " + path;
                     }
                 }
             }

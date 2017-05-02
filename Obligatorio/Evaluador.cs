@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -35,7 +36,7 @@ namespace Dominio
 
             try
             {
-                using (SqlConnection cnn = new SqlConnection(@"Server=PC-102717\FARRIOLA; Database = Emprendimientos;Integrated Security=SSPI"))
+                using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["miConexion"].ConnectionString))
                 {
                     SqlCommand cmd = new SqlCommand("Obtener_Evaluadores", cnn);
                     cmd.CommandType = CommandType.StoredProcedure;
@@ -78,6 +79,34 @@ namespace Dominio
             }
         }
 
+        public bool AltaEvaluador()
+        {
+            bool resultado = false;
+            if (this.AltaPersona())
+            {
+                try
+                {
+                    using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["miConexion"].ConnectionString))
+                    {
+                        SqlCommand cmd = new SqlCommand("INSERT into EVALUADOR (Persona, Telefono, Calificacion) VALUES (@persona, @telefono, @calificacion)", cnn);
+                        cmd.CommandType = CommandType.Text;
+                        cmd.Parameters.AddWithValue("@persona", this.Id);
+                        cmd.Parameters.AddWithValue("@telefono", this.Telefono);
+                        cmd.Parameters.AddWithValue("@calificacion", this.Calificacion);
+                        cnn.Open();
+
+                        int res = cmd.ExecuteNonQuery();
+                        if (res > 0)
+                            resultado = true;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    string error = ex.Message;
+                }
+            }
+            return resultado;
+        }
         #endregion
     }
 }

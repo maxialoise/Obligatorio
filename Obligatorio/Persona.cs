@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -39,9 +40,7 @@ namespace Dominio
 
             try
             {
-
                 cmd.CommandText = "Alta_Persona";
-
                 cmd.Parameters.Clear();
                 cmd.Parameters.AddWithValue("@cedula", this.Cedula);
                 cmd.Parameters.AddWithValue("@nombre", this.Nombre);
@@ -56,6 +55,43 @@ namespace Dominio
                 resultado = true;
 
                 return resultado;
+            }
+            catch (Exception ex)
+            {
+                string error = ex.Message;
+                throw ex;
+            }
+        }
+        public bool AltaPersona()
+        {
+
+            bool resultado = false;
+
+            try
+            {
+                if (this.Usuario.AltaUsuario())
+                {
+                    using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["miConexion"].ConnectionString))
+                    {
+                        SqlCommand cmd = new SqlCommand("INSERT into PERSONA (Cedula, Nombre, Email, Usuario) VALUES (@cedula, @nombre, @email, @idUsuario) SELECT CAST(SCOPE_IDENTITY() as int)", cnn);
+                        cmd.CommandType = CommandType.Text;
+                        cmd.Parameters.AddWithValue("@cedula", this.Cedula);
+                        cmd.Parameters.AddWithValue("@nombre", this.Nombre);
+                        cmd.Parameters.AddWithValue("@email", this.Email);
+                        cmd.Parameters.AddWithValue("@idUsuario", this.Usuario.Id);
+                        cnn.Open();
+
+                        var res = cmd.ExecuteScalar();
+                        if (res != null)
+                        {
+                            this.Id = int.Parse(res.ToString());
+                            resultado = true;
+                        }
+                                                 
+                    }
+                }
+                return resultado;
+
             }
             catch (Exception ex)
             {

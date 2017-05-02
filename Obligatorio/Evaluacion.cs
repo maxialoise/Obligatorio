@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -38,7 +39,7 @@ namespace Dominio
 
             try
             {
-                using (SqlConnection cnn = new SqlConnection(@"Server=PC-102717\FARRIOLA; Database = Emprendimientos;Integrated Security=SSPI"))
+                using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["miConexion"].ConnectionString))
                 {
                     SqlCommand cmd = new SqlCommand("Alta_Evaluacion", cnn);
                     cmd.CommandType = CommandType.StoredProcedure;
@@ -88,7 +89,7 @@ namespace Dominio
 
             try
             {
-                using (SqlConnection cnn = new SqlConnection(@"Server=PC-102717\FARRIOLA; Database = Emprendimientos;Integrated Security=SSPI"))
+                using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["miConexion"].ConnectionString))
                 {
                     SqlCommand cmd = new SqlCommand("ActualizarEvaluacion", cnn);
                     cmd.CommandType = CommandType.StoredProcedure;

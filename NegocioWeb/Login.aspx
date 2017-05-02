@@ -14,5 +14,6 @@
     <br />
     <br />
     <asp:Label ID="lblMensaje" runat="server"></asp:Label>
+    <asp:Label ID="lblError" runat="server"></asp:Label>
     <br />
 </asp:Content>

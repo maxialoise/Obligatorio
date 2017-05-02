@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Configuration;
 
 namespace Dominio
 {
@@ -44,7 +45,7 @@ namespace Dominio
 
             try
             {
-                using (SqlConnection cnn = new SqlConnection(@"Server=PC-102717\FARRIOLA; Database = Emprendimientos;Integrated Security=SSPI"))
+                using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["miConexion"].ConnectionString))
                 {
                     SqlCommand cmd = new SqlCommand("Obtener_Emprendimientos", cnn);
                     cmd.CommandType = CommandType.StoredProcedure;
@@ -99,7 +100,7 @@ namespace Dominio
 
             try
             {
-                using (SqlConnection cnn = new SqlConnection(@"Server=PC-102717\FARRIOLA; Database = Emprendimientos;Integrated Security=SSPI"))
+                using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["miConexion"].ConnectionString))
                 {
                     SqlCommand cmd = new SqlCommand("ObtenerEmprendimientoPorEvaluador", cnn);
                     cmd.Parameters.AddWithValue("@email", email);
@@ -161,7 +162,9 @@ namespace Dominio
 
             try
             {
-                using (SqlConnection cnn = new SqlConnection(@"Server=PC-102717\FARRIOLA; Database = Emprendimientos;Integrated Security=SSPI"))
+                string connection = ConfigurationManager.ConnectionStrings["miConexion"].ConnectionString;
+
+                using (SqlConnection cnn = new SqlConnection(connection))
                 {
                     SqlCommand cmd = new SqlCommand("Alta_Emprendimiento", cnn);
                     cmd.CommandType = CommandType.StoredProcedure;

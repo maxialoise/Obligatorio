@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -21,7 +22,7 @@ namespace WcfEmprendimientos
 
             try
             {
-                using (SqlConnection cnn = new SqlConnection(@"Server=PC-102717\FARRIOLA; Database = Emprendimientos;Integrated Security=SSPI"))
+                using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["miConexion"].ConnectionString))
                 {
                     SqlCommand cmd = new SqlCommand("Obtener_Emprendimientos", cnn);
                     cmd.CommandType = CommandType.StoredProcedure;
@@ -62,7 +63,7 @@ namespace WcfEmprendimientos
                     cmd.Dispose();
                 }
 
-                using (SqlConnection cnn = new SqlConnection(@"Server=PC-102717\FARRIOLA; Database = Emprendimientos;Integrated Security=SSPI"))
+                using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["miConexion"].ConnectionString))
                 {
                     SqlCommand cmd = new SqlCommand("ObtenerEvaluadoresPorEmprendimiento", cnn);
                     cmd.CommandType = CommandType.StoredProcedure;
@@ -90,7 +91,7 @@ namespace WcfEmprendimientos
 
                 }
 
-                using (SqlConnection cnn = new SqlConnection(@"Server=PC-102717\FARRIOLA; Database = Emprendimientos;Integrated Security=SSPI"))
+                using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["miConexion"].ConnectionString))
                 {
                     SqlCommand cmd = new SqlCommand("ObtenerIntegrantesPorEmprendimiento", cnn);
                     cmd.CommandType = CommandType.StoredProcedure;

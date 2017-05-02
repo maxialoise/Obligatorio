@@ -19,11 +19,16 @@ namespace NegocioWeb
         {
             Usuario user = Usuario.BuscarUsuario(txtEmail.Text, txtContrasenia.Text);
 
-            if (user != null);
+            if (user != null)
             {
                 lblMensaje.Text = "Se ha logueado el usuario " + user.Email + " con el rol " + user.Rol;
                 Session["usuario"] = user;
             }
+            else
+            {
+                lblError.Text = "Usuario o contraseña erroneos";
+            }
+            txtEmail.Text = string.Empty;
         }
     }
 }
