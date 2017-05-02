@@ -50,14 +50,20 @@ namespace NegocioWeb
                     string desc = txtDescripcion.Text;
                     int tiempo = int.Parse(txtTiempo.Text);
                     int costo = int.Parse(txtCosto.Text);
+
                     Emprendimiento empr = new Emprendimiento { Titulo = titulo, Descripcion = desc, Intregrantes = integrantes, TiempoPrevisto = tiempo, Costo = costo};
-                    empr.AltaEmprendimiento();
+
+                    bool resultado = empr.AltaEmprendimiento();
+
+                    if (resultado)
+                        lblError.Text = "Emprendimiento dado de alta correctamente";
+                    else
+                        lblError.Text = "Error al dar de alta el emprendimiento";
                 }
                 else
                 {
                     lblError.Text = "Debe Agragar algun Participante";
                 }
-
             }
             catch (Exception ex)
             {
